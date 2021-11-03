@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import ClassList from '../components/ClassList';
+import AllClassesList from '../components/AllClassesList';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         {/*<style>{'body { background-color: #f9f9f9; }'}</style>*/}
       </Head>
       <h1>UCSB Schedule Builder 😎</h1>
-      <ClassList/>
+      <AllClassesList/>
       {/*<div>*/}
       {/*  <ul>*/}
       {/*    <li>*/}
