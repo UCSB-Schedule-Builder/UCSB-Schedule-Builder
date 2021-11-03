@@ -36,14 +36,6 @@ function AllClassesList() {
 
   return (
     <div className="container">
-      {/*<button*/}
-      {/*  type="button"*/}
-      {/*  onClick={() => {*/}
-      {/*    setClasses([...classLists, getItems(1)]);*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  Add new item*/}
-      {/*</button>*/}
       <NoSSR>
         <DragDropContext onDragEnd={onDragEnd}>
           {classListOrder.map(({ id, name }, ind) => (
