@@ -1,8 +1,9 @@
 import { Droppable } from 'react-beautiful-dnd';
 
-import useClassLists, { ClassListType } from '../store/ClassLists';
+import useClassLists, { ClassListType } from '../stores/classLists';
 import ClassCard from './ClassCard';
 import grid from '../constants/classList';
+import AddClassBtn from './AddClassBtn';
 
 const getListStyle = (isDraggingOver: boolean) => ({
   background: isDraggingOver ? "lightblue" : "#f9f9f9",
@@ -18,20 +19,23 @@ function ClassList({ classType }: { classType: ClassListType }) {
   const remove = useClassLists(state => state.remove);
   const removeAt = (index: number) => remove({ droppableId: classType, index });
 
-  return <Droppable droppableId={classType}>
-    {({ droppableProps, innerRef, placeholder }, snapshot) => (
-      <div
-        ref={innerRef}
-        style={getListStyle(snapshot.isDraggingOver)}
-        {...(droppableProps)}
-      >
-        {classes.map((theClass, index) => (
-          <ClassCard classData={theClass} index={index} removeAt={removeAt} key={theClass.id}/>
-        ))}
-        {placeholder}
-      </div>
-    )}
-  </Droppable>;
+  return <>
+    <Droppable droppableId={classType}>
+      {({ droppableProps, innerRef, placeholder }, snapshot) => (
+        <div
+          ref={innerRef}
+          style={getListStyle(snapshot.isDraggingOver)}
+          {...(droppableProps)}
+        >
+          {classes.map((theClass, index) => (
+            <ClassCard classData={theClass} index={index} removeAt={removeAt} key={theClass.id}/>
+          ))}
+          {placeholder}
+          <AddClassBtn classType={classType}/>
+        </div>
+      )}
+    </Droppable>
+  </>;
 }
 
 export default ClassList;

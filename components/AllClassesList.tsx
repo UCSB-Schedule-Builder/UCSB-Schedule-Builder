@@ -2,7 +2,7 @@ import NoSSR from 'react-no-ssr';
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
-import useClassLists, { ClassListLocation, ClassListType } from '../store/ClassLists';
+import useClassLists, { ClassListLocation, ClassListType } from '../stores/classLists';
 import ClassList from './ClassList';
 
 interface ClassMetadata {

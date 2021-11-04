@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import AllClassesList from '../components/AllClassesList';
+import SearchModal from '../components/SearchModal';
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllClassesList/>
       <h2>Calendar</h2>
+      <SearchModal/>
       <style jsx global>{`
         html {
           height: 100%;

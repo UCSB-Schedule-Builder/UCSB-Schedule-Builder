@@ -1,12 +1,12 @@
 import { Draggable, DraggingStyle, NotDraggingStyle } from 'react-beautiful-dnd';
 import { CSSProperties } from 'react';
 
-import { Class } from '../store/ClassLists';
+import { Class } from '../stores/classLists';
 import grid from '../constants/classList';
 
-const getItemStyle =
+const getClassStyle =
   (isDragging: boolean, draggableStyle?: DraggingStyle | NotDraggingStyle): CSSProperties => ({
-    // some basic styles to make the items look a bit nicer
+    // some basic styles to make the class items look a bit nicer
     userSelect: "none",
     padding: grid * 2,
     margin: `0 0 ${grid * 1.5}px 0`,
@@ -28,40 +28,48 @@ function ClassCard({
                      removeAt
                    }: { classData: Class, index: number, removeAt: (index: number) => void }) {
   const { id, content } = classData;
-  return <Draggable
-    draggableId={id}
-    index={index}
-  >
-    {({ dragHandleProps, draggableProps, innerRef }, snapshot) => (
-      <div
-        ref={innerRef}
-        {...draggableProps}
-        {...dragHandleProps}
-        style={getItemStyle(
-          snapshot.isDragging,
-          draggableProps.style
-        )}
-      >
+  return <>
+    <Draggable
+      draggableId={id}
+      index={index}
+    >
+      {({ dragHandleProps, draggableProps, innerRef }, snapshot) => (
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            whiteSpace: "pre-wrap"
-          }}
+          ref={innerRef}
+          {...draggableProps}
+          {...dragHandleProps}
+          style={getClassStyle(
+            snapshot.isDragging,
+            draggableProps.style
+          )}
         >
-          {content}
-          <button
-            type="button"
-            onClick={() => {
-              removeAt(index);
-            }}
+          <div className="card"
           >
-            delete
-          </button>
+            {content}
+            <button
+              type="button"
+              onClick={() => {
+                removeAt(index);
+              }}
+            >
+              delete
+            </button>
+          </div>
         </div>
-      </div>
-    )}
-  </Draggable>
+      )}
+    </Draggable>
+    <style jsx>{`
+      .card {
+        display: flex;
+        justify-content: space-around;
+        white-space: pre-wrap;
+      }
+
+      * {
+        color: #172b4d;
+      }
+    `}</style>
+  </>
 }
 
 export default ClassCard;

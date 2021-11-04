@@ -23,23 +23,22 @@ interface ClassListsState {
   move: (location: ClassListLocation, destination: ClassListLocation) => void,
 }
 
-const getItems = (count: number, offset = 0): Class[] =>
+// dummy data generator
+const getClasses = (count: number, offset = 0): Class[] =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k + offset}-${new Date().getTime()}`,
-    content: `item ${k + offset}\nlecture times\nsection times`
+    id: `class-${k + offset}-${new Date().getTime()}`,
+    content: `class ${k + offset}\nlecture times\nsection times`
   }));
 
 const useClassLists = create((set, get: () => ClassListsState): ClassListsState => ({
-  main: getItems(3),
-  alternate: getItems(5, 3),
+  main: getClasses(3),
+  alternate: getClasses(5, 3),
   insert: (theClass, { droppableId, index }) => set((state: ClassListsState) => ({
-    ...state,
     [droppableId]: insert(state[droppableId], theClass, index)
   })),
   remove: ({ droppableId, index }) => {
     const classToRemove = get()[droppableId][index];
     set((state: ClassListsState) => ({
-      ...state,
       [droppableId]: state[droppableId].filter((_, i) => i !== index)
     }));
     return classToRemove;
