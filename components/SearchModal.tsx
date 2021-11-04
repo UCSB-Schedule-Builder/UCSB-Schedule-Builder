@@ -1,9 +1,15 @@
 import shallow from 'zustand/shallow';
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
 
+import algoliasearch from 'algoliasearch/lite';
+import { Hits, InstantSearch, SearchBox } from 'react-instantsearch-dom';
+import Head from 'next/head';
+
 import useSearch from '../stores/classSearch';
 
 function SearchModal() {
+  const searchClient = algoliasearch('LCQ3CEQUFK', '659dd77b7fdb7865eaca7c21a20ed8b8');
+
   const { currentClassType, close } = useSearch(
     ({ currentClassType, close }) => ({ currentClassType, close }), shallow);
 
@@ -20,16 +26,28 @@ function SearchModal() {
   }
 
   return <>
-    <div id="myModal" className="modal" onClick={handleClose}>
-      <div className="modal-content" onClick={e => {
+    <Head>
+      {/*Algolia InstantSearch satellite theme CSS*/}
+      <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.4.5/themes/satellite-min.css"
+            integrity="sha256-TehzF/2QvNKhGQrrNpoOb2Ck4iGZ1J/DI4pkd2oUsBc="
+            crossOrigin="anonymous"/>
+    </Head>
+    <div className="modal" onClick={handleClose}>
+      <div className="modal-content" onClick={e =>
         // do not close modal if anything inside modal content is clicked
-        e.stopPropagation();
-      }}>
+        e.stopPropagation()
+      }>
         <div className="modal-header">
           <span className="close" onClick={handleClose}>&times;</span>
           <h2>Search for classes! 🔎</h2>
         </div>
         <div className="modal-body">
+          <InstantSearch searchClient={searchClient} indexName="classes">
+            <SearchBox/>
+            <Hits/>
+          </InstantSearch>
+
           <p>Some text in the Modal Body</p>
           <p>Some other text...</p>
         </div>
@@ -129,7 +147,7 @@ function SearchModal() {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 1.2rem;
+        margin-top: 1.4rem;
       }
     `}</style>
   </>
