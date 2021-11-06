@@ -49,15 +49,14 @@ function CourseCard({
             style={getCourseStyle(snapshot.isDragging, draggableProps.style)}
           >
             <div className="card">
-              <a
-                href="#"
+              <button
                 className="close"
                 onClick={() => {
                   removeAt(index);
                 }}
               >
                 <p className="close-inner">&times;</p>
-              </a>
+              </button>
               {content}
             </div>
           </div>
@@ -82,19 +81,20 @@ function CourseCard({
 
         .close {
           position: absolute;
-          top: -25px;
+          top: -26px;
           left: -25px;
           z-index: 100;
           background-color: #dc143c;
-          padding: 8px 5px 5px;
+          padding: 8px 6px 6px;
           cursor: pointer;
           opacity: 0;
           border-radius: 50%;
+          border: none;
         }
 
         .close-inner {
           position: relative;
-          top: -3px;
+          top: -1px;
           margin: 0;
           color: #fff;
           text-align: center;
