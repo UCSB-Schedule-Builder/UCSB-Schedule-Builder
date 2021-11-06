@@ -1,0 +1,887 @@
+{
+    "modelName": "UCSB Schedule Builder",
+    "collections": [
+        {
+            "collectionName": "subjects",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "code",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "2c7cec80-3c1f-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "3f14e730-3c1f-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "department",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "edcc2390-3c58-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "courses",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "4d1dd780-3c59-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "48e07bf0-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "4ce9a9f0-3c1e-11ec-b84c-9d219093150f"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "collectionUsers": [],
+            "GUID": "4ce7ae20-3c1e-11ec-b84c-9d219093150f",
+            "childCollection": [],
+            "parentCollection": "",
+            "comments": "https://registrar.sa.ucsb.edu/webservices/public/lookups/v1/departments"
+        },
+        {
+            "collectionName": "courses",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "9598d770-3c1e-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "title",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "a8eef200-3c1e-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "description",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "b79a2220-3c1e-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "unitsAreVariable",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "childType": "boolean",
+                    "type": "boolean",
+                    "GUID": "29e1b5f0-3c24-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "units",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "exclusiveMinimum": false,
+                            "exclusiveMaximum": false,
+                            "primaryKey": false,
+                            "childType": "number",
+                            "type": "numeric",
+                            "GUID": "36f974d0-3c24-11ec-b84c-9d219093150f",
+                            "arrayItem": true,
+                            "arrayParentType": "array",
+                            "displayName": "unitsMin"
+                        },
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "exclusiveMinimum": false,
+                            "exclusiveMaximum": false,
+                            "primaryKey": false,
+                            "childType": "number",
+                            "type": "numeric",
+                            "GUID": "a710b7f0-3c25-11ec-b84c-9d219093150f",
+                            "arrayItem": true,
+                            "arrayParentType": "array",
+                            "displayName": "unitsMax"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "36f46bc0-3c24-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "isOnline",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "childType": "boolean",
+                    "type": "boolean",
+                    "GUID": "c8efd170-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "instructionType",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "d719eab0-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "gradingOption",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "eb188400-3c52-11ec-996f-61fc4cdb82e1",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "New field",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "f6dd0ef0-3c52-11ec-996f-61fc4cdb82e1",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "college",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "53b799a0-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "department",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "569a6e40-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "subject",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "5acf6560-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "7fa24870-3c1e-11ec-b84c-9d219093150f"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "GUID": "7fa09ac0-3c1e-11ec-b84c-9d219093150f",
+            "parentCollection": "",
+            "hackoladeMeta": {},
+            "comments": "https://api.ucsb.edu/academics/curriculums/v1/classes/search",
+            "childCollection": [
+                "18c65e40-3c26-11ec-b84c-9d219093150f"
+            ]
+        },
+        {
+            "collectionName": "departments",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "code",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "31fc5310-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "shortName",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "44ae3e60-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "4fcfd290-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "college",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "f775da40-3c57-11ec-996f-61fc4cdb82e1",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "subjects",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "d55db6c0-3c58-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "d555ee90-3c58-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "courses",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "449e6570-3c59-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "414d3ea0-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "childRelationships": [
+                        "f080c6d0-3c59-11ec-be9f-cf95848355e9"
+                    ]
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "61c53690-3c1f-11ec-b84c-9d219093150f"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "collectionUsers": [],
+            "GUID": "61c313b0-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": [],
+            "parentCollection": "",
+            "comments": "https://registrar.sa.ucsb.edu/webservices/public/lookups/v1/subjects"
+        },
+        {
+            "collectionName": "colleges",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "code",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "960b79f0-3c1f-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "230d6330-3c21-11ec-b84c-9d219093150f"
+                },
+                {
+                    "name": "departments",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "e5baf920-3c57-11ec-996f-61fc4cdb82e1",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "e5b44260-3c57-11ec-996f-61fc4cdb82e1",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "courses",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "3f2d6be0-3c59-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "3c830c60-3c59-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "childRelationships": [
+                        "5ea302a0-3c59-11ec-be9f-cf95848355e9"
+                    ]
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "6ca024d0-3c1f-11ec-b84c-9d219093150f"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "collectionUsers": [],
+            "GUID": "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": [],
+            "comments": "https://registrar.sa.ucsb.edu/webservices/public/lookups/v1/colleges"
+        },
+        {
+            "collectionName": "sections",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "number",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "d139daa0-3c2c-11ec-bde7-f55a36bca8c1"
+                },
+                {
+                    "name": "enrollCode",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "e0bbe2c0-3c2c-11ec-bde7-f55a36bca8c1"
+                },
+                {
+                    "name": "concurrentCourses",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "4a3f2c20-3c5a-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "836773b0-3c53-11ec-996f-61fc4cdb82e1",
+                    "childRelationships": [
+                        "ba158f50-3c53-11ec-996f-61fc4cdb82e1"
+                    ],
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "childSections",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "properties": [
+                        {
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "primaryKey": false,
+                            "type": "string",
+                            "GUID": "8df15790-3c5a-11ec-be9f-cf95848355e9",
+                            "arrayItem": true,
+                            "arrayParentType": "array"
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "6c326d10-3c5a-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "parentSection",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "f165b220-3c65-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "enrolledSeatCount",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "GUID": "f7d64160-3c65-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "totalSeatCount",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "GUID": "121130d0-3c66-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "18c88120-3c26-11ec-b84c-9d219093150f"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "collectionUsers": [],
+            "GUID": "18c65e40-3c26-11ec-b84c-9d219093150f",
+            "parentCollection": "7fa09ac0-3c1e-11ec-b84c-9d219093150f",
+            "childCollection": [
+                "a7e7f490-3c66-11ec-be9f-cf95848355e9"
+            ]
+        },
+        {
+            "collectionName": "timeLocations",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "building",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "1c915f70-3c67-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "name": "room",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "primaryKey": false,
+                    "type": "string",
+                    "GUID": "23527fb0-3c67-11ec-be9f-cf95848355e9",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "a7ef6ea0-3c66-11ec-be9f-cf95848355e9"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "GUID": "a7e7f490-3c66-11ec-be9f-cf95848355e9",
+            "parentCollection": "18c65e40-3c26-11ec-b84c-9d219093150f"
+        }
+    ],
+    "buckets": [],
+    "views": [],
+    "relationships": [
+        {
+            "name": "collegeDepartments",
+            "relationshipType": "",
+            "parentField": [
+                [
+                    "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+                    "e5b44260-3c57-11ec-996f-61fc4cdb82e1"
+                ]
+            ],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "d66c0ef0-3c57-11ec-996f-61fc4cdb82e1",
+            "parentCollection": "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": "61c313b0-3c1f-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "departmentSubjects",
+            "relationshipType": "",
+            "parentField": [],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "8340e6a0-3c58-11ec-be9f-cf95848355e9",
+            "parentCollection": "61c313b0-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": "4ce7ae20-3c1e-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "collegeCourses",
+            "relationshipType": "",
+            "parentField": [
+                [
+                    "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+                    "3c830c60-3c59-11ec-be9f-cf95848355e9"
+                ]
+            ],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "5ea302a0-3c59-11ec-be9f-cf95848355e9",
+            "parentCollection": "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": "7fa09ac0-3c1e-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "departmentCourses",
+            "relationshipType": "",
+            "parentField": [
+                [
+                    "61c313b0-3c1f-11ec-b84c-9d219093150f",
+                    "414d3ea0-3c59-11ec-be9f-cf95848355e9"
+                ]
+            ],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "f080c6d0-3c59-11ec-be9f-cf95848355e9",
+            "parentCollection": "61c313b0-3c1f-11ec-b84c-9d219093150f",
+            "childCollection": "7fa09ac0-3c1e-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "subjectCourses",
+            "relationshipType": "",
+            "parentField": [
+                [
+                    "4ce7ae20-3c1e-11ec-b84c-9d219093150f",
+                    "48e07bf0-3c59-11ec-be9f-cf95848355e9"
+                ]
+            ],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "02601fe0-3c5a-11ec-be9f-cf95848355e9",
+            "parentCollection": "4ce7ae20-3c1e-11ec-b84c-9d219093150f",
+            "childCollection": "7fa09ac0-3c1e-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "concurrentCourses",
+            "relationshipType": "",
+            "parentField": [],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "5044eba0-3c5a-11ec-be9f-cf95848355e9",
+            "parentCollection": "18c65e40-3c26-11ec-b84c-9d219093150f",
+            "childCollection": "7fa09ac0-3c1e-11ec-b84c-9d219093150f"
+        },
+        {
+            "name": "childSections",
+            "relationshipType": "",
+            "parentField": [],
+            "parentCardinality": "n",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "9112bbd0-3c5a-11ec-be9f-cf95848355e9",
+            "parentCollection": "18c65e40-3c26-11ec-b84c-9d219093150f",
+            "childCollection": "18c65e40-3c26-11ec-b84c-9d219093150f"
+        }
+    ],
+    "users": [],
+    "diagramViews": [],
+    "idToNameHashTable": {
+        "4ce7ae20-3c1e-11ec-b84c-9d219093150f": "subjects",
+        "7fa09ac0-3c1e-11ec-b84c-9d219093150f": "courses",
+        "9598d770-3c1e-11ec-b84c-9d219093150f": "id",
+        "a8eef200-3c1e-11ec-b84c-9d219093150f": "title",
+        "b79a2220-3c1e-11ec-b84c-9d219093150f": "description",
+        "2c7cec80-3c1f-11ec-b84c-9d219093150f": "code",
+        "3f14e730-3c1f-11ec-b84c-9d219093150f": "name",
+        "61c313b0-3c1f-11ec-b84c-9d219093150f": "departments",
+        "6c9e2900-3c1f-11ec-b84c-9d219093150f": "colleges",
+        "960b79f0-3c1f-11ec-b84c-9d219093150f": "code",
+        "230d6330-3c21-11ec-b84c-9d219093150f": "name",
+        "31fc5310-3c21-11ec-b84c-9d219093150f": "code",
+        "44ae3e60-3c21-11ec-b84c-9d219093150f": "shortName",
+        "4fcfd290-3c21-11ec-b84c-9d219093150f": "name",
+        "c8efd170-3c21-11ec-b84c-9d219093150f": "isOnline",
+        "d719eab0-3c21-11ec-b84c-9d219093150f": "instructionType",
+        "29e1b5f0-3c24-11ec-b84c-9d219093150f": "unitsAreVariable",
+        "36f46bc0-3c24-11ec-b84c-9d219093150f": "units",
+        "18c65e40-3c26-11ec-b84c-9d219093150f": "sections",
+        "d139daa0-3c2c-11ec-bde7-f55a36bca8c1": "number",
+        "e0bbe2c0-3c2c-11ec-bde7-f55a36bca8c1": "enrollCode",
+        "eb188400-3c52-11ec-996f-61fc4cdb82e1": "gradingOption",
+        "f6dd0ef0-3c52-11ec-996f-61fc4cdb82e1": "New field",
+        "836773b0-3c53-11ec-996f-61fc4cdb82e1": "concurrentCourses",
+        "d66c0ef0-3c57-11ec-996f-61fc4cdb82e1": "collegeDepartments",
+        "e5b44260-3c57-11ec-996f-61fc4cdb82e1": "departments",
+        "f775da40-3c57-11ec-996f-61fc4cdb82e1": "college",
+        "8340e6a0-3c58-11ec-be9f-cf95848355e9": "departmentSubjects",
+        "d555ee90-3c58-11ec-be9f-cf95848355e9": "subjects",
+        "edcc2390-3c58-11ec-be9f-cf95848355e9": "department",
+        "3c830c60-3c59-11ec-be9f-cf95848355e9": "courses",
+        "414d3ea0-3c59-11ec-be9f-cf95848355e9": "courses",
+        "48e07bf0-3c59-11ec-be9f-cf95848355e9": "courses",
+        "53b799a0-3c59-11ec-be9f-cf95848355e9": "college",
+        "569a6e40-3c59-11ec-be9f-cf95848355e9": "department",
+        "5acf6560-3c59-11ec-be9f-cf95848355e9": "subject",
+        "5ea302a0-3c59-11ec-be9f-cf95848355e9": "collegeCourses",
+        "f080c6d0-3c59-11ec-be9f-cf95848355e9": "departmentCourses",
+        "02601fe0-3c5a-11ec-be9f-cf95848355e9": "subjectCourses",
+        "5044eba0-3c5a-11ec-be9f-cf95848355e9": "concurrentCourses",
+        "6c326d10-3c5a-11ec-be9f-cf95848355e9": "childSections",
+        "9112bbd0-3c5a-11ec-be9f-cf95848355e9": "childSections",
+        "f165b220-3c65-11ec-be9f-cf95848355e9": "parentSection",
+        "f7d64160-3c65-11ec-be9f-cf95848355e9": "enrolledSeatCount",
+        "121130d0-3c66-11ec-be9f-cf95848355e9": "totalSeatCount",
+        "a7e7f490-3c66-11ec-be9f-cf95848355e9": "timeLocations",
+        "1c915f70-3c67-11ec-be9f-cf95848355e9": "building",
+        "23527fb0-3c67-11ec-be9f-cf95848355e9": "room"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [],
+        "GUID": "fe168560-3c03-11ec-b84c-9d219093150f"
+    },
+    "polyglotDefinitions": {
+        "type": "polyglotDefinitions",
+        "properties": [],
+        "GUID": "fe168562-3c03-11ec-b84c-9d219093150f"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "fe168561-3c03-11ec-b84c-9d219093150f"
+    },
+    "sources": [],
+    "decorativeSymbols": [],
+    "dbVendor": "Cloud Firestore",
+    "appTarget": "FIRESTORE",
+    "creationTS": "2021-11-02T17:40:38.709Z",
+    "GUID": "fe165e50-3c03-11ec-b84c-9d219093150f",
+    "isLineageEnabled": false,
+    "hackoladeMeta": {
+        "validationErrors": {
+            "modelName": false
+        }
+    },
+    "lastModifTS": "2021-11-03T05:31:22.732Z",
+    "persistenceSchemaVersion": "5",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginName": "Firestore",
+        "pluginVersion": "0.1.4",
+        "pluginEngineVersion": "1.0.0"
+    },
+    "applicationInformation": {
+        "version": "5.2.8"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "4ce7ae20-3c1e-11ec-b84c-9d219093150f",
+                        "x": 652.5,
+                        "y": 157,
+                        "width": 187,
+                        "height": 123,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "7fa09ac0-3c1e-11ec-b84c-9d219093150f",
+                        "x": 334,
+                        "y": 376,
+                        "width": 221,
+                        "height": 285,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "61c313b0-3c1f-11ec-b84c-9d219093150f",
+                        "x": 347,
+                        "y": 153,
+                        "width": 195,
+                        "height": 177,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "6c9e2900-3c1f-11ec-b84c-9d219093150f",
+                        "x": 71,
+                        "y": 171,
+                        "width": 193,
+                        "height": 141,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "18c65e40-3c26-11ec-b84c-9d219093150f",
+                        "x": 326.5,
+                        "y": 691,
+                        "width": 236,
+                        "height": 195,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "a7e7f490-3c66-11ec-be9f-cf95848355e9",
+                        "x": 344,
+                        "y": 916,
+                        "width": 201,
+                        "height": 69,
+                        "color": {}
+                    }
+                ],
+                "buckets": [],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false,
+                "graphView": {
+                    "erd": [],
+                    "buckets": [],
+                    "decorativeSymbols": [],
+                    "forceLayout": true,
+                    "defaultLinkLength": 300
+                },
+                "diagramViews": [],
+                "decorativeSymbols": [],
+                "nestedCollectionsLayout": "horizontal",
+                "options": []
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "shouldDistributeCollections": false
+        }
+    }
+}
