@@ -1,12 +1,16 @@
 lockfileVersion: 5.3
 
 specifiers:
+  await-to-js: ^3.0.0
+  axios: ^0.24.0
   firebase-admin: ^9.8.0
   firebase-functions: ^3.14.1
   firebase-functions-test: ^0.2.0
   typescript: ^3.8.0
 
 dependencies:
+  await-to-js: 3.0.0
+  axios: 0.24.0
   firebase-admin: 9.12.0
   firebase-functions: 3.16.0_firebase-admin@9.12.0
 
@@ -405,6 +409,19 @@ packages:
     dev: false
     optional: true
 
+  /await-to-js/3.0.0:
+    resolution: {integrity: sha512-zJAaP9zxTcvTHRlejau3ZOY4V7SRpiByf3/dxx2uyKxxor19tpmpV2QRsTKikckwhaPmr2dVpxxMr7jOCYVp5g==}
+    engines: {node: '>=6.0.0'}
+    dev: false
+
+  /axios/0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+    dependencies:
+      follow-redirects: 1.14.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
@@ -744,6 +761,16 @@ packages:
       express: 4.17.1
       firebase-admin: 9.12.0
       lodash: 4.17.21
+    dev: false
+
+  /follow-redirects/1.14.5:
+    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: false
 
   /forwarded/0.2.0:
