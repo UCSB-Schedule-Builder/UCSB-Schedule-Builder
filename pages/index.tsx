@@ -1,20 +1,23 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import AllClassesList from '../components/AllClassesList';
-import SearchModal from '../components/SearchModal';
+import type { NextPage } from "next";
+import Head from "next/head";
+import AllCoursesList from "../components/AllCoursesList";
+import SearchModal from "../components/SearchModal";
 
 const Home: NextPage = () => {
   return (
     <div className="container">
       <Head>
         <title>UCSB Schedule Builder</title>
-        <meta name="description" content="Build conflict free UCSB class schedules!"/>
-        <link rel="icon" href="/favicon.ico"/>
+        <meta
+          name="description"
+          content="Build conflict free UCSB course schedules!"
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>UCSB Schedule Builder 😎</h1>
-      <AllClassesList/>
+      <AllCoursesList />
       <h2>Calendar</h2>
-      <SearchModal/>
+      <SearchModal />
       <style jsx global>{`
         html {
           height: 100%;
@@ -24,7 +27,8 @@ const Home: NextPage = () => {
           height: 100%;
           margin: 0;
           padding: 20px;
-          background: linear-gradient(135deg, #2e22ac 0%, #ce448d 100%) no-repeat fixed;
+          background: linear-gradient(135deg, #2e22ac 0%, #ce448d 100%)
+            no-repeat fixed;
         }
       `}</style>
       <style jsx>{`
@@ -59,9 +63,7 @@ const Home: NextPage = () => {
         }
       `}</style>
     </div>
-
-  )
+  );
 };
 
 export default Home;
-

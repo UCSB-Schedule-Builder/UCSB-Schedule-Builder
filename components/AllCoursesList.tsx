@@ -1,29 +1,31 @@
-import NoSSR from 'react-no-ssr';
+import NoSSR from "react-no-ssr";
 
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import useCourseLists, {
+  CourseListLocation,
+  CourseListType,
+} from "../stores/courseLists";
+import CourseList from "./CourseList";
 
-import useClassLists, { ClassListLocation, ClassListType } from '../stores/classLists';
-import ClassList from './ClassList';
-
-interface ClassMetadata {
-  id: ClassListType,
-  name: string
+interface CourseMetadata {
+  id: CourseListType;
+  name: string;
 }
 
-const classListOrder: ClassMetadata[] = [
-  { id: "main", name: "Classes" },
-  { id: "alternate", name: "Alternates" }
+const courseListOrder: CourseMetadata[] = [
+  { id: "main", name: "Courses" },
+  { id: "alternate", name: "Alternates" },
 ];
 
-function AllClassesList() {
-  const move = useClassLists(state => state.move);
+function AllCoursesList() {
+  const move = useCourseLists((state) => state.move);
 
-  interface ClassDropResult extends DropResult {
-    source: ClassListLocation,
-    destination: ClassListLocation,
+  interface CourseDropResult extends DropResult {
+    source: CourseListLocation;
+    destination: CourseListLocation;
   }
 
-  function onDragEnd(result: ClassDropResult) {
+  function onDragEnd(result: CourseDropResult) {
     const { source, destination } = result;
 
     // dropped outside the list
@@ -38,11 +40,11 @@ function AllClassesList() {
     <div className="container">
       <NoSSR>
         <DragDropContext onDragEnd={onDragEnd}>
-          {classListOrder.map(({ id, name }, ind) => (
+          {courseListOrder.map(({ id, name }, ind) => (
             <div key={ind}>
               <h2>{name}</h2>
-              <div className="class-list">
-                <ClassList classType={id}/>
+              <div className="course-list">
+                <CourseList courseType={id} />
               </div>
             </div>
           ))}
@@ -72,7 +74,7 @@ function AllClassesList() {
           justify-content: center;
         }
 
-        .class-list {
+        .course-list {
           margin-bottom: 1rem;
         }
       `}</style>
@@ -80,4 +82,4 @@ function AllClassesList() {
   );
 }
 
-export default AllClassesList;
+export default AllCoursesList;

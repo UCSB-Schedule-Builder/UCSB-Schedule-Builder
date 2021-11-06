@@ -5,7 +5,7 @@ import algoliasearch from "algoliasearch/lite";
 import { Hits, InstantSearch, SearchBox } from "react-instantsearch-dom";
 import Head from "next/head";
 
-import useSearch from "../stores/classSearch";
+import useSearch from "../stores/courseSearch";
 
 function SearchModal() {
   const searchClient = algoliasearch(
@@ -13,14 +13,14 @@ function SearchModal() {
     "659dd77b7fdb7865eaca7c21a20ed8b8"
   );
 
-  const { currentClassType, close } = useSearch(
-    ({ currentClassType, close }) => ({ currentClassType, close }),
+  const { currentCourseType, close } = useSearch(
+    ({ currentCourseType, close }) => ({ currentCourseType, close }),
     shallow
   );
 
   const isEscapePressed = useKeyPress({ targetKey: "Escape" });
 
-  const isVisible = currentClassType !== null;
+  const isVisible = currentCourseType !== null;
 
   const handleClose = () => {
     close();
@@ -53,10 +53,10 @@ function SearchModal() {
             <span className="close" onClick={handleClose}>
               &times;
             </span>
-            <h2>Search for classes! 🔎</h2>
+            <h2>Search for courses! 🔎</h2>
           </div>
           <div className="modal-body">
-            <InstantSearch searchClient={searchClient} indexName="classes">
+            <InstantSearch searchClient={searchClient} indexName="courses">
               <SearchBox />
               <Hits />
             </InstantSearch>

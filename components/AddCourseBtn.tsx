@@ -1,17 +1,17 @@
-import grid from "../constants/classList";
-import { ClassListType } from "../stores/classLists";
-import useSearch from "../stores/classSearch";
+import grid from "../constants/courseList";
+import useSearch from "../stores/courseSearch";
+import { CourseListType } from "../stores/courseLists";
 
-function AddClassBtn({ classType }: { classType: ClassListType }) {
+function AddCourseBtn({ courseType }: { courseType: CourseListType }) {
   const search = useSearch((state) => state.search);
 
-  function handleAddClass() {
-    search(classType);
+  function handleAddCourse() {
+    search(courseType);
   }
 
   return (
     <>
-      <button onClick={handleAddClass}>+ Add Class</button>
+      <button onClick={handleAddCourse}>+ Add Course</button>
       <style jsx>{`
         button {
           border-radius: 10px;
@@ -37,4 +37,4 @@ function AddClassBtn({ classType }: { classType: ClassListType }) {
   );
 }
 
-export default AddClassBtn;
+export default AddCourseBtn;

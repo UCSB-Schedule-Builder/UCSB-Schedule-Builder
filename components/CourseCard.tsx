@@ -4,15 +4,14 @@ import {
   NotDraggingStyle,
 } from "react-beautiful-dnd";
 import { CSSProperties } from "react";
+import grid from "../constants/courseList";
+import { Course } from "../stores/courseLists";
 
-import { Class } from "../stores/classLists";
-import grid from "../constants/classList";
-
-const getClassStyle = (
+const getCourseStyle = (
   isDragging: boolean,
   draggableStyle?: DraggingStyle | NotDraggingStyle
 ): CSSProperties => ({
-  // some basic styles to make the class items look a bit nicer
+  // some basic styles to make the course items look a bit nicer
   userSelect: "none",
   padding: grid * 2,
   margin: `0 0 ${grid * 1.5}px 0`,
@@ -29,16 +28,16 @@ const getClassStyle = (
   ...draggableStyle,
 });
 
-function ClassCard({
-  classData,
+function CourseCard({
+  courseData,
   index,
   removeAt,
 }: {
-  classData: Class;
+  courseData: Course;
   index: number;
   removeAt: (index: number) => void;
 }) {
-  const { id, content } = classData;
+  const { id, content } = courseData;
   return (
     <>
       <Draggable draggableId={id} index={index}>
@@ -47,7 +46,7 @@ function ClassCard({
             ref={innerRef}
             {...draggableProps}
             {...dragHandleProps}
-            style={getClassStyle(snapshot.isDragging, draggableProps.style)}
+            style={getCourseStyle(snapshot.isDragging, draggableProps.style)}
           >
             <div className="card">
               <a
@@ -115,4 +114,4 @@ function ClassCard({
   );
 }
 
-export default ClassCard;
+export default CourseCard;
