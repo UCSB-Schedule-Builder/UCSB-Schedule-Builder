@@ -3,18 +3,34 @@ import { CourseLocation } from "./CourseLocation"
 export class CourseTime
 {
   dayOfWeek: DayOfWeek
-  hour: number
-  minute: number
-  durationMinutes: number
+  startTime: HourMinute
+  endTime: HourMinute
   location: CourseLocation
 
-  constructor(dayOfWeek: DayOfWeek, hour: number, minute: number, duration: number, location: CourseLocation)
+  constructor(dayOfWeek: DayOfWeek, startTimeString: string, endTimeString: string, location: CourseLocation)
   {
     this.dayOfWeek = dayOfWeek
-    this.hour = hour
-    this.minute = minute
-    this.duration = duration
+    this.startTime = new HourMinute(startTimeString)
+    this.endTime = new HourMinute(endTimeString)
     this.location = location
+  }
+
+  getDuration(): number
+  {
+    return 60*(this.endTime.hour-this.startTime.hour)+(this.endTime.minute-this.startTime.minute)
+  }
+}
+
+export class HourMinute
+{
+  hour: number
+  minute: number
+
+  constructor(hourMinuteString: string)
+  {
+    var splitHourMinuteString = hourMinuteString.split(":")
+    this.hour = parseInt(splitHourMinuteString[0])
+    this.minute = parseInt(splitHourMinuteString[1])
   }
 }
 
