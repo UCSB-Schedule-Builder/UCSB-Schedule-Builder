@@ -1,18 +1,9 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
 
-import algoliasearch from "algoliasearch/lite";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch-dom";
-import Head from "next/head";
-
 import useSearch from "../stores/courseSearch";
 
 function SearchModal() {
-  const searchClient = algoliasearch(
-    "LCQ3CEQUFK",
-    "659dd77b7fdb7865eaca7c21a20ed8b8"
-  );
-
   const { currentCourseType, close } = useSearch(
     ({ currentCourseType, close }) => ({ currentCourseType, close }),
     shallow
@@ -32,15 +23,6 @@ function SearchModal() {
 
   return (
     <>
-      <Head>
-        {/*Algolia InstantSearch satellite theme CSS*/}
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.4.5/themes/satellite-min.css"
-          integrity="sha256-TehzF/2QvNKhGQrrNpoOb2Ck4iGZ1J/DI4pkd2oUsBc="
-          crossOrigin="anonymous"
-        />
-      </Head>
       <div className="modal" onClick={handleClose}>
         <div
           className="modal-content"
@@ -56,11 +38,6 @@ function SearchModal() {
             <h2>Search for courses! 🔎</h2>
           </div>
           <div className="modal-body">
-            <InstantSearch searchClient={searchClient} indexName="courses">
-              <SearchBox />
-              <Hits />
-            </InstantSearch>
-
             <p>Some text in the Modal Body</p>
             <p>Some other text...</p>
           </div>
