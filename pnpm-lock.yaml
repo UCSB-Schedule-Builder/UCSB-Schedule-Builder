@@ -1,6 +1,18 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@progress/kendo-date-math': ^1.5.4
+  '@progress/kendo-licensing': ^1.2.1
+  '@progress/kendo-react-buttons': ^4.10.0
+  '@progress/kendo-react-dateinputs': ^4.10.0
+  '@progress/kendo-react-dialogs': ^4.10.0
+  '@progress/kendo-react-dropdowns': ^4.10.0
+  '@progress/kendo-react-form': ^4.10.0
+  '@progress/kendo-react-inputs': ^4.10.0
+  '@progress/kendo-react-intl': ^4.10.0
+  '@progress/kendo-react-popup': ^4.10.0
+  '@progress/kendo-react-scheduler': ^4.10.0
+  '@progress/kendo-theme-default': ^4.42.0
   '@react-typed-hooks/use-key-press': ^1.0.5
   '@types/node': 16.11.6
   '@types/react': 17.0.33
@@ -22,6 +34,18 @@ specifiers:
   zustand: ^3.6.3
 
 dependencies:
+  '@progress/kendo-date-math': 1.5.4
+  '@progress/kendo-licensing': 1.2.1
+  '@progress/kendo-react-buttons': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+  '@progress/kendo-react-dateinputs': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+  '@progress/kendo-react-dialogs': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+  '@progress/kendo-react-dropdowns': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+  '@progress/kendo-react-form': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+  '@progress/kendo-react-inputs': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+  '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+  '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+  '@progress/kendo-react-scheduler': 4.10.0_ea0d0fb8de721154e53334bc3a9068eb
+  '@progress/kendo-theme-default': 4.42.0
   '@react-typed-hooks/use-key-press': 1.0.5
   just-insert: 2.4.1
   next: 12.0.1_react-dom@17.0.2+react@17.0.2
@@ -426,6 +450,241 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@progress/kendo-data-query/1.5.5:
+    resolution: {integrity: sha512-V0Q4mgooLM/mThJnuSYI7bt7ZBQj3dwUHrubZEB6kkPu82p6KVLkTC9db3L3H/NFA9NvoioLRjSyccUMQlxcTw==}
+    dependencies:
+      tslib: 1.14.1
+    dev: false
+
+  /@progress/kendo-date-math/1.5.4:
+    resolution: {integrity: sha512-Kfg5VSCaDsogW/3h1d/feYDRV7bZki1fvDFX+KkDbi4CE+5Wn0RNZHck6VuqAPWh1x4rjVkBVJHwF2d6H02JyA==}
+    dependencies:
+      tslib: 1.14.1
+    dev: false
+
+  /@progress/kendo-licensing/1.2.1:
+    resolution: {integrity: sha512-j17Mvl1wxdF8C+v6iokssV7tdaeWqCr8zkczTr5jfTe6Fg9DEbFfvt0bl8UnTLg41dc5R14dp8ZVhdnS+sdDrg==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      jsonwebtoken: 8.5.1
+    dev: false
+
+  /@progress/kendo-popup-common/1.8.0:
+    resolution: {integrity: sha512-/cu0nV+3tHKPEE/bUbJTJHv6t8BMYpwI3uVOYENASYy+ZK1dlOfuRhdpSGH85glAH6NMtr/5pYOPojuXFFz/8A==}
+    dev: false
+
+  /@progress/kendo-react-buttons/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-Okn2jv7iY8Ws2QL6FOT2TwqdZchHITrJeV4H6DX23qHd52Yrswr1JeiToHj/31l9W2pSPwdFLll9jAN0yKvx5g==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-common/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-EJrBveeeBURypt3j4qcxp6oWIJf5cDNwkNtblSHuy8y7VjQLYxUZdv4GDxS0k/qbzDbJw2CCXkJdFcDdsarePg==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@telerik/kendo-draggable': 2.2.1
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-dateinputs/4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34:
+    resolution: {integrity: sha512-Rrk5V3c/v2Z4aQ+xiTLs6upS7Qa7w5jsZRzcH1xaABtyCz7wAN5pRKj1MmHrWDM74wpsdvxJnEgMCk2yNdT76g==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      '@progress/kendo-react-intl': ^4.0.0
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-date-math': 1.5.4
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-buttons': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-labels': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-dialogs/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-yvbqANMCx0ifUa7sKx/w0ElfO1gEzoVtTqQ/aQlRpeI86pnJIb3N5SrzgeIoS+ZEBS/51LSIYaihQYvOVDqlkg==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-dropdowns/4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34:
+    resolution: {integrity: sha512-MFglYWYECsq4KnlTGQCIIEUCDI9BYnMeEouZIrYcYctMEkNFqvtrQIIUBmDByLY85TWRBNcVl/9HeiCQ8WWAHw==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      '@progress/kendo-react-intl': ^4.0.0
+      '@progress/kendo-react-treeview': ^4.0.0
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-labels': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-form/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-wDx6hhoeEgELhQq75cPstdt5U3Q1mukB6npTb8e46JXhG4FaSOC3Hv2dDfEA+PQulJQIL11n077z9LZv1ceFeA==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-inputs/4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34:
+    resolution: {integrity: sha512-jBGuSiGqKRlJkxWISt0Ez5o6dVeqRYygHKpkyqr7wdffELkuP1ODU50J0YY5GlmlPzASmDn1kgo3woSHd4hbAA==}
+    peerDependencies:
+      '@progress/kendo-drawing': ^1.5.12
+      '@progress/kendo-licensing': ^1.0.1
+      '@progress/kendo-react-animation': ^4.0.0
+      '@progress/kendo-react-intl': ^4.0.0
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-labels': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-intl/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-OiUjtUle8BPxSnfMTfZCD55dHoh+gJ4b9b3+9AcSA86yPhQ5YxFMKfgDOmsUDzJmMQL5MnjTMFZGnWy42THxOw==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@telerik/kendo-intl': 2.3.0
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-labels/4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34:
+    resolution: {integrity: sha512-EbgOo0NF5YIbsO2y07Fhh92EcJZ8YtCUIl0kJ9NC1n/OIDOQvm17KLFUvEh+KiAlamZz1rs7CusyhMUiGSeUbA==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      '@progress/kendo-react-intl': ^4.0.0
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-popup/4.10.0_b57c048beb54c7b1b92e6b09b80c3a19:
+    resolution: {integrity: sha512-985QnOFPxvrTmtoruVB/m217wt0CTkRckyi+stFFunPgopeLDfqowVGOtl+y9avy2cZikFnaq4jx1cZP9fWiZw==}
+    peerDependencies:
+      '@progress/kendo-licensing': ^1.0.1
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-popup-common': 1.8.0
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-react-scheduler/4.10.0_ea0d0fb8de721154e53334bc3a9068eb:
+    resolution: {integrity: sha512-ICO1GISn5DiGti1nqcHHh7nWN2aDgfk6vQWG8WRooxDX+o0u8xqxtUZSWPwpkX2NdgTHPD2nb8Ph/H9yr7S/+w==}
+    peerDependencies:
+      '@progress/kendo-date-math': ^1.4.1
+      '@progress/kendo-drawing': ^1.2.0
+      '@progress/kendo-licensing': ^1.0.1
+      '@progress/kendo-react-buttons': ^4.0.0
+      '@progress/kendo-react-dateinputs': ^4.0.0
+      '@progress/kendo-react-dialogs': ^4.0.0
+      '@progress/kendo-react-dropdowns': ^4.0.0
+      '@progress/kendo-react-form': ^4.0.0
+      '@progress/kendo-react-inputs': ^4.0.0
+      '@progress/kendo-react-intl': ^4.0.0
+      '@progress/kendo-react-popup': ^4.0.0
+      react: ^16.8.2 || ^17.0.0
+      react-dom: ^16.8.2 || ^17.0.0
+    dependencies:
+      '@progress/kendo-data-query': 1.5.5
+      '@progress/kendo-date-math': 1.5.4
+      '@progress/kendo-licensing': 1.2.1
+      '@progress/kendo-react-buttons': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-common': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-dateinputs': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-dialogs': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-dropdowns': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-form': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-inputs': 4.10.0_1aa13ec9ab0705b9bf59a3c80c9e4f34
+      '@progress/kendo-react-intl': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-react-popup': 4.10.0_b57c048beb54c7b1b92e6b09b80c3a19
+      '@progress/kendo-recurrence': 1.0.2_@progress+kendo-date-math@1.5.4
+      '@telerik/kendo-draggable': 2.2.1
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@progress/kendo-recurrence/1.0.2_@progress+kendo-date-math@1.5.4:
+    resolution: {integrity: sha512-0gcKNM3HyxV85npaIoLqw9Di7j9BDkv1bPDPboRLR28JKI0kS99ANLRWkoSg8jETnx1HqyJPUROqBbFcnVTJPA==}
+    peerDependencies:
+      '@progress/kendo-date-math': ^1.3.0
+    dependencies:
+      '@progress/kendo-date-math': 1.5.4
+      '@telerik/kendo-intl': 2.3.0
+      tslib: 1.14.1
+    dev: false
+
+  /@progress/kendo-theme-default/4.42.0:
+    resolution: {integrity: sha512-0rxgq0YSBuzcjCTAati1oCnUb0Pu+4HCSS0DV25eG5n8qFQwddE+sYHD1/3Fv5XBOlaSx5sF16hh7rCBsU12wA==}
+    dev: false
+
   /@react-typed-hooks/use-key-press/1.0.5:
     resolution: {integrity: sha512-2z3atiQBNDNlEXHQFoojoGiJuukX6IxfqqLicQBTqOqmgmC6MVjTcyWu9fBadua991ah8+yUbSpAWqBB66q4fA==}
     dependencies:
@@ -439,6 +698,14 @@ packages:
   /@rushstack/eslint-patch/1.0.9:
     resolution: {integrity: sha512-yk9Xj/3bUxyz3azMXW8qigLqXWEr2R0h9G7PVnnmjNQdlZLN+aESqCTnVN7ubtYUIQfW32/v8+AXsbpL1ryI1A==}
     dev: true
+
+  /@telerik/kendo-draggable/2.2.1:
+    resolution: {integrity: sha512-qmuRJnjByOIjSKi0BKYK7fJ/+ITgL0aumc4IRIEwiYAQgDJWumuSpAOp2p8ctIWzP0JfEUmITs6ziJaoyKIYwQ==}
+    dev: false
+
+  /@telerik/kendo-intl/2.3.0:
+    resolution: {integrity: sha512-IFNL37+I8hvO1G6SsW65ixTqkCtPZDH1SlJ33xEKpjCjVwrC/oLCJjuK+EF5buXSPK0iw0YSvlY6hDHAzAYF6g==}
+    dev: false
 
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
@@ -883,6 +1150,10 @@ packages:
       node-releases: 1.1.77
     dev: false
 
+  /buffer-equal-constant-time/1.0.1:
+    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=}
+    dev: false
+
   /buffer-xor/1.0.3:
     resolution: {integrity: sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=}
     dev: false
@@ -1191,6 +1462,12 @@ packages:
   /domain-browser/4.19.0:
     resolution: {integrity: sha512-fRA+BaAWOR/yr/t7T9E9GJztHPeFjj8U35ajyAjCDtAAnTn1Rc1f6W6VGPJrO1tkQv9zWu+JRof7z6oQtiYVFQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /ecdsa-sig-formatter/1.0.11:
+    resolution: {integrity: sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==}
+    dependencies:
+      safe-buffer: 5.2.1
     dev: false
 
   /electron-to-chromium/1.3.885:
@@ -2046,6 +2323,22 @@ packages:
     dependencies:
       minimist: 1.2.5
 
+  /jsonwebtoken/8.5.1:
+    resolution: {integrity: sha512-XjwVfRS6jTMsqYs0EsuJ4LGxXV14zQybNd4L2r0UvbVnSF9Af8x7p5MzbJ90Ioz/9TI41/hTCvznF/loiSzn8w==}
+    engines: {node: '>=4', npm: '>=1.4.28'}
+    dependencies:
+      jws: 3.2.2
+      lodash.includes: 4.3.0
+      lodash.isboolean: 3.0.3
+      lodash.isinteger: 4.0.4
+      lodash.isnumber: 3.0.3
+      lodash.isplainobject: 4.0.6
+      lodash.isstring: 4.0.1
+      lodash.once: 4.1.1
+      ms: 2.1.3
+      semver: 5.7.1
+    dev: false
+
   /jsx-ast-utils/3.2.1:
     resolution: {integrity: sha512-uP5vu8xfy2F9A6LGC22KO7e2/vGTS1MhP+18f++ZNlf0Ohaxbc9nIEwHAsejlJKyzfZzU5UIhe5ItYkitcZnZA==}
     engines: {node: '>=4.0'}
@@ -2056,6 +2349,21 @@ packages:
 
   /just-insert/2.4.1:
     resolution: {integrity: sha512-kk/MbK1P9aoESt4sNX+iY0BHMtYK+TqhHN1s5HddDL/mXdxZBYBYIRVeRb0W0UpHxsiMeeqHXS0i2aH4gcsJUw==}
+    dev: false
+
+  /jwa/1.4.1:
+    resolution: {integrity: sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==}
+    dependencies:
+      buffer-equal-constant-time: 1.0.1
+      ecdsa-sig-formatter: 1.0.11
+      safe-buffer: 5.2.1
+    dev: false
+
+  /jws/3.2.2:
+    resolution: {integrity: sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==}
+    dependencies:
+      jwa: 1.4.1
+      safe-buffer: 5.2.1
     dev: false
 
   /language-subtag-registry/0.3.21:
@@ -2104,9 +2412,37 @@ packages:
     resolution: {integrity: sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=}
     dev: true
 
+  /lodash.includes/4.3.0:
+    resolution: {integrity: sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=}
+    dev: false
+
+  /lodash.isboolean/3.0.3:
+    resolution: {integrity: sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=}
+    dev: false
+
+  /lodash.isinteger/4.0.4:
+    resolution: {integrity: sha1-YZwK89A/iwTDH1iChAt3sRzWg0M=}
+    dev: false
+
+  /lodash.isnumber/3.0.3:
+    resolution: {integrity: sha1-POdoEMWSjQM1IwGsKHMX8RwLH/w=}
+    dev: false
+
+  /lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
+    dev: false
+
+  /lodash.isstring/4.0.1:
+    resolution: {integrity: sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=}
+    dev: false
+
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash.once/4.1.1:
+    resolution: {integrity: sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=}
+    dev: false
 
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=}
@@ -2199,7 +2535,6 @@ packages:
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
-    dev: true
 
   /nanoid/3.1.30:
     resolution: {integrity: sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==}
@@ -2879,6 +3214,11 @@ packages:
       object-assign: 4.1.1
     dev: false
 
+  /semver/5.7.1:
+    resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
+    hasBin: true
+    dev: false
+
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
@@ -3192,7 +3532,6 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
 
   /tsutils/3.21.0_typescript@4.4.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

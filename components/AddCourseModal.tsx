@@ -1,10 +1,10 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
 
-import useSearch from "../stores/courseSearch";
+import useModal from "../stores/modal";
 
-function SearchModal() {
-  const { currentCourseType, close } = useSearch(
+function AddCourseModal() {
+  const { currentCourseType, close: handleClose } = useModal(
     ({ currentCourseType, close }) => ({ currentCourseType, close }),
     shallow
   );
@@ -12,10 +12,6 @@ function SearchModal() {
   const isEscapePressed = useKeyPress({ targetKey: "Escape" });
 
   const isVisible = currentCourseType !== null;
-
-  const handleClose = () => {
-    close();
-  };
 
   if (isVisible && isEscapePressed) {
     handleClose();
@@ -35,7 +31,7 @@ function SearchModal() {
             <span className="close" onClick={handleClose}>
               &times;
             </span>
-            <h2>Search for courses! 🔎</h2>
+            <h2>Add your course! 📚</h2>
           </div>
           <div className="modal-body">
             <p>Some text in the Modal Body</p>
@@ -144,4 +140,4 @@ function SearchModal() {
   );
 }
 
-export default SearchModal;
+export default AddCourseModal;

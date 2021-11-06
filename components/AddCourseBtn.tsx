@@ -1,9 +1,9 @@
 import grid from "../constants/courseList";
-import useSearch from "../stores/courseSearch";
+import useModal from "../stores/modal";
 import { CourseListType } from "../stores/courseLists";
 
 function AddCourseBtn({ courseType }: { courseType: CourseListType }) {
-  const search = useSearch((state) => state.search);
+  const search = useModal((state) => state.search);
 
   function handleAddCourse() {
     search(courseType);

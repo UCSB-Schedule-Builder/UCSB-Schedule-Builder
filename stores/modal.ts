@@ -1,14 +1,14 @@
 import create from "zustand";
 import { CourseListType } from "./courseLists";
 
-interface CourseSearchState {
+interface ModalState {
   currentCourseType: CourseListType | null;
   search: (courseType: CourseListType) => void;
   close: () => void;
 }
 
-const useSearch = create(
-  (set): CourseSearchState => ({
+const useModal = create(
+  (set): ModalState => ({
     currentCourseType: null,
     search: (courseType) =>
       set(() => ({
@@ -18,4 +18,4 @@ const useSearch = create(
   })
 );
 
-export default useSearch;
+export default useModal;
