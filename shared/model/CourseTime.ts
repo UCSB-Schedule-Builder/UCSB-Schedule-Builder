@@ -1,4 +1,4 @@
-import { CourseLocation } from "./CourseLocation"
+import { CourseLocation } from "./model"
 
 export class CourseTime
 {

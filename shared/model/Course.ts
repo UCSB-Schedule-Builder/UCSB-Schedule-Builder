@@ -1,6 +1,4 @@
-import { Subject } from "./Subject"
-import { Lecture } from "./Lecture"
-import { Section } from "./Section"
+import { Subject, Lecture, Section } from "./model"
 
 const lectureRegexPattern = /^(\d+)00$/
 const lectureSuffix = "00"

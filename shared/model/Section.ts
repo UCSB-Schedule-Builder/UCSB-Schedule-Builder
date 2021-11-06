@@ -1,5 +1,4 @@
-import { Lecture } from "./Lecture"
-import { CourseTime } from "./CourseTime"
+import { Lecture, CourseTime } from "./model"
 
 export class Section
 {

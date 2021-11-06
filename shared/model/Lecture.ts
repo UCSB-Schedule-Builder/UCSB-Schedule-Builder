@@ -1,4 +1,4 @@
-import { Section } from "./Section"
+import { Section } from "./model"
 
 export class Lecture extends Section
 {
