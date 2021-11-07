@@ -5,22 +5,11 @@ import AddCourseModal from "../components/AddCourseModal";
 import CourseCalendar from "../components/CourseCalendar";
 
 import { useEffect } from "react";
-import { APIManager } from "../api/api-manager"
-import { YearQuarter, Quarter, CourseID } from "../shared/model/model"
+import { apiTests } from "../api/api-tests"
 
 const Home: NextPage = () => {
-  useEffect(async () => {
-    // Block for API testing, can be moved elsewhere
-
-    var subjectArray = await APIManager.fetchSubjects()
-    console.log(subjectArray)
-    var testSubject = subjectArray.find(subject => subject.code == "ENGL")!
-    var courseArray = await APIManager.fetchCourses(new YearQuarter(2021, Quarter.Fall), testSubject, false)
-    console.log(courseArray)
-    var course = await APIManager.fetchCourseFromObject(courseArray[0])
-    console.log(course)
-    var course2 = await APIManager.fetchCourse(new YearQuarter(2021, Quarter.Fall), new CourseID(testSubject.code, "", "192", "DF"))
-    console.log(course2)
+  useEffect(() => {
+    apiTests()
   })
 
   return (
