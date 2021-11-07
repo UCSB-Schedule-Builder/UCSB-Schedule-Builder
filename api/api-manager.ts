@@ -5,7 +5,7 @@
 // 4. Create Course classes (+ UnitsRange, GradingOption objects)
 // 5. Pass Section classes into Course classes via createLectures
 
-import { Subject, Course, Section } from "../shared/model/model"
+import { Subject, Course, YearQuarter, CourseID, Section } from "../shared/model/model"
 import ky from "ky-universal"
 import { UCSBAPIKey, UCSBAPIPaths } from "../constants/apiConsts"
 
@@ -23,10 +23,10 @@ export class APIManager
     })
   }
 
-  static async fetchCourses(quarter: string, subject: Subject, shouldFetchSectionData: boolean = false): Course[]
+  static async fetchCourses(quarter: YearQuarter, subject: Subject, shouldFetchSectionData: boolean = false): Course[]
   {
     var coursesSearchJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
-      quarter: quarter,
+      quarter: quarter.toString(),
       subjectCode: subject.code,
       includeClassSections: shouldFetchSectionData,
       pageSize: 10
@@ -43,11 +43,11 @@ export class APIManager
     return courses
   }
 
-  static async fetchCourse(quarter: string, id: string, subject: Subject, shouldFetchSectionData: boolean = true): Course
+  static async fetchCourse(quarter: YearQuarter, id: CourseID, subject: Subject, shouldFetchSectionData: boolean = true): Course
   {
     var coursesJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
-      quarter: quarter,
-      courseId: id,
+      quarter: quarter.toString(),
+      courseId: id.toString(),
       includeClassSections: shouldFetchSectionData,
       pageSize: 500
     }, headers: {
@@ -67,8 +67,8 @@ export class APIManager
   static async fetchCourseSections(course: Course): Section[]
   {
     var coursesJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
-      quarter: course.quarter,
-      courseId: course.id,
+      quarter: course.quarter.toString(),
+      courseId: course.id.toString(),
       includeClassSections: true,
       pageSize: 500
     }, headers: {
