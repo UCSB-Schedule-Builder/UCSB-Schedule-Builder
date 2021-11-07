@@ -1,40 +1,53 @@
 import { Subject, Lecture, Section } from "./model"
 
-const lectureRegexPattern = /^(\d+)00$/
+const lectureRegexPattern = /^(\d+)00$/ // Lectures always end in '00'
 const lectureSuffix = "00"
-const sectionRegexPattern = /^(\d+)\d\d$/
-
-// To fetch from API:
-// 1. Fetch subjects
-// 2. Fetch course data for subject
-// 3. Create Section classes (+ CourseLocation, CourseTime classes)
-// 4. Create Course classes (+ UnitsRange, GradingOption objects)
-// 5. Pass Section classes into Course classes via createLectures
+const sectionRegexPattern = /^(\d+)\d\d$/ // Sections can match any combination of 3+ digits, where the leading n-2 digits match with the lecture
 
 export class Course
 {
+  quarter: string
   id: string
   title: string
   description: string
   units: UnitsRange
-  gradingOption: GradingOption
+  gradingOption: GradingOption | null
   subject: Subject
   lectures: Lecture[]
 
-  constructor(id: string, title: string, description: string, units: UnitsRange, gradingOption: GradingOption, subject: Subject)
+  constructor(quarter: string, id: string, title: string, description: string, units: UnitsRange, gradingOption: GradingOption, subject: Subject)
   {
+    this.quarter = quarter
     this.id = id
     this.title = title
     this.description = description
     this.units = units
     this.gradingOption = gradingOption
     this.subject = subject
+    this.lectures = []
+  }
+
+  static fromJSON(courseJSON: any, subject: Subject): Course
+  {
+    return new Course(
+      courseJSON.quarter,
+      courseJSON.courseId,
+      courseJSON.title,
+      courseJSON.description,
+      new UnitsRange(
+        courseJSON.unitsFixed,
+        courseJSON.unitsVariableLow,
+        courseJSON.unitsVariableHigh
+      ),
+      GradingOption[courseJSON.gradingOption],
+      subject
+    )
   }
 
   createLectures(sections: Section[])
   {
     sections.sort((section1, section2) => {
-      return lectureRegexPattern.test(section1.id) > lectureRegexPattern.test(section2.id)
+      return lectureRegexPattern.test(section2.id) - lectureRegexPattern.test(section1.id)
     })
 
     sections.forEach((section) => {
@@ -62,13 +75,13 @@ export class Course
 export class UnitsRange
 {
   areVariable: boolean
-  fixed: number
-  min: number
-  max: number
+  fixed: number | null
+  min: number | null
+  max: number | null
 
-  constructor(fixed: number, min: number, max: number)
+  constructor(fixed: number | null, min: number | null, max: number | null)
   {
-    this.areVariable = fixed != null
+    this.areVariable = fixed == null && min != null && max != null
 
     this.fixed = fixed
     this.min = min

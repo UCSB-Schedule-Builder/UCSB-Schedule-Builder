@@ -4,7 +4,21 @@ import AllCoursesList from "../components/AllCoursesList";
 import AddCourseModal from "../components/AddCourseModal";
 import CourseCalendar from "../components/CourseCalendar";
 
+import { useEffect } from "react";
+import { APIManager } from "../api/api-manager"
+
 const Home: NextPage = () => {
+  useEffect(async () => {
+    // Block for API testing, can be moved elsewhere
+
+    var subjectArray = await APIManager.fetchSubjects()
+    console.log(subjectArray)
+    var courseArray = await APIManager.fetchCourses("20214", subjectArray.find(subject => subject.code == "CMPSC"), false)
+    console.log(courseArray)
+    var course = await APIManager.fetchCourseFromObject(courseArray[0])
+    console.log(course)
+  })
+
   return (
     <div className="container">
       <Head>
@@ -18,7 +32,7 @@ const Home: NextPage = () => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      <CourseCalendar />
+      {/* <CourseCalendar /> */ /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
       <AddCourseModal />
       <style jsx global>{`
         html {

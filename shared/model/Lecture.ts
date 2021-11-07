@@ -6,7 +6,7 @@ export class Lecture extends Section
 
   constructor(section: Section)
   {
-    super(section.id, section.enrollCode, section.teacherName, section.times)
+    super(section.id, section.enrollCode, section.instructorNames, section.times)
     this.sections = []
   }
 

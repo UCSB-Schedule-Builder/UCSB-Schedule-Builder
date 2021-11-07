@@ -2,17 +2,34 @@ import { CourseLocation } from "./model"
 
 export class CourseTime
 {
-  dayOfWeek: DayOfWeek
+  days: DayOfWeek[]
   startTime: HourMinute
   endTime: HourMinute
   location: CourseLocation
 
-  constructor(dayOfWeek: DayOfWeek, startTimeString: string, endTimeString: string, location: CourseLocation)
+  constructor(days: DayOfWeek[], startTimeString: string, endTimeString: string, location: CourseLocation)
   {
-    this.dayOfWeek = dayOfWeek
+    this.days = days
     this.startTime = new HourMinute(startTimeString)
     this.endTime = new HourMinute(endTimeString)
     this.location = location
+  }
+
+  static fromJSON(timeLocationJSON: any): CourseTime
+  {
+    return new CourseTime(
+      (timeLocationJSON.days || "").split("").filter((dayString) => {
+        return dayString !== " "
+      }).map((dayLetter) => {
+        return DayOfWeek.fromLetter(dayLetter)
+      }),
+      timeLocationJSON.beginTime,
+      timeLocationJSON.endTime,
+      new CourseLocation(
+        timeLocationJSON.building,
+        timeLocationJSON.room
+      )
+    )
   }
 
   getDuration(): number
@@ -28,28 +45,54 @@ export class HourMinute
 
   constructor(hourMinuteString: string)
   {
+    if (hourMinuteString == null) { return }
+
     var splitHourMinuteString = hourMinuteString.split(":")
     this.hour = parseInt(splitHourMinuteString[0])
     this.minute = parseInt(splitHourMinuteString[1])
   }
 }
 
-export enum DayOfWeek // Copied structure from API: https://registrar.sa.ucsb.edu/webservices/public/lookups/swagger/ui/index#/Days
+class DayOfWeek // Copied structure from API: https://registrar.sa.ucsb.edu/webservices/public/lookups/swagger/ui/index#/Days
 {
-  Monday = "M",
-  Tuesday = "T",
-  Wednesday = "W",
-  Thursday = "R",
-  Friday = "F",
-  Saturday = "S",
-  Sunday = "U"
-}
+  letter: string
+  name: string
+  index: number
 
-export const DayOfWeekToNumber = {} // Not sure if we need this for the calendar or not
-DayOfWeekToNumber[DayOfWeek.Monday] = 0
-DayOfWeekToNumber[DayOfWeek.Tuesday] = 1
-DayOfWeekToNumber[DayOfWeek.Wednesday] = 2
-DayOfWeekToNumber[DayOfWeek.Thursday] = 3
-DayOfWeekToNumber[DayOfWeek.Friday] = 4
-DayOfWeekToNumber[DayOfWeek.Saturday] = 5
-DayOfWeekToNumber[DayOfWeek.Sunday] = 6
+  constructor(letter: string, name: string, index: number)
+  {
+    this.letter = letter
+    this.name = name
+    this.index = index
+  }
+
+  static fromLetter(letter: string): DayOfWeek
+  {
+    switch (letter)
+    {
+      case "M":
+      return new DayOfWeek("M", "Monday", 0)
+
+      case "T":
+      return new DayOfWeek("T", "Tuesday", 1)
+
+      case "W":
+      return new DayOfWeek("W", "Wednesday", 2)
+
+      case "R":
+      return new DayOfWeek("R", "Thursday", 3)
+
+      case "F":
+      return new DayOfWeek("F", "Friday", 4)
+
+      case "S":
+      return new DayOfWeek("S", "Saturday", 5)
+
+      case "U":
+      return new DayOfWeek("U", "Sunday", 6)
+
+      default:
+      return null
+    }
+  }
+}

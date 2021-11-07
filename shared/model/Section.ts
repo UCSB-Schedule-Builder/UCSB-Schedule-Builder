@@ -2,18 +2,32 @@ import { Lecture, CourseTime } from "./model"
 
 export class Section
 {
-  id: string // 101, 102, 203, etc (in format /\d+\d\d$/)
+  id: string // 101, 102, 203, etc (in format /^\d+\d\d$/)
   enrollCode: string
-  teacherName: string
+  instructorNames: string[]
   times: CourseTime[]
-  lecture: Lecture
+  lecture: Lecture | null
 
-  constructor(id: string, enrollCode: string, teacherName: string, times: CourseTime[])
+  constructor(id: string, enrollCode: string, instructorNames: string[], times: CourseTime[])
   {
     this.id = id
     this.enrollCode = enrollCode
-    this.teacherName = teacherName
+    this.instructorNames = instructorNames
     this.times = times
+  }
+
+  static fromJSON(courseSectionJSON: any): Section
+  {
+    return new Section(
+      courseSectionJSON.section,
+      courseSectionJSON.enrollCode,
+      courseSectionJSON.instructors.map((instructorData) => {
+        return instructorData.instructor
+      }),
+      courseSectionJSON.timeLocations.map((timeLocationJSON) => {
+        return CourseTime.fromJSON(timeLocationJSON)
+      })
+    )
   }
 
   setLecture(lecture)
