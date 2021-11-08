@@ -3,24 +3,24 @@ import { CourseLocation } from "./model"
 export class CourseTime
 {
   days: DayOfWeek[]
-  startTime: HourMinute
-  endTime: HourMinute
+  startTime: HourMinute | null
+  endTime: HourMinute | null
   location: CourseLocation
 
   constructor(days: DayOfWeek[], startTimeString: string, endTimeString: string, location: CourseLocation)
   {
     this.days = days
-    this.startTime = new HourMinute(startTimeString)
-    this.endTime = new HourMinute(endTimeString)
+    this.startTime = startTimeString != null ? new HourMinute(startTimeString) : null
+    this.endTime = startTimeString != null ? new HourMinute(endTimeString) : null
     this.location = location
   }
 
   static fromJSON(timeLocationJSON: any): CourseTime
   {
     return new CourseTime(
-      (timeLocationJSON.days || "").split("").filter((dayString) => {
+      (timeLocationJSON.days || "").split("").filter((dayString: string) => {
         return dayString !== " "
-      }).map((dayLetter) => {
+      }).map((dayLetter: string) => {
         return DayOfWeek.fromLetter(dayLetter)
       }),
       timeLocationJSON.beginTime,
@@ -34,6 +34,7 @@ export class CourseTime
 
   getDuration(): number
   {
+    if (this.startTime == null || this.endTime == null) { return 0 }
     return 60*(this.endTime.hour-this.startTime.hour)+(this.endTime.minute-this.startTime.minute)
   }
 }
@@ -45,8 +46,6 @@ export class HourMinute
 
   constructor(hourMinuteString: string)
   {
-    if (hourMinuteString == null) { return }
-
     var splitHourMinuteString = hourMinuteString.split(":")
     this.hour = parseInt(splitHourMinuteString[0])
     this.minute = parseInt(splitHourMinuteString[1])
@@ -66,7 +65,7 @@ class DayOfWeek // Copied structure from API: https://registrar.sa.ucsb.edu/webs
     this.index = index
   }
 
-  static fromLetter(letter: string): DayOfWeek
+  static fromLetter(letter: string): DayOfWeek | null
   {
     switch (letter)
     {

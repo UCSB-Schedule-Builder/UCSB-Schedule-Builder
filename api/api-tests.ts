@@ -15,6 +15,6 @@ export var apiTests = async () => {
   console.log(courseArray)
   var course = await APIManager.fetchCourseFromObject(courseArray[0])
   console.log(course)
-  var course2 = await APIManager.fetchCourse(quarterToFetch, courseIDToFetch)
+  var course2 = await APIManager.fetchCourse(quarterToFetch, courseIDToFetch, testSubject)
   console.log(course2)
 }

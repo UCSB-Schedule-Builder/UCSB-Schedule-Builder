@@ -7,15 +7,17 @@
 
 import { Subject, Course, YearQuarter, CourseID, Section } from "../shared/model/model"
 import ky from "ky-universal"
-import { UCSBAPIKey, UCSBAPIPaths } from "../constants/apiConsts"
+import { UCSBAPIKey, UCSBRegistrarAPIVersion, UCSBAPIPaths } from "../constants/apiConsts"
 
 export class APIManager
 {
-  static async fetchSubjects(): Subject[]
+  static async fetchSubjects(): Promise<Subject[]>
   {
-    var subjectsJSON = await ky.get(UCSBAPIPaths.subjects).json()
+    var subjectsJSON: any = await ky.get(UCSBAPIPaths.subjects, {headers: {
+      "ucsb-api-version": UCSBRegistrarAPIVersion
+    }}).json()
 
-    return subjectsJSON.map((subjectJSON) => {
+    return subjectsJSON.map((subjectJSON: any) => {
       return new Subject(
         subjectJSON.subjectCode,
         subjectJSON.subjectTranslation
@@ -23,7 +25,7 @@ export class APIManager
     })
   }
 
-  static async fetchCourses(quarter: YearQuarter, subject: Subject, shouldFetchSectionData: boolean = false): Course[]
+  static async fetchCourses(quarter: YearQuarter, subject: Subject, shouldFetchSectionData: boolean = false): Promise<Course[]>
   {
     var coursesSearchJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
       quarter: quarter.toString(),
@@ -36,14 +38,14 @@ export class APIManager
     if (!coursesSearchJSON || !coursesSearchJSON.classes) { return [] }
     var coursesJSON = coursesSearchJSON.classes
 
-    var courses = coursesJSON.map((courseJSON) => {
+    var courses = coursesJSON.map((courseJSON: any) => {
       return APIManager.handleCourseJSON(courseJSON, subject, shouldFetchSectionData)
     })
 
     return courses
   }
 
-  static async fetchCourse(quarter: YearQuarter, id: CourseID, subject: Subject, shouldFetchSectionData: boolean = true): Course
+  static async fetchCourse(quarter: YearQuarter, id: CourseID, subject: Subject, shouldFetchSectionData: boolean = true): Promise<Course | null>
   {
     var coursesJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
       quarter: quarter.toString(),
@@ -59,12 +61,12 @@ export class APIManager
     return APIManager.handleCourseJSON(courseJSON, subject, shouldFetchSectionData)
   }
 
-  static async fetchCourseFromObject(course: Course, shouldFetchSectionData: boolean): Course
+  static async fetchCourseFromObject(course: Course, shouldFetchSectionData: boolean = true): Promise<Course | null>
   {
     return await APIManager.fetchCourse(course.quarter, course.id, course.subject, shouldFetchSectionData)
   }
 
-  static async fetchCourseSections(course: Course): Section[]
+  static async fetchCourseSections(course: Course): Promise<Section[]>
   {
     var coursesJSON = await APIManager.fetchFromUCSBAPI(UCSBAPIPaths.classSearch, {searchParams: {
       quarter: course.quarter.toString(),
@@ -77,17 +79,17 @@ export class APIManager
     if (!coursesJSON || !coursesJSON.classes || coursesJSON.classes.length == 0) { return [] }
     var courseJSON = coursesJSON.classes[0]
 
-    return APIManager.handleCourseSectionsJSON(coursesJSON.classSections)
+    return APIManager.handleCourseSectionsJSON(courseJSON.classSections)
   }
 
-  static async fetchFromUCSBAPI(url: string, options: any, fieldToAccumulate: string): any
+  static async fetchFromUCSBAPI(url: string, options: any, fieldToAccumulate: string): Promise<any>
   {
-    var fullJSON = null
+    var fullJSON: any = null
 
     while (fullJSON == null || fullJSON.pageNumber*fullJSON.pageSize < fullJSON.total)
     {
       options.searchParams.pageNumber = (options.searchParams.pageNumber || 0) + 1
-      var currentJSON = await ky.get(url, options).json()
+      var currentJSON: any = await ky.get(url, options).json()
 
       if (fullJSON == null)
       {
@@ -117,7 +119,7 @@ export class APIManager
 
   static handleCourseSectionsJSON(courseSectionsJSON: any): Section[]
   {
-    return (courseSectionsJSON || []).map((courseSectionJSON) => {
+    return (courseSectionsJSON || []).map((courseSectionJSON: any) => {
       return Section.fromJSON(courseSectionJSON)
     })
   }

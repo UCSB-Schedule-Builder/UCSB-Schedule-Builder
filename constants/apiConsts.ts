@@ -5,9 +5,9 @@ const UCSBAPIVersion = "v1"
 
 const UCSBRegistrarAPIEndpoint = "https://registrar.sa.ucsb.edu/webservices/public/lookups"
 const UCSBRegistrarMajorAPIVersion = "v1"
-const UCSBRegistrarAPIVersion = "1.7"
+export const UCSBRegistrarAPIVersion = "1.7"
 
-export enum UCSBAPIPaths {
-  classSearch = UCSBAPIEndpoint + "/academics/curriculums/" + UCSBAPIVersion + "/classes/search",
-  subjects = UCSBRegistrarAPIEndpoint + "/" + UCSBRegistrarMajorAPIVersion + "/subjects"
+export var UCSBAPIPaths = {
+  classSearch: UCSBAPIEndpoint + "/academics/curriculums/" + UCSBAPIVersion + "/classes/search",
+  subjects: UCSBRegistrarAPIEndpoint + "/" + UCSBRegistrarMajorAPIVersion + "/subjects"
 }

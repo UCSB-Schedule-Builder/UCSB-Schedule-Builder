@@ -1,4 +1,4 @@
-import { Subject, Lecture, Section, SectionID } from "./model"
+import { Subject, Lecture, Section } from "./model"
 
 export class Course
 {
@@ -24,7 +24,7 @@ export class Course
   static fromJSON(courseJSON: any, subject: Subject): Course
   {
     return new Course(
-      YearQuarter.fromString(courseJSON.quarter),
+      YearQuarter.fromString(courseJSON.quarter)!,
       CourseID.fromString(courseJSON.courseId),
       courseJSON.title,
       courseJSON.description,
@@ -40,7 +40,7 @@ export class Course
   createLectures(sections: Section[])
   {
     sections.sort((section1, section2) => {
-      return section2.isLecture() - section1.isLecture()
+      return (section2.isLecture() ? 1 : 0) - (section1.isLecture() ? 1 : 0)
     })
 
     sections.forEach((section) => {
@@ -72,7 +72,7 @@ export class YearQuarter
     this.quarter = quarter
   }
 
-  static fromString(yearQuarterString: string): YearQuarter
+  static fromString(yearQuarterString: string): YearQuarter | null
   {
     if (yearQuarterString.length != 5) { return null }
 

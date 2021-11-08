@@ -13,7 +13,7 @@ export class Subject
     this.courses = []
   }
 
-  addCourse(course)
+  addCourse(course: Course)
   {
     this.courses.push(course)
   }

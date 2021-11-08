@@ -17,23 +17,24 @@ export class Section
     this.enrollCode = enrollCode
     this.instructorNames = instructorNames
     this.times = times
+    this.lecture = null
   }
 
   static fromJSON(courseSectionJSON: any): Section
   {
     return new Section(
-      SectionID.fromString(courseSectionJSON.section),
+      SectionID.fromString(courseSectionJSON.section)!,
       courseSectionJSON.enrollCode,
-      courseSectionJSON.instructors.map((instructorData) => {
+      courseSectionJSON.instructors.map((instructorData: any) => {
         return instructorData.instructor
       }),
-      courseSectionJSON.timeLocations.map((timeLocationJSON) => {
+      courseSectionJSON.timeLocations.map((timeLocationJSON: any) => {
         return CourseTime.fromJSON(timeLocationJSON)
       })
     )
   }
 
-  setLecture(lecture)
+  setLecture(lecture: Lecture)
   {
     this.lecture = lecture
   }
@@ -60,10 +61,12 @@ export class SectionID
     this.idSuffix = idSuffix
   }
 
-  static fromString(idString: string): SectionID
+  static fromString(idString: string): SectionID | null
   {
     var regexMatch = idString.match(sectionRegexPattern)
-    return new SectionID(regexMatch[1], regexMatch[2])
+    if (regexMatch == null || regexMatch.length <= 2) { return null }
+
+    return new SectionID(regexMatch[1]!, regexMatch[2]!)
   }
 
   toString(): string
