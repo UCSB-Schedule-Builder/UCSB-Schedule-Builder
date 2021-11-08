@@ -2,7 +2,7 @@
 // 1. Fetch subjects
 // 2. Fetch course data for subject
 // 3. Create Section classes (+ CourseLocation, CourseTime classes)
-// 4. Create Course classes (+ UnitsRange, GradingOption objects)
+// 4. Create Course classes (+ UnitsRange objects)
 // 5. Pass Section classes into Course classes via createLectures
 
 import { Subject, Course, YearQuarter, CourseID, Section } from "../shared/model/model"
@@ -31,7 +31,7 @@ export class APIManager
       quarter: quarter.toString(),
       subjectCode: subject.code,
       includeClassSections: shouldFetchSectionData,
-      pageSize: 10
+      pageSize: 500
     }, headers: {
       "ucsb-api-key": UCSBAPIKey
     }}, "classes")

@@ -7,7 +7,7 @@ const UCSBRegistrarAPIEndpoint = "https://registrar.sa.ucsb.edu/webservices/publ
 const UCSBRegistrarMajorAPIVersion = "v1"
 export const UCSBRegistrarAPIVersion = "1.7"
 
-export var UCSBAPIPaths = {
+export const UCSBAPIPaths = {
   classSearch: UCSBAPIEndpoint + "/academics/curriculums/" + UCSBAPIVersion + "/classes/search",
   subjects: UCSBRegistrarAPIEndpoint + "/" + UCSBRegistrarMajorAPIVersion + "/subjects"
 }
