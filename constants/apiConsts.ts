@@ -1,8 +1,5 @@
-// import DotEnv from "dotenv"
+export const UCSBAPIKey = process.env.REACT_APP_UCSB_API_KEY
 
-// DotEnv.config()
-
-export const UCSBAPIKey = "lTYBsNXNiLPT2WhiPDICEylqo9uXhN49"//process.env.UCSB_API_KEY
 const UCSBAPIEndpoint = "https://api.ucsb.edu"
 const UCSBAPIVersion = "v1"
 
