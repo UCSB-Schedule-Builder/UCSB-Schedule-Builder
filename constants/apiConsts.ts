@@ -1,4 +1,4 @@
-export const UCSBAPIKey = process.env.REACT_APP_UCSB_API_KEY
+export const UCSBAPIKey = process.env.NEXT_PUBLIC_UCSB_API_KEY
 
 const UCSBAPIEndpoint = "https://api.ucsb.edu"
 const UCSBAPIVersion = "v1"

@@ -17,7 +17,7 @@ pnpx kendo-ui-license activate
 
 Write the UCSB API Key to ``.env``:
 ```dotenv
-REACT_APP_UCSB_API_KEY=<KEY HERE>
+NEXT_PUBLIC_UCSB_API_KEY=<KEY HERE>
 ```
 
 Finally, run the development server:
