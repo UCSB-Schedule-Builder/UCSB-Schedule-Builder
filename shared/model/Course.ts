@@ -7,18 +7,16 @@ export class Course
   title: string
   description: string
   units: UnitsRange
-  gradingOption: GradingOption | null
   subject: Subject
   lectures: Lecture[]
 
-  constructor(quarter: YearQuarter, id: CourseID, title: string, description: string, units: UnitsRange, gradingOption: GradingOption, subject: Subject)
+  constructor(quarter: YearQuarter, id: CourseID, title: string, description: string, units: UnitsRange, subject: Subject)
   {
     this.quarter = quarter
     this.id = id
     this.title = title
     this.description = description
     this.units = units
-    this.gradingOption = gradingOption
     this.subject = subject
     this.lectures = []
   }
@@ -35,7 +33,6 @@ export class Course
         courseJSON.unitsVariableLow,
         courseJSON.unitsVariableHigh
       ),
-      GradingOption[courseJSON.gradingOption],
       subject
     )
   }
@@ -175,10 +172,4 @@ export class UnitsRange
     this.min = min
     this.max = max
   }
-}
-
-export enum GradingOption // Copied structure from https://registrar.sa.ucsb.edu/webservices/public/lookups/swagger/ui/index#/GradingOptions
-{
-  PassNoPass = "P",
-  LetterGrade = "L"
 }
