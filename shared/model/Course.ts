@@ -1,28 +1,32 @@
-import { Subject, Lecture, Section } from "./model"
+import { Lecture, Section, Subject } from "./model";
 
-export class Course
-{
-  quarter: YearQuarter
-  id: CourseID
-  title: string
-  description: string
-  units: UnitsRange
-  subject: Subject
-  lectures: Lecture[]
+export class Course {
+  quarter: YearQuarter;
+  id: CourseID;
+  title: string;
+  description: string;
+  units: UnitsRange;
+  subject: Subject;
+  lectures: Lecture[];
 
-  constructor(quarter: YearQuarter, id: CourseID, title: string, description: string, units: UnitsRange, subject: Subject)
-  {
-    this.quarter = quarter
-    this.id = id
-    this.title = title
-    this.description = description
-    this.units = units
-    this.subject = subject
-    this.lectures = []
+  constructor(
+    quarter: YearQuarter,
+    id: CourseID,
+    title: string,
+    description: string,
+    units: UnitsRange,
+    subject: Subject
+  ) {
+    this.quarter = quarter;
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.units = units;
+    this.subject = subject;
+    this.lectures = [];
   }
 
-  static fromJSON(courseJSON: any, subject: Subject): Course
-  {
+  static fromJSON(courseJSON: any, subject: Subject): Course {
     return new Course(
       YearQuarter.fromString(courseJSON.quarter)!,
       CourseID.fromString(courseJSON.courseId),
@@ -34,142 +38,143 @@ export class Course
         courseJSON.unitsVariableHigh
       ),
       subject
-    )
+    );
   }
 
-  createLectures(sections: Section[])
-  {
+  createLectures(sections: Section[]) {
     sections.sort((section1, section2) => {
-      return (section2.isLecture() ? 1 : 0) - (section1.isLecture() ? 1 : 0)
-    })
+      return (section2.isLecture() ? 1 : 0) - (section1.isLecture() ? 1 : 0);
+    });
 
     sections.forEach((section) => {
-      if (section.isLecture())
-      {
-        var newLecture = new Lecture(section)
-        this.lectures.push(newLecture)
-      }
-      else
-      {
-        var lectureIDToFind = section.getLectureID()
-        var foundLecture = this.lectures.find((lecture) => lecture.id.toString() == lectureIDToFind.toString())
-        if (!foundLecture) { return }
+      if (section.isLecture()) {
+        const newLecture = new Lecture(section);
+        this.lectures.push(newLecture);
+      } else {
+        const lectureIDToFind = section.getLectureID();
+        const foundLecture = this.lectures.find(
+          (lecture) => lecture.id.toString() === lectureIDToFind.toString()
+        );
+        if (!foundLecture) {
+          return;
+        }
 
-        foundLecture.addSection(section)
+        foundLecture.addSection(section);
       }
-    })
+    });
   }
 }
 
-export class YearQuarter
-{
-  year: number
-  quarter: Quarter
+export class YearQuarter {
+  year: number;
+  quarter: Quarter;
 
-  constructor(year: number, quarter: Quarter)
-  {
-    this.year = year
-    this.quarter = quarter
+  constructor(year: number, quarter: Quarter) {
+    this.year = year;
+    this.quarter = quarter;
   }
 
-  static fromString(yearQuarterString: string): YearQuarter | null
-  {
-    if (yearQuarterString.length != 5) { return null }
+  static fromString(yearQuarterString: string): YearQuarter | null {
+    if (yearQuarterString.length !== 5) {
+      return null;
+    }
 
-    var yearSlice = yearQuarterString.slice(0, 4)
-    var quarterSlice = yearQuarterString.slice(4, 5)
+    const yearSlice = yearQuarterString.slice(0, 4);
+    const quarterSlice = yearQuarterString.slice(4, 5);
 
-    return new YearQuarter(parseInt(yearSlice), parseInt(quarterSlice))
+    return new YearQuarter(parseInt(yearSlice), parseInt(quarterSlice));
   }
 
-  toString(): string
-  {
-    return this.year.toString() + this.quarter.toString()
+  toString(): string {
+    return this.year.toString() + this.quarter.toString();
   }
 }
 
-export enum Quarter
-{
+export enum Quarter {
   Winter = 1,
   Spring = 2,
   Summer = 3,
-  Fall = 4
+  Fall = 4,
 }
 
-export class CourseID
-{
-  subject: string
-  prefix: string
-  number: string
-  suffix: string
+export class CourseID {
+  subject: string;
+  prefix: string;
+  number: string;
+  suffix: string;
 
-  constructor(subject: string, prefix: string, number: string, suffix: string)
-  {
-    this.subject = subject
-    this.prefix = prefix
-    this.number = number
-    this.suffix = suffix
+  constructor(subject: string, prefix: string, number: string, suffix: string) {
+    this.subject = subject;
+    this.prefix = prefix;
+    this.number = number;
+    this.suffix = suffix;
   }
 
-  static fromString(courseIDString: string): CourseID
-  {
-    const subjectLength = 5
-    const prefixLength = 3
-    const numberLength = 3
-    const suffixLength = 2
+  static fromString(courseIDString: string): CourseID {
+    const subjectLength = 5;
+    const prefixLength = 3;
+    const numberLength = 3;
+    const suffixLength = 2;
 
-    var subjectSlice = courseIDString.slice(0, subjectLength)
-    var prefixSlice = courseIDString.slice(subjectLength, subjectLength+prefixLength)
-    var numberSlice = courseIDString.slice(subjectLength+prefixLength, subjectLength+prefixLength+numberLength)
-    var suffixSlice = courseIDString.slice(subjectLength+prefixLength+numberLength, subjectLength+prefixLength+numberLength+suffixLength)
+    const subjectSlice = courseIDString.slice(0, subjectLength);
+    const prefixSlice = courseIDString.slice(
+      subjectLength,
+      subjectLength + prefixLength
+    );
+    const numberSlice = courseIDString.slice(
+      subjectLength + prefixLength,
+      subjectLength + prefixLength + numberLength
+    );
+    const suffixSlice = courseIDString.slice(
+      subjectLength + prefixLength + numberLength,
+      subjectLength + prefixLength + numberLength + suffixLength
+    );
 
-    return new CourseID(subjectSlice, prefixSlice, numberSlice, suffixSlice)
+    return new CourseID(subjectSlice, prefixSlice, numberSlice, suffixSlice);
   }
 
-  toString(): string
-  {
-    return this.fillStringWithWhitespace(this.subject, 5, false)
-      + this.fillStringWithWhitespace(this.prefix, 3, false)
-      + this.fillStringWithWhitespace(this.number, 3, true)
-      + this.fillStringWithWhitespace(this.suffix, 2, false)
+  toString(): string {
+    return (
+      this.fillStringWithWhitespace(this.subject, 5, false) +
+      this.fillStringWithWhitespace(this.prefix, 3, false) +
+      this.fillStringWithWhitespace(this.number, 3, true) +
+      this.fillStringWithWhitespace(this.suffix, 2, false)
+    );
   }
 
-  fillStringWithWhitespace(stringToFill: string, size: number, shouldPrepend: boolean): string
-  {
-    while (stringToFill.length < size)
-    {
-      if (shouldPrepend)
-      {
-        stringToFill = " " + stringToFill
-      }
-      else
-      {
-        stringToFill = stringToFill + " "
+  fillStringWithWhitespace(
+    stringToFill: string,
+    size: number,
+    shouldPrepend: boolean
+  ): string {
+    let filledString = stringToFill;
+    while (filledString.length < size) {
+      if (shouldPrepend) {
+        filledString = " " + filledString;
+      } else {
+        filledString += " ";
       }
     }
 
-    if (stringToFill.length > size)
-    {
-      stringToFill = stringToFill.slice(0, size)
+    if (filledString.length > size) {
+      filledString = filledString.slice(0, size);
     }
 
-    return stringToFill
+    return filledString;
   }
 }
 
-export class UnitsRange
-{
-  areVariable: boolean
-  fixed: number | null
-  min: number | null
-  max: number | null
+export class UnitsRange {
+  areVariable: boolean;
+  fixed: number | null;
+  min: number | null;
+  max: number | null;
 
-  constructor(fixed: number | null, min: number | null, max: number | null)
-  {
-    this.areVariable = fixed == null && min != null && max != null
+  constructor(fixed: number | null, min: number | null, max: number | null) {
+    this.areVariable = fixed === null && min !== null && max !== null;
 
-    this.fixed = fixed
-    this.min = min
-    this.max = max
+    this.fixed = fixed;
+    this.min = min;
+    this.max = max;
   }
 }
