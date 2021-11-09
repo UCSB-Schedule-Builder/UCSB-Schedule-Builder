@@ -1,8 +1,11 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
-import SelectSearch, { fuzzySearch } from "react-select-search/dist/cjs";
+import SelectSearch, {
+  fuzzySearch,
+} from "react-select-search-nextjs-typescript";
 import useModal from "../stores/modal";
 import { useState } from "react";
+import CourseNumInput from "./CourseNumInput";
 
 function AddCourseModal() {
   const [courseNum, setCourseNum] = useState("");
@@ -48,18 +51,7 @@ function AddCourseModal() {
                 placeholder="Select subject"
               />
 
-              <div className="container">
-                <div className="container__item">
-                  <form className="form">
-                    <input
-                      type="email"
-                      className="form__field"
-                      placeholder="Enter course #"
-                      onChange={(e) => setCourseNum(e.target.value)}
-                    />
-                  </form>
-                </div>
-              </div>
+              <CourseNumInput />
             </div>
           </div>
           <div className="modal-footer">
@@ -160,115 +152,6 @@ function AddCourseModal() {
           display: flex;
           justify-content: center;
           margin-top: 1.4rem;
-        }
-
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        /* Firefox */
-        input[type="number"] {
-          -moz-appearance: textfield;
-        }
-
-        //** variables
-        $background: #f5f6fa;
-        $text: #9c9c9c;
-        $input-bg-color: #fff;
-        $input-text-color: #a3a3a3;
-        $button-bg-color: #7f8ff4;
-        $button-text-color: #fff;
-
-        //** root
-        :root {
-          background: $background;
-          color: $text;
-          font: 1rem "PT Sans", sans-serif;
-        }
-
-        html,
-        body,
-        .container {
-          height: 100%;
-        }
-
-        a {
-          color: inherit;
-
-          &:hover {
-            color: $button-bg-color;
-          }
-        }
-
-        //** helper
-        .container {
-          margin-left: 2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .uppercase {
-          text-transform: uppercase;
-        }
-
-        //** button
-        .btn {
-          display: inline-block;
-          background: transparent;
-          color: inherit;
-          font: inherit;
-          border: 0;
-          outline: 0;
-          padding: 0;
-          transition: all 200ms ease-in;
-          cursor: pointer;
-
-          &--primary {
-            background: $button-bg-color;
-            color: $button-text-color;
-            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            padding: 12px 36px;
-
-            &:hover {
-              background: darken($button-bg-color, 4%);
-            }
-
-            &:active {
-              background: $button-bg-color;
-              box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
-            }
-          }
-
-          &--inside {
-            margin-left: -96px;
-          }
-        }
-
-        //** form
-        .form {
-          &__field {
-            width: 160px;
-            background: #fff;
-            color: $input-text-color;
-            font-family: "Noto Sans", sans-serif;
-            box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
-            border: 0;
-            outline: 0;
-            padding: 10.5px 18px;
-            border-radius: 3px;
-
-            &:hover {
-              border: 1px solid #2fcc8b;
-              padding: 10px 17px;
-              margin-bottom: -1px;
-            }
-          }
         }
 
         .input-container {

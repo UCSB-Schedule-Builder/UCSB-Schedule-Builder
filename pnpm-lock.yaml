@@ -36,6 +36,7 @@ specifiers:
   react-instantsearch-dom: ^6.15.0
   react-no-ssr: ^1.1.0
   react-select-search: ^3.0.8
+  react-select-search-nextjs-typescript: ^3.0.7
   sass: ^1.43.4
   styled-jsx: ^4.0.1
   typescript: 4.4.4
@@ -68,6 +69,7 @@ dependencies:
   react-instantsearch-dom: 6.15.0_react-dom@17.0.2+react@17.0.2
   react-no-ssr: 1.1.0_react@17.0.2
   react-select-search: 3.0.8_react-dom@17.0.2+react@17.0.2
+  react-select-search-nextjs-typescript: 3.0.7_react-dom@17.0.2+react@17.0.2
   styled-jsx: 4.0.1_react@17.0.2
   zustand: 3.6.3_react@17.0.2
 
@@ -3213,6 +3215,19 @@ packages:
   /react-refresh/0.8.3:
     resolution: {integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /react-select-search-nextjs-typescript/3.0.7_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-TS02YpoyCwKvghihNW7BDkclk4pcYx6Hva7ulwijFBQYEcx4WK53WoCk4xF94lkutNY1vz+QhEbxay6H4wi3uw==}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    optionalDependencies:
+      fuse.js: 3.6.1
     dev: false
 
   /react-select-search/3.0.8_react-dom@17.0.2+react@17.0.2:

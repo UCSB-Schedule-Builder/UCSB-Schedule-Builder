@@ -27,6 +27,7 @@ function AddCourseBtn({ courseType }: { courseType: CourseListType }) {
           display: inline-block;
           font-size: 16px;
           margin: -${grid * 0.25}px 0 ${grid * 0.75}px;
+          margin-bottom: 8px; // temporary until https://github.com/Thream/styled-jsx-plugin-sass/issues/101 is resolved
         }
 
         button:hover {
