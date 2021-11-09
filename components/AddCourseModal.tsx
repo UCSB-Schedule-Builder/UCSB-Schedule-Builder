@@ -1,9 +1,11 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
-
+import SelectSearch, { fuzzySearch } from "react-select-search/dist/cjs";
 import useModal from "../stores/modal";
+import { useState } from "react";
 
 function AddCourseModal() {
+  const [courseNum, setCourseNum] = useState("");
   const { currentCourseType, close: handleClose } = useModal(
     ({ currentCourseType, close }) => ({ currentCourseType, close }),
     shallow
@@ -34,8 +36,31 @@ function AddCourseModal() {
             <h2>Add your course! 📚</h2>
           </div>
           <div className="modal-body">
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
+            <div className="input-container">
+              <SelectSearch
+                options={[
+                  { name: "Swedish", value: "sv" },
+                  { name: "English", value: "en" },
+                ]}
+                search
+                filterOptions={fuzzySearch}
+                emptyMessage="Not found"
+                placeholder="Select subject"
+              />
+
+              <div className="container">
+                <div className="container__item">
+                  <form className="form">
+                    <input
+                      type="email"
+                      className="form__field"
+                      placeholder="Enter course #"
+                      onChange={(e) => setCourseNum(e.target.value)}
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="modal-footer">
             <h3>Modal Footer</h3>
@@ -66,6 +91,7 @@ function AddCourseModal() {
           padding: 0;
           border: 1px solid #888;
           width: 80%;
+          height: 80vh;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
             0 6px 20px 0 rgba(0, 0, 0, 0.19);
           border-radius: 10px;
@@ -134,6 +160,124 @@ function AddCourseModal() {
           display: flex;
           justify-content: center;
           margin-top: 1.4rem;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+
+        //** variables
+        $background: #f5f6fa;
+        $text: #9c9c9c;
+        $input-bg-color: #fff;
+        $input-text-color: #a3a3a3;
+        $button-bg-color: #7f8ff4;
+        $button-text-color: #fff;
+
+        //** root
+        :root {
+          background: $background;
+          color: $text;
+          font: 1rem "PT Sans", sans-serif;
+        }
+
+        html,
+        body,
+        .container {
+          height: 100%;
+        }
+
+        a {
+          color: inherit;
+
+          &:hover {
+            color: $button-bg-color;
+          }
+        }
+
+        //** helper
+        .container {
+          margin-left: 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .uppercase {
+          text-transform: uppercase;
+        }
+
+        //** button
+        .btn {
+          display: inline-block;
+          background: transparent;
+          color: inherit;
+          font: inherit;
+          border: 0;
+          outline: 0;
+          padding: 0;
+          transition: all 200ms ease-in;
+          cursor: pointer;
+
+          &--primary {
+            background: $button-bg-color;
+            color: $button-text-color;
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            padding: 12px 36px;
+
+            &:hover {
+              background: darken($button-bg-color, 4%);
+            }
+
+            &:active {
+              background: $button-bg-color;
+              box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+            }
+          }
+
+          &--inside {
+            margin-left: -96px;
+          }
+        }
+
+        //** form
+        .form {
+          &__field {
+            width: 160px;
+            background: #fff;
+            color: $input-text-color;
+            font-family: "Noto Sans", sans-serif;
+            box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
+            border: 0;
+            outline: 0;
+            padding: 10.5px 18px;
+            border-radius: 3px;
+
+            &:hover {
+              border: 1px solid #2fcc8b;
+              padding: 10px 17px;
+              margin-bottom: -1px;
+            }
+          }
+        }
+
+        .input-container {
+          display: flex;
+        }
+
+        .modal-body {
+          display: grid;
+          place-items: center;
         }
       `}</style>
     </>

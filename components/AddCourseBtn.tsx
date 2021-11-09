@@ -9,6 +9,8 @@ function AddCourseBtn({ courseType }: { courseType: CourseListType }) {
     search(courseType);
   }
 
+  console.log(grid);
+
   return (
     <>
       <button onClick={handleAddCourse}>+ Add Course</button>
