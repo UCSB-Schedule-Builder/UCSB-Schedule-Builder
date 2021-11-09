@@ -4,11 +4,9 @@ import SelectSearch, {
   fuzzySearch,
 } from "react-select-search-nextjs-typescript";
 import useModal from "../stores/modal";
-import { useState } from "react";
 import CourseNumInput from "./CourseNumInput";
 
 function AddCourseModal() {
-  const [courseNum, setCourseNum] = useState("");
   const { currentCourseType, close: handleClose } = useModal(
     ({ currentCourseType, close }) => ({ currentCourseType, close }),
     shallow
