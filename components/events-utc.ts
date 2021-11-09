@@ -788,13 +788,13 @@ export const customModelFields = {
 };
 
 const currentYear = new Date().getFullYear();
-const parseAdjust = (eventDate) => {
+const parseAdjust = (eventDate: string) => {
   const date = new Date(eventDate);
   date.setFullYear(currentYear);
   return date;
 };
 
-const randomInt = (min, max) =>
+const randomInt = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const displayDate = new Date(Date.UTC(currentYear, 5, 24));
@@ -802,9 +802,9 @@ export const displayDate = new Date(Date.UTC(currentYear, 5, 24));
 export const sampleData = baseData.map((dataItem) => ({
   id: dataItem.TaskID,
   start: parseAdjust(dataItem.Start),
-  startTimezone: dataItem.startTimezone,
+  startTimezone: dataItem.StartTimezone,
   end: parseAdjust(dataItem.End),
-  endTimezone: dataItem.endTimezone,
+  endTimezone: dataItem.EndTimezone,
   isAllDay: dataItem.isAllDay,
   title: dataItem.Title,
   description: dataItem.Description,
@@ -820,9 +820,9 @@ export const sampleData = baseData.map((dataItem) => ({
 export const sampleDataWithResources = baseData.map((dataItem) => ({
   id: dataItem.TaskID,
   start: parseAdjust(dataItem.Start),
-  startTimezone: dataItem.startTimezone,
+  startTimezone: dataItem.StartTimezone,
   end: parseAdjust(dataItem.End),
-  endTimezone: dataItem.endTimezone,
+  endTimezone: dataItem.EndTimezone,
   isAllDay: dataItem.isAllDay,
   title: dataItem.Title,
   description: dataItem.Description,

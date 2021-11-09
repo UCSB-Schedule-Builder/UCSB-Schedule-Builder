@@ -2,15 +2,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import AllCoursesList from "../components/AllCoursesList";
 import AddCourseModal from "../components/AddCourseModal";
-import CourseCalendar from "../components/CourseCalendar";
 
 import { useEffect } from "react";
-import { apiTests } from "../api/api-tests"
+import { apiTests } from "../api/api-tests";
 
 const Home: NextPage = () => {
   useEffect(() => {
-    apiTests()
-  })
+    apiTests();
+  });
 
   return (
     <div className="container">
@@ -25,7 +24,8 @@ const Home: NextPage = () => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      {/* <CourseCalendar /> */ /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
+      {/* <CourseCalendar /> */
+      /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
       <AddCourseModal />
       <style jsx global>{`
         html {
