@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - actions/checkout@v2
+      # Make sure the @v0.5.3 matches the current version of the
+      # action 
+      - uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - uses: actions/checkout@v2
         with: 
           repository: UCSB-Schedule-Builder/Deployment-Wrapper
