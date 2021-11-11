@@ -1,16 +1,22 @@
-import type { NextPage } from "next";
+import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import AllCoursesList from "../components/AllCoursesList";
 import AddCourseModal from "../components/AddCourseModal";
 
-import { useEffect } from "react";
-import { apiTests } from "../api/api-tests";
+import { APIManager } from "../api/api-manager";
+import useSubjects from "../stores/subjects";
 
-const Home: NextPage = () => {
-  useEffect(() => {
-    apiTests();
-  });
+export const getStaticProps = async () => {
+  return {
+    props: {
+      subjects: JSON.parse(JSON.stringify(await APIManager.fetchSubjects())),
+    },
+  };
+};
 
+const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const setSubjects = useSubjects(({ setSubjects }) => setSubjects);
+  setSubjects(subjects);
   return (
     <div className="container">
       <Head>

@@ -60,7 +60,7 @@ export class SectionID {
 
   static fromString(idString: string): SectionID | null {
     const regexMatch = idString.match(sectionRegexPattern);
-    if (regexMatch === null || regexMatch.length <= 2) {
+    if (regexMatch == null || regexMatch.length <= 2) {
       return null;
     }
 

@@ -1,10 +1,8 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
-import SelectSearch, {
-  fuzzySearch,
-} from "react-select-search-nextjs-typescript";
 import useModal from "../stores/modal";
 import CourseNumInput from "./CourseNumInput";
+import SubjectDropdown from "./SubjectDropdown";
 
 function AddCourseModal() {
   const { currentCourseType, close: handleClose } = useModal(
@@ -14,7 +12,7 @@ function AddCourseModal() {
 
   const isEscapePressed = useKeyPress({ targetKey: "Escape" });
 
-  const isVisible = currentCourseType !== null;
+  const isVisible = !!currentCourseType;
 
   if (isVisible && isEscapePressed) {
     handleClose();
@@ -36,24 +34,18 @@ function AddCourseModal() {
             </span>
             <h2>Add your course! 📚</h2>
           </div>
-          <div className="modal-body">
+          <div className="modal-inputs">
             <div className="input-container">
-              <SelectSearch
-                options={[
-                  { name: "Swedish", value: "sv" },
-                  { name: "English", value: "en" },
-                ]}
-                search
-                filterOptions={fuzzySearch}
-                emptyMessage="Not found"
-                placeholder="Select subject"
-              />
+              <SubjectDropdown />
 
               <CourseNumInput />
             </div>
           </div>
-          <div className="modal-footer">
-            <h3>Modal Footer</h3>
+          <div className="modal-results">
+            <div className="search-not-started">
+              <p>This is where search results will go.</p>
+              <p>Let&apos;s start searching! 😄</p>
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +68,8 @@ function AddCourseModal() {
         /* Modal Content */
         .modal-content {
           position: relative;
+          display: flex;
+          flex-direction: column;
           background-color: #fefefe;
           margin: auto;
           padding: 0;
@@ -136,13 +130,17 @@ function AddCourseModal() {
           font-size: 1.6rem;
         }
 
-        .modal-body {
+        .modal-inputs {
           padding: 2px 16px;
         }
 
-        .modal-footer {
+        .modal-results {
           padding: 2px 16px;
-          color: white;
+          height: auto;
+          flex-grow: 1;
+          display: grid;
+          place-items: center;
+          white-space: pre-wrap;
         }
 
         h2 {
@@ -156,9 +154,19 @@ function AddCourseModal() {
           display: flex;
         }
 
-        .modal-body {
+        .modal-inputs {
           display: grid;
           place-items: center;
+        }
+
+        .search-not-started {
+          display: grid;
+          place-items: center;
+          margin-bottom: 6rem;
+
+          & > p {
+            margin: 0;
+          }
         }
       `}</style>
     </>

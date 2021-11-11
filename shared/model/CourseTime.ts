@@ -14,9 +14,9 @@ export class CourseTime {
   ) {
     this.days = days;
     this.startTime =
-      startTimeString !== null ? new HourMinute(startTimeString) : null;
+      startTimeString != null ? new HourMinute(startTimeString) : null;
     this.endTime =
-      startTimeString !== null ? new HourMinute(endTimeString) : null;
+      startTimeString != null ? new HourMinute(endTimeString) : null;
     this.location = location;
   }
 
@@ -37,7 +37,7 @@ export class CourseTime {
   }
 
   getDuration(): number {
-    if (this.startTime === null || this.endTime === null) {
+    if (this.startTime == null || this.endTime == null) {
       return 0;
     }
     return (

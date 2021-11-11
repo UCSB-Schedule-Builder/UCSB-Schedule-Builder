@@ -156,14 +156,14 @@ export class APIManager {
     let fullJSON: any = null;
 
     while (
-      fullJSON === null ||
+      fullJSON == null ||
       fullJSON.pageNumber * fullJSON.pageSize < fullJSON.total
     ) {
       options.searchParams.pageNumber =
         (options.searchParams.pageNumber || 0) + 1;
       const currentJSON: any = await ky.get(url, options).json();
 
-      if (fullJSON === null) {
+      if (fullJSON == null) {
         fullJSON = currentJSON;
         continue;
       }

@@ -171,7 +171,7 @@ export class UnitsRange {
   max: number | null;
 
   constructor(fixed: number | null, min: number | null, max: number | null) {
-    this.areVariable = fixed === null && min !== null && max !== null;
+    this.areVariable = fixed == null && min != null && max != null;
 
     this.fixed = fixed;
     this.min = min;
