@@ -14,10 +14,11 @@ import {
 } from "../shared/model/model";
 import ky from "ky-universal";
 import {
+  maxPageSize,
   UCSBAPIKey,
   UCSBAPIPaths,
   UCSBRegistrarAPIVersion,
-} from "../constants/apiConsts";
+} from "../constants/api";
 
 export class APIManager {
   static async fetchSubjects(): Promise<Subject[]> {
@@ -49,7 +50,7 @@ export class APIManager {
           quarter: quarter.toString(),
           subjectCode: subject.code,
           includeClassSections: shouldFetchSectionData,
-          pageSize: 500,
+          pageSize: maxPageSize,
         },
         headers: {
           "ucsb-api-key": UCSBAPIKey,
@@ -84,7 +85,7 @@ export class APIManager {
           quarter: quarter.toString(),
           courseId: id.toString(),
           includeClassSections: shouldFetchSectionData,
-          pageSize: 500,
+          pageSize: maxPageSize,
         },
         headers: {
           "ucsb-api-key": UCSBAPIKey,
@@ -128,7 +129,7 @@ export class APIManager {
           quarter: course.quarter.toString(),
           courseId: course.id.toString(),
           includeClassSections: true,
-          pageSize: 500,
+          pageSize: maxPageSize,
         },
         headers: {
           "ucsb-api-key": UCSBAPIKey,
@@ -148,7 +149,7 @@ export class APIManager {
     return APIManager.handleCourseSectionsJSON(courseJSON.classSections);
   }
 
-  static async fetchFromUCSBAPI(
+  private static async fetchFromUCSBAPI(
     url: string,
     options: any,
     fieldToAccumulate: string
@@ -178,7 +179,7 @@ export class APIManager {
     return fullJSON;
   }
 
-  static handleCourseJSON(
+  private static handleCourseJSON(
     courseJSON: any,
     subject: Subject,
     shouldFetchSectionData: boolean
@@ -195,7 +196,7 @@ export class APIManager {
     return newCourseObject;
   }
 
-  static handleCourseSectionsJSON(courseSectionsJSON: any): Section[] {
+  private static handleCourseSectionsJSON(courseSectionsJSON: any): Section[] {
     return (courseSectionsJSON || []).map((courseSectionJSON: any) => {
       return Section.fromJSON(courseSectionJSON);
     });

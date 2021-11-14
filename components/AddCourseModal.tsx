@@ -1,8 +1,13 @@
 import shallow from "zustand/shallow";
 import { useKeyPress } from "@react-typed-hooks/use-key-press";
+import { ChangeEvent, useState } from "react";
+import _ from "lodash";
+
 import useModal from "../stores/modal";
 import CourseNumInput from "./CourseNumInput";
-import SubjectDropdown from "./SubjectDropdown";
+import SubjectDropdown, { Selection } from "./SubjectDropdown";
+import SearchResults from "./SearchResults";
+import useSearch from "../hooks/search";
 
 function AddCourseModal() {
   const { currentCourseType, close: handleClose } = useModal(
@@ -17,6 +22,26 @@ function AddCourseModal() {
   if (isVisible && isEscapePressed) {
     handleClose();
   }
+
+  const [subject, setSubject] = useState("");
+  const [courseNum, setCourseNum] = useState("");
+
+  const handleSubjectChange = (subject: Selection) => {
+    if (_.isString(subject)) {
+      setSubject(subject);
+    }
+  };
+
+  const handleCourseNumChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setCourseNum(e.target.value);
+  };
+
+  const { status, results } = useSearch(subject);
+
+  const courses = results?.filter((course) =>
+    course.id.number.startsWith(courseNum)
+  );
 
   return (
     <>
@@ -36,16 +61,15 @@ function AddCourseModal() {
           </div>
           <div className="modal-inputs">
             <div className="input-container">
-              <SubjectDropdown />
-
-              <CourseNumInput />
+              <SubjectDropdown value={subject} onChange={handleSubjectChange} />
+              <CourseNumInput
+                value={courseNum}
+                onChange={handleCourseNumChange}
+              />
             </div>
           </div>
           <div className="modal-results">
-            <div className="search-not-started">
-              <p>This is where search results will go.</p>
-              <p>Let&apos;s start searching! 😄</p>
-            </div>
+            <SearchResults status={status} courses={courses} />
           </div>
         </div>
       </div>
@@ -157,16 +181,6 @@ function AddCourseModal() {
         .modal-inputs {
           display: grid;
           place-items: center;
-        }
-
-        .search-not-started {
-          display: grid;
-          place-items: center;
-          margin-bottom: 6rem;
-
-          & > p {
-            margin: 0;
-          }
         }
       `}</style>
     </>

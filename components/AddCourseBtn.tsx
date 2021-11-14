@@ -1,4 +1,4 @@
-import grid from "../constants/courseList";
+import grid from "../constants/coursesList";
 import useModal from "../stores/modal";
 import { CourseListType } from "../stores/courseLists";
 
@@ -8,8 +8,6 @@ function AddCourseBtn({ courseType }: { courseType: CourseListType }) {
   function handleAddCourse() {
     search(courseType);
   }
-
-  console.log(grid);
 
   return (
     <>

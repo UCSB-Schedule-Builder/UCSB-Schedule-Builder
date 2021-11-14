@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { ChangeEventHandler } from "react";
 
-function CourseNumInput() {
-  const [courseNum, setCourseNum] = useState("");
+interface CourseNumInputProps {
+  value: string;
+  onChange: ChangeEventHandler;
+}
+
+function CourseNumInput({ value, onChange }: CourseNumInputProps) {
   return (
     <>
       <div className="container">
@@ -11,8 +15,8 @@ function CourseNumInput() {
               type="number"
               className="form__field"
               placeholder="Enter course #"
-              value={courseNum}
-              onChange={(e) => setCourseNum(e.target.value)}
+              value={value}
+              onChange={onChange}
               onWheel={(e) => (e.target as HTMLElement).blur()}
             />
           </form>

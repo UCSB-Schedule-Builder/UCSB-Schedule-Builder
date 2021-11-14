@@ -1,3 +1,5 @@
+import { YearQuarter } from "../shared/model/Course";
+
 export const UCSBAPIKey = process.env.NEXT_PUBLIC_UCSB_API_KEY;
 
 const UCSBAPIEndpoint = "https://api.ucsb.edu";
@@ -17,3 +19,7 @@ export const UCSBAPIPaths = {
   subjects:
     UCSBRegistrarAPIEndpoint + "/" + UCSBRegistrarMajorAPIVersion + "/subjects",
 };
+
+export const maxPageSize = 500;
+
+export const defaultQuarter = new YearQuarter(2022, 1);

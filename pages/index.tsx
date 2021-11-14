@@ -4,7 +4,11 @@ import AllCoursesList from "../components/AllCoursesList";
 import AddCourseModal from "../components/AddCourseModal";
 
 import { APIManager } from "../api/api-manager";
-import useSubjects from "../stores/subjects";
+import useCourseMetadata from "../stores/courseMetadata";
+
+import shallow from "zustand/shallow";
+import useQuarter from "../hooks/quarter";
+import { useEffect } from "react";
 
 export const getStaticProps = async () => {
   return {
@@ -15,8 +19,15 @@ export const getStaticProps = async () => {
 };
 
 const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const setSubjects = useSubjects(({ setSubjects }) => setSubjects);
-  setSubjects(subjects);
+  const { setSubjects, setQuarter } = useCourseMetadata(
+    ({ setSubjects, setQuarter }) => ({ setSubjects, setQuarter }),
+    shallow
+  );
+  const quarter = useQuarter();
+  useEffect(() => {
+    setSubjects(subjects);
+    setQuarter(quarter);
+  }, [quarter, setQuarter, setSubjects, subjects]);
   return (
     <div className="container">
       <Head>

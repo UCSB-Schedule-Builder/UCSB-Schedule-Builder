@@ -1,8 +1,9 @@
 import { Droppable } from "react-beautiful-dnd";
-import grid from "../constants/courseList";
+import grid from "../constants/coursesList";
 import useCourseLists, { CourseListType } from "../stores/courseLists";
 import CourseCard from "./CourseCard";
 import AddCourseBtn from "./AddCourseBtn";
+import shallow from "zustand/shallow";
 
 const getListStyle = (isDraggingOver: boolean) => ({
   background: isDraggingOver ? "lightblue" : "#f9f9f9",
@@ -12,9 +13,11 @@ const getListStyle = (isDraggingOver: boolean) => ({
 });
 
 function CourseList({ courseType }: { courseType: CourseListType }) {
-  const courses = useCourseLists((state) => state[courseType]);
+  const { courses, remove } = useCourseLists(
+    ({ [courseType]: courses, remove }) => ({ courses, remove }),
+    shallow
+  );
 
-  const remove = useCourseLists((state) => state.remove);
   const removeAt = (index: number) =>
     remove({ droppableId: courseType, index });
 
