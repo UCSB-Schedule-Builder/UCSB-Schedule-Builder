@@ -37,7 +37,6 @@
     "react-instantsearch-dom": "^6.15.0",
     "react-loading-icons": "^1.0.6",
     "react-no-ssr": "^1.1.0",
-    "react-select-search": "^3.0.8",
     "react-select-search-nextjs-typescript": "^3.0.7",
     "styled-jsx": "^4.0.1",
     "zustand": "^3.6.3"
