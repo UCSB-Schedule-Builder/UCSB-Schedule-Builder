@@ -75,7 +75,7 @@ export class YearQuarter {
   }
 
   static fromString(yearQuarterString: string): YearQuarter | null {
-    if (yearQuarterString.length !== 5) {
+    if (yearQuarterString === undefined || yearQuarterString.length !== 5) {
       return null;
     }
 
@@ -135,14 +135,21 @@ export class CourseID {
 
   toString(): string {
     return (
-      this.fillStringWithWhitespace(this.subject, 5, false) +
-      this.fillStringWithWhitespace(this.prefix, 3, false) +
-      this.fillStringWithWhitespace(this.number, 3, true) +
-      this.fillStringWithWhitespace(this.suffix, 2, false)
+      this.fillStringWhitespace(this.subject, 5, false) +
+      this.fillStringWhitespace(this.prefix, 3, false) +
+      this.fillStringWhitespace(this.number, 3, true) +
+      this.fillStringWhitespace(this.suffix, 2, false)
     );
   }
 
-  fillStringWithWhitespace(
+  getNumberWithSuffix(): string {
+    return (
+      this.removeStringWhitespace(this.number, true) +
+      this.removeStringWhitespace(this.suffix, false)
+    )
+  }
+
+  fillStringWhitespace(
     stringToFill: string,
     size: number,
     shouldPrepend: boolean
@@ -161,6 +168,10 @@ export class CourseID {
     }
 
     return filledString;
+  }
+
+  removeStringWhitespace(stringToFill: string, removeLeading: boolean): string {
+    return removeLeading ? stringToFill.replace(/^\s*/, "") : stringToFill.replace(/\s*$/, "")
   }
 }
 

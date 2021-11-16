@@ -12,7 +12,7 @@ function CourseNumInput({ value, onChange }: CourseNumInputProps) {
         <div className="container__item">
           <form className="form">
             <input
-              type="number"
+              type="string"
               className="form__field"
               placeholder="Enter course #"
               value={value}

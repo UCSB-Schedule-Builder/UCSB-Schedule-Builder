@@ -40,7 +40,7 @@ function AddCourseModal() {
   const { status, results } = useSearch(subject);
 
   const courses = results?.filter((course) =>
-    course.id.number.startsWith(courseNum)
+    course.id.getNumberWithSuffix().startsWith(courseNum)
   );
 
   return (
