@@ -8,10 +8,12 @@ function useQuarter() {
 
   useEffect(() => {
     const fetchQuarter = async () => {
-      const { default: quarterStr } = await ky(
-        "https://api.codetabs.com/v1/proxy?quest=https://web.gogaucho.app/api/sche/getQuarter"
-      ).json();
-      setQuarter(YearQuarter.fromString(quarterStr) ?? defaultQuarter);
+      // const { default: quarterStr } = await ky(
+      //   "https://api.codetabs.com/v1/proxy?quest=https://web.gogaucho.app/api/sche/getQuarter"
+      // ).json();
+      // setQuarter(YearQuarter.fromString(quarterStr) ?? defaultQuarter);
+      // NO! DON'T USE THEIR API!!!!!
+      setQuarter(defaultQuarter)
     };
 
     fetchQuarter();

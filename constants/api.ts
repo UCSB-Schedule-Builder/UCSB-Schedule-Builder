@@ -1,4 +1,4 @@
-import { YearQuarter } from "../shared/model/Course";
+import { YearQuarter, Quarter } from "../shared/model/Course";
 
 export const UCSBAPIKey = process.env.NEXT_PUBLIC_UCSB_API_KEY;
 
@@ -22,4 +22,4 @@ export const UCSBAPIPaths = {
 
 export const maxPageSize = 500;
 
-export const defaultQuarter = new YearQuarter(2022, 1);
+export const defaultQuarter = YearQuarter.fromString(process.env.NEXT_PUBLIC_CURRENT_QUARTER) ?? new YearQuarter(2022, Quarter.Winter)
