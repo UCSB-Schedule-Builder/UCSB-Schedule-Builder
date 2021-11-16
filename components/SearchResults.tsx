@@ -35,6 +35,7 @@ function SearchResults({ status, courses }: SearchResultsProps) {
         .search-results {
           width: 90%;
           justify-content: center;
+          margin-bottom:50px;
         }
 
         .search-not-started {
@@ -58,7 +59,9 @@ function SearchResults({ status, courses }: SearchResultsProps) {
         }
 
         .search-result-cell:hover {
-          background-color: #ccc;
+          background: linear-gradient(135deg, #2e22ac 0%, #ce448d 100%)
+            no-repeat fixed;
+          color: #fefefe;
 
         }
       `}</style>
