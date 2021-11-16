@@ -21,15 +21,22 @@ function SearchResults({ status, courses }: SearchResultsProps) {
       {status === "error" && <p>Error!</p>}
       {status === "success" && !courses?.length && <p>No results found</p>}
       {status === "success" && courses?.length && (
-        <ul>
+        <div>
           {courses.map((course) => (
-            <li key={course.id.number}>
-              <div>{course.title}</div>
-            </li>
+              <div className="search-result-cell">
+                <div className="course-ID">{course.id.toString()}</div>
+                <div className="course-title">{course.title}</div>
+                <div className="is-selected">placeholder for selected icon</div>
+              </div>
           ))}
-        </ul>
+        </div>
       )}
       <style jsx>{`
+        .search-results {
+          width: 90%;
+          justify-content: center;
+        }
+
         .search-not-started {
           display: grid;
           place-items: center;
@@ -38,6 +45,21 @@ function SearchResults({ status, courses }: SearchResultsProps) {
           & > p {
             margin: 0;
           }
+        }
+
+        .search-result-cell {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          background-color: #ddd;
+          border-radius: 5px;
+          padding: 20px;
+          margin: 3px;
+        }
+
+        .search-result-cell:hover {
+          background-color: #ccc;
+
         }
       `}</style>
     </div>
