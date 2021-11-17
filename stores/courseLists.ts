@@ -2,11 +2,7 @@ import create from "zustand";
 
 import insert from "just-insert";
 import { DraggableLocation } from "react-beautiful-dnd";
-
-export interface Course {
-  id: string;
-  content: string;
-}
+import { Course } from "../shared/model/Course";
 
 export type CourseListType = "main" | "alternate";
 
@@ -17,28 +13,22 @@ export interface CourseListLocation extends DraggableLocation {
 interface CourseListsState {
   main: Course[];
   alternate: Course[];
+  removeAt: (location: CourseListLocation) => Course;
+  insertAt: (course: Course, location: CourseListLocation) => void;
   append: (course: Course, courseType: CourseListType) => void;
-  remove: (location: CourseListLocation) => Course;
-  insert: (course: Course, location: CourseListLocation) => void;
+  remove: (id: Course, courseType: CourseListType) => void;
   move: (location: CourseListLocation, destination: CourseListLocation) => void;
 }
 
-// dummy data generator
-const getCourses = (count: number, offset = 0): Course[] =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `course-${k + offset}-${new Date().getTime()}`,
-    content: `course ${k + offset}\nlecture times\nsection times`,
-  }));
-
 const useCourseLists = create(
   (set, get: () => CourseListsState): CourseListsState => ({
-    main: getCourses(3),
-    alternate: getCourses(5, 3),
-    insert: (course, { droppableId, index }) =>
+    main: [],
+    alternate: [],
+    insertAt: (course, { droppableId, index }) =>
       set((state: CourseListsState) => ({
         [droppableId]: insert(state[droppableId], course, index),
       })),
-    remove: ({ droppableId, index }) => {
+    removeAt: ({ droppableId, index }) => {
       const courseToRemove = get()[droppableId][index];
       set((state: CourseListsState) => ({
         [droppableId]: state[droppableId].filter((_, i) => i !== index),
@@ -46,13 +36,20 @@ const useCourseLists = create(
       return courseToRemove;
     },
     append: (course, courseType) => {
-      const { [courseType]: courses, insert } = get();
-      insert(course, { droppableId: courseType, index: courses.length });
+      const { [courseType]: courses, insertAt } = get();
+      insertAt(course, { droppableId: courseType, index: courses.length });
+    },
+    remove: (course, courseType) => {
+      const { [courseType]: courses, removeAt } = get();
+      const idx = courses.findIndex(
+        (c) => c.id.toString() === course.id.toString()
+      );
+      return removeAt({ droppableId: courseType, index: idx });
     },
     move: (source: CourseListLocation, destination: CourseListLocation) => {
-      const { insert, remove } = get();
-      const removed = remove(source);
-      insert(removed, destination);
+      const { insertAt, removeAt } = get();
+      const removed = removeAt(source);
+      insertAt(removed, destination);
     },
   })
 );
