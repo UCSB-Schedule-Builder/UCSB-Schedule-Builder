@@ -83,7 +83,7 @@ function CourseCard({
           position: absolute;
           top: -26px;
           left: -25px;
-          z-index: 100;
+          z-index: 1;
           background-color: #dc143c;
           padding: 8px 6px 6px;
           cursor: pointer;
