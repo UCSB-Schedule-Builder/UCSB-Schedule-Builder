@@ -1,4 +1,5 @@
 import { Lecture, Section, Subject } from "./model";
+import { YearQuarter } from "./YearQuarter";
 
 export class Course {
   quarter: YearQuarter;
@@ -65,38 +66,6 @@ export class Course {
   }
 }
 
-export class YearQuarter {
-  year: number;
-  quarter: Quarter;
-
-  constructor(year: number, quarter: Quarter) {
-    this.year = year;
-    this.quarter = quarter;
-  }
-
-  static fromString(yearQuarterString: string): YearQuarter | null {
-    if (yearQuarterString === undefined || yearQuarterString.length !== 5) {
-      return null;
-    }
-
-    const yearSlice = yearQuarterString.slice(0, 4);
-    const quarterSlice = yearQuarterString.slice(4, 5);
-
-    return new YearQuarter(parseInt(yearSlice), parseInt(quarterSlice));
-  }
-
-  toString(): string {
-    return this.year.toString() + this.quarter.toString();
-  }
-}
-
-export enum Quarter {
-  Winter = 1,
-  Spring = 2,
-  Summer = 3,
-  Fall = 4,
-}
-
 export class CourseID {
   subject: string;
   prefix: string;
@@ -146,7 +115,7 @@ export class CourseID {
     return (
       this.removeStringWhitespace(this.number, true) +
       this.removeStringWhitespace(this.suffix, false)
-    )
+    );
   }
 
   fillStringWhitespace(
@@ -171,7 +140,9 @@ export class CourseID {
   }
 
   removeStringWhitespace(stringToFill: string, removeLeading: boolean): string {
-    return removeLeading ? stringToFill.replace(/^\s*/, "") : stringToFill.replace(/\s*$/, "")
+    return removeLeading
+      ? stringToFill.replace(/^\s*/, "")
+      : stringToFill.replace(/\s*$/, "");
   }
 }
 

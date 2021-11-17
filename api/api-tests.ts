@@ -4,7 +4,7 @@ import { CourseID, Quarter, YearQuarter } from "../shared/model/model";
 export var apiTests = async () => {
   // Block for API testing
   const subjectCodeToFetch = "CMPSC";
-  const quarterToFetch = new YearQuarter(2022, Quarter.Winter);
+  const quarterToFetch = new YearQuarter(2022, Quarter.WINTER);
   const courseIDToFetch = new CourseID(subjectCodeToFetch, "", "154", "");
 
   const subjectArray = await APIManager.fetchSubjects();

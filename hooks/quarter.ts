@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import ky from "ky-universal";
-import { YearQuarter } from "../shared/model/Course";
+
 import { defaultQuarter } from "../constants/api";
+import { YearQuarter } from "../shared/model/YearQuarter";
+import { APIManager } from "../api/api-manager";
+import to from "await-to-js";
 
 function useQuarter() {
   const [quarter, setQuarter] = useState<YearQuarter>(defaultQuarter);
 
   useEffect(() => {
     const fetchQuarter = async () => {
-      // const { default: quarterStr } = await ky(
-      //   "https://api.codetabs.com/v1/proxy?quest=https://web.gogaucho.app/api/sche/getQuarter"
-      // ).json();
-      // setQuarter(YearQuarter.fromString(quarterStr) ?? defaultQuarter);
-      // NO! DON'T USE THEIR API!!!!!
-      setQuarter(defaultQuarter)
+      const currQuarter = await APIManager.fetchCurrentQuarter();
+      const nextQuarter = currQuarter.next();
+
+      const [err] = await to(APIManager.fetchNumClasses(nextQuarter));
+
+      setQuarter(err ? currQuarter : nextQuarter);
     };
 
     fetchQuarter();

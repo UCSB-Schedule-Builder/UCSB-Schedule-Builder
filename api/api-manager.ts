@@ -21,14 +21,27 @@ import {
 } from "../constants/api";
 
 export class APIManager {
+  static async fetchCurrentQuarter(): Promise<YearQuarter> {
+    const { quarter } = await ky(UCSBAPIPaths.currentQuarter, {
+      headers: { "ucsb-api-key": UCSBAPIKey },
+    }).json();
+    return YearQuarter.fromString(quarter);
+  }
+
+  static async fetchNumClasses(quarter: YearQuarter): Promise<number> {
+    const { total } = await ky(UCSBAPIPaths.classSearch, {
+      searchParams: { quarter: quarter.toString(), pageSize: 1 },
+      headers: { "ucsb-api-key": UCSBAPIKey },
+    }).json();
+    return total;
+  }
+
   static async fetchSubjects(): Promise<Subject[]> {
-    const subjectsJSON: any = await ky
-      .get(UCSBAPIPaths.subjects, {
-        headers: {
-          "ucsb-api-version": UCSBRegistrarAPIVersion,
-        },
-      })
-      .json();
+    const subjectsJSON: any = await ky(UCSBAPIPaths.subjects, {
+      headers: {
+        "ucsb-api-version": UCSBRegistrarAPIVersion,
+      },
+    }).json();
 
     return subjectsJSON.map((subjectJSON: any) => {
       return new Subject(
@@ -162,7 +175,7 @@ export class APIManager {
     ) {
       options.searchParams.pageNumber =
         (options.searchParams.pageNumber || 0) + 1;
-      const currentJSON: any = await ky.get(url, options).json();
+      const currentJSON: any = await ky(url, options).json();
 
       if (fullJSON == null) {
         fullJSON = currentJSON;

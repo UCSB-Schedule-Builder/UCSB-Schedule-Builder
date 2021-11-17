@@ -1,7 +1,7 @@
 import create from "zustand";
 import { Subject } from "../shared/model/Subject";
-import { YearQuarter } from "../shared/model/Course";
 import { defaultQuarter } from "../constants/api";
+import { YearQuarter } from "../shared/model/YearQuarter";
 
 interface CourseMetadataState {
   quarter: YearQuarter;

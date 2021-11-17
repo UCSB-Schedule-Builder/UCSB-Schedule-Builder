@@ -7,3 +7,4 @@ export * from "./Course";
 export * from "./Section";
 export * from "./Lecture";
 export * from "./Subject";
+export * from "./YearQuarter";

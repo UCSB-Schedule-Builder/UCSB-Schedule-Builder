@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "jsdom-quokka-plugin"
+  ],
+  "stdEsm": false,
+  "nativeEsm": true
+}
