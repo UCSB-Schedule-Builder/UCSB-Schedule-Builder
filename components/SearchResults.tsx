@@ -2,8 +2,7 @@ import { Grid } from "react-loading-icons";
 
 import { NetworkStatus } from "../hooks/search";
 import { Course } from "../shared/model/model";
-import SearchResultCell from "./SearchResultCell"
-
+import SearchResultCell from "./SearchResultCell";
 
 interface SearchResultsProps {
   status: NetworkStatus;
@@ -25,7 +24,11 @@ function SearchResults({ status, courses }: SearchResultsProps) {
       {status === "success" && courses?.length && (
         <div>
           {courses.map((course) => (
-            <SearchResultCell id={course.id.toString()} title={course.title} />
+            <SearchResultCell
+              key={course.id.toString()}
+              id={course.id.toString()}
+              title={course.title}
+            />
           ))}
         </div>
       )}
@@ -33,7 +36,7 @@ function SearchResults({ status, courses }: SearchResultsProps) {
         .search-results {
           width: 90%;
           justify-content: center;
-          margin-bottom:50px;
+          margin-bottom: 50px;
         }
 
         .search-not-started {
@@ -45,7 +48,6 @@ function SearchResults({ status, courses }: SearchResultsProps) {
             margin: 0;
           }
         }
-
       `}</style>
     </div>
   );
