@@ -95,8 +95,7 @@ function AddCourseModal() {
           display: flex;
           flex-direction: column;
           background-color: #fefefe;
-          margin: 10%;
-          margin-top: 0%;
+          margin: 0% 10% 10%;
           padding: 0;
           border: 1px solid #888;
           width: 80%;
@@ -162,11 +161,9 @@ function AddCourseModal() {
         .modal-results {
           padding: 2px 16px;
           height: auto;
-          flex-grow: 1;
-          display: grid;
-          place-items: center;
-          white-space: pre-wrap;
           width: 100%;
+          display: flex;
+          flex-grow: 1;
         }
 
         h2 {

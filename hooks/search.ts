@@ -27,6 +27,7 @@ function useSearch(subjectCode: string) {
 
     const fetchCourses = async () => {
       setStatus("loading");
+      setResults([]);
       const [err, courses] = await to(
         APIManager.fetchCourses(quarter, subject)
       );
