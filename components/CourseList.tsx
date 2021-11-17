@@ -13,13 +13,13 @@ const getListStyle = (isDraggingOver: boolean) => ({
 });
 
 function CourseList({ courseType }: { courseType: CourseListType }) {
-  const { courses, remove } = useCourseLists(
-    ({ [courseType]: courses, remove }) => ({ courses, remove }),
+  const { courses, removeAt } = useCourseLists(
+    ({ [courseType]: courses, removeAt }) => ({ courses, removeAt }),
     shallow
   );
 
-  const removeAt = (index: number) =>
-    remove({ droppableId: courseType, index });
+  const remove = (index: number) =>
+    removeAt({ droppableId: courseType, index });
 
   return (
     <>
@@ -34,8 +34,8 @@ function CourseList({ courseType }: { courseType: CourseListType }) {
               <CourseCard
                 courseData={course}
                 index={index}
-                removeAt={removeAt}
-                key={course.id}
+                removeAt={remove}
+                key={course.id.toString()}
               />
             ))}
             {placeholder}

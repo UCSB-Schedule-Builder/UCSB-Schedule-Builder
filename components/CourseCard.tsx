@@ -5,7 +5,7 @@ import {
 } from "react-beautiful-dnd";
 import { CSSProperties } from "react";
 import grid from "../constants/coursesList";
-import { Course } from "../stores/courseLists";
+import { Course } from "../shared/model/Course";
 
 const getCourseStyle = (
   isDragging: boolean,
@@ -37,10 +37,10 @@ function CourseCard({
   index: number;
   removeAt: (index: number) => void;
 }) {
-  const { id, content } = courseData;
+  const { id, title } = courseData;
   return (
     <>
-      <Draggable draggableId={id} index={index}>
+      <Draggable draggableId={id.toString()} index={index}>
         {({ dragHandleProps, draggableProps, innerRef }, snapshot) => (
           <div
             ref={innerRef}
@@ -57,7 +57,8 @@ function CourseCard({
               >
                 <p className="close-inner">&times;</p>
               </button>
-              {content}
+              {id.toString()}
+              {title}
             </div>
           </div>
         )}
