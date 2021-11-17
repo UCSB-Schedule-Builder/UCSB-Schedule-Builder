@@ -88,7 +88,7 @@ function SearchResults({ status, courses }: SearchResultsProps) {
         .search-results {
           width: 90%;
           justify-content: center;
-          margin: 3rem auto 50px;
+          margin: 24px auto 50px;
         }
 
         .search-not-started,

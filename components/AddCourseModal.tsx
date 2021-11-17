@@ -171,6 +171,7 @@ function AddCourseModal() {
           display: flex;
           justify-content: center;
           margin-top: 1.4rem;
+          margin-bottom: 1rem;
         }
 
         .input-container {
