@@ -1,7 +1,9 @@
 import { Grid } from "react-loading-icons";
 
 import { NetworkStatus } from "../hooks/search";
-import { Course } from "../shared/model/Course";
+import { Course } from "../shared/model/model";
+import SearchResultCell from "./SearchResultCell"
+
 
 interface SearchResultsProps {
   status: NetworkStatus;
@@ -23,11 +25,7 @@ function SearchResults({ status, courses }: SearchResultsProps) {
       {status === "success" && courses?.length && (
         <div>
           {courses.map((course) => (
-              <div className="search-result-cell">
-                <div className="course-ID">{course.id.toString()}</div>
-                <div className="course-title">{course.title}</div>
-                <div className="is-selected">placeholder for selected icon</div>
-              </div>
+            <SearchResultCell id={course.id.toString()} title={course.title} />
           ))}
         </div>
       )}
@@ -48,22 +46,6 @@ function SearchResults({ status, courses }: SearchResultsProps) {
           }
         }
 
-        .search-result-cell {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          background-color: #ddd;
-          border-radius: 5px;
-          padding: 20px;
-          margin: 3px;
-        }
-
-        .search-result-cell:hover {
-          background: linear-gradient(135deg, #2e22ac 0%, #ce448d 100%)
-            no-repeat fixed;
-          color: #fefefe;
-
-        }
       `}</style>
     </div>
   );
