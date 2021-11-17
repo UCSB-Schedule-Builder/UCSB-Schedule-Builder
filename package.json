@@ -26,7 +26,6 @@
     "@progress/kendo-theme-default": "^4.42.0",
     "@react-typed-hooks/use-key-press": "^1.0.5",
     "await-to-js": "^3.0.0",
-    "jsdom": "^18.1.0",
     "just-insert": "^2.4.1",
     "ky": "^0.28.6",
     "ky-universal": "^0.9.1",
