@@ -16,7 +16,7 @@ interface CourseListsState {
   removeAt: (location: CourseListLocation) => Course;
   insertAt: (course: Course, location: CourseListLocation) => void;
   append: (course: Course, courseType: CourseListType) => void;
-  remove: (id: Course, courseType: CourseListType) => void;
+  remove: (course: Course, courseType: CourseListType) => void;
   move: (location: CourseListLocation, destination: CourseListLocation) => void;
 }
 
