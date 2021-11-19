@@ -9,6 +9,7 @@ import useCourseMetadata from "../stores/courseMetadata";
 import shallow from "zustand/shallow";
 import useQuarter from "../hooks/quarter";
 import { useEffect } from "react";
+import useCourseLists from "../stores/courseLists";
 
 export const getStaticProps = async () => {
   return {
@@ -28,6 +29,14 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
     setSubjects(subjects);
     setQuarter(quarter);
   }, [quarter, setQuarter, setSubjects, subjects]);
+  const { main } = useCourseLists(({ main }) => ({ main }));
+  const fails =
+    main.some(
+      (course) =>
+        course.title.toUpperCase().includes("PHYSICS") &&
+        course.id.toString().toUpperCase().includes("3")
+    ) &&
+    !main.every((course) => course.title.toUpperCase().includes("PHYSICS"));
   return (
     <div className="container">
       <Head>
@@ -41,6 +50,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
+      {fails ? <p>Sorry! there are conflicts :(</p> : <p>It works!</p>}
       {/* <CourseCalendar /> */
       /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
       <AddCourseModal />
@@ -86,6 +96,12 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
           display: flex;
           justify-content: center;
+        }
+
+        p {
+          color: ${fails ? "red" : "lightgreen"};
+          place-self: center;
+          margin-top: -5rem;
         }
       `}</style>
     </div>
