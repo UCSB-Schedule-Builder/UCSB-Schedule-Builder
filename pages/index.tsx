@@ -41,8 +41,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      {/* <CourseCalendar /> */
-      /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
+      {/*<CourseCalendar />*/}
       <AddCourseModal />
       <style jsx global>{`
         html {

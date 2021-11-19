@@ -19,6 +19,7 @@ specifiers:
   '@react-typed-hooks/use-key-press': ^1.0.5
   '@styled-jsx/plugin-sass': ^4.0.1
   '@types/lodash': ^4.14.176
+  '@types/luxon': ^2.0.7
   '@types/node': 16.11.6
   '@types/react': 17.0.33
   '@types/react-beautiful-dnd': ^13.1.2
@@ -31,6 +32,7 @@ specifiers:
   ky: ^0.28.6
   ky-universal: ^0.9.1
   lodash: ^4.17.21
+  luxon: ^2.1.1
   next: 12.0.1
   prettier: ^2.4.1
   react: 17.0.2
@@ -67,6 +69,7 @@ dependencies:
   ky: 0.28.6
   ky-universal: 0.9.1_ky@0.28.6
   lodash: 4.17.21
+  luxon: 2.1.1
   next: 12.0.1_0c41f19aae22112e9f1896e888ec7296
   react: 17.0.2
   react-beautiful-dnd: 13.1.0_react-dom@17.0.2+react@17.0.2
@@ -81,6 +84,7 @@ dependencies:
 devDependencies:
   '@styled-jsx/plugin-sass': 4.0.1_sass@1.43.4
   '@types/lodash': 4.14.176
+  '@types/luxon': 2.0.7
   '@types/node': 16.11.6
   '@types/react': 17.0.33
   '@types/react-beautiful-dnd': 13.1.2
@@ -799,6 +803,10 @@ packages:
 
   /@types/lodash/4.14.176:
     resolution: {integrity: sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==}
+    dev: true
+
+  /@types/luxon/2.0.7:
+    resolution: {integrity: sha512-AxiYycfO+/M4VIH0ribSr2iPFC+APewpJIaQSydwVnzorK3mjSFXkA3HmhQidGx44MpwaatFyEkbW/WD4zdDaQ==}
     dev: true
 
   /@types/node/16.11.6:
@@ -2609,6 +2617,11 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /luxon/2.1.1:
+    resolution: {integrity: sha512-6VQVNw7+kQu3hL1ZH5GyOhnk8uZm21xS7XJ/6vDZaFNcb62dpFDKcH8TI5NkoZOdMRxr7af7aYGrJlE/Wv0i1w==}
+    engines: {node: '>=12'}
+    dev: false
 
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
