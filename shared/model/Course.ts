@@ -161,8 +161,8 @@ export class UnitsRange {
   }
 
   toString(): string {
-    return this.areVariable
-      ? this.min.toString() + "-" + this.max.toString()
-      : this.fixed.toString();
+    return (this.areVariable
+      ? this.min?.toString() + "-" + this.max?.toString()
+      : this.fixed?.toString()) ?? "0";
   }
 }
