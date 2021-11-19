@@ -159,4 +159,10 @@ export class UnitsRange {
     this.min = min;
     this.max = max;
   }
+
+  toString(): string {
+    return this.areVariable
+      ? this.min.toString() + "-" + this.max.toString()
+      : this.fixed.toString();
+  }
 }
