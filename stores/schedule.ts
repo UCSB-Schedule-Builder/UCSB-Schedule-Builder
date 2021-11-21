@@ -29,3 +29,5 @@ const recalculateSchedule = (courses: Course[]) => {
 };
 
 useCourseLists.subscribe(({ main }) => main, recalculateSchedule);
+
+export default useSchedule;
