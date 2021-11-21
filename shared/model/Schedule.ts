@@ -1,7 +1,7 @@
 import { Duration } from "luxon";
-import { CourseConfiguration } from "./CourseConfiguration";
-
 import { Combination } from "js-combinatorics";
+
+import { CourseConfiguration } from "./model";
 
 export class Schedule {
   public overlap: Duration;

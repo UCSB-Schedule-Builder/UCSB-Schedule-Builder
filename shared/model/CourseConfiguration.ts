@@ -1,10 +1,14 @@
-import { YearQuarter } from "./YearQuarter";
-import { Subject } from "./Subject";
-import { CourseID, UnitsRange } from "./Course";
-import { CourseTime } from "./CourseTime";
-import { SectionID } from "./Section";
 import { Duration, Interval } from "luxon";
 import cartesianProduct from "just-cartesian-product";
+
+import {
+  CourseID,
+  CourseTime,
+  SectionID,
+  Subject,
+  UnitsRange,
+  YearQuarter,
+} from "./model";
 
 export class CourseConfiguration {
   constructor(
