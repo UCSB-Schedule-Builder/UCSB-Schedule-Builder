@@ -4,7 +4,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import useCourseLists, {
   CourseListLocation,
   CourseListType,
-} from "../stores/courseLists";
+} from "../../stores/courseLists";
 import CourseList from "./CourseList";
 
 interface CourseMetadata {

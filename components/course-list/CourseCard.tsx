@@ -4,8 +4,8 @@ import {
   NotDraggingStyle,
 } from "react-beautiful-dnd";
 import { CSSProperties } from "react";
-import grid from "../constants/coursesList";
-import { Course } from "../shared/model/model";
+import grid from "../../constants/coursesList";
+import { Course } from "../../shared/model/model";
 
 const getCourseStyle = (
   isDragging: boolean,

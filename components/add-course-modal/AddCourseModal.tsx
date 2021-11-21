@@ -3,11 +3,11 @@ import { useKeyPress } from "@react-typed-hooks/use-key-press";
 import { ChangeEvent, useState } from "react";
 import _ from "lodash";
 
-import useModal from "../stores/modal";
+import useModal from "../../stores/modal";
 import CourseNumInput from "./CourseNumInput";
 import SubjectDropdown, { Selection } from "./SubjectDropdown";
 import SearchResults from "./SearchResults";
-import useSearch from "../hooks/search";
+import useSearch from "../../hooks/search";
 
 function AddCourseModal() {
   const { currentCourseType, close: handleClose } = useModal(
@@ -69,7 +69,11 @@ function AddCourseModal() {
             </div>
           </div>
           <div className="modal-results">
-            <SearchResults status={status} courses={courses} courseListType={currentCourseType ?? "main" } />
+            <SearchResults
+              status={status}
+              courses={courses}
+              courseListType={currentCourseType ?? "main"}
+            />
           </div>
         </div>
       </div>

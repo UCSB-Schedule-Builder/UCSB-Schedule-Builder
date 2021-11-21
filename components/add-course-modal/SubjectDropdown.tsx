@@ -2,7 +2,7 @@ import SelectSearch, {
   fuzzySearch,
   SelectedOptionValue,
 } from "react-select-search-nextjs-typescript";
-import useCourseMetadata from "../stores/courseMetadata";
+import useCourseMetadata from "../../stores/courseMetadata";
 
 export type Selection = string | SelectedOptionValue | SelectedOptionValue[];
 

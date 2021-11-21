@@ -1,6 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
-import grid from "../constants/coursesList";
-import useCourseLists, { CourseListType } from "../stores/courseLists";
+import grid from "../../constants/coursesList";
+import useCourseLists, { CourseListType } from "../../stores/courseLists";
 import CourseCard from "./CourseCard";
 import AddCourseBtn from "./AddCourseBtn";
 import shallow from "zustand/shallow";

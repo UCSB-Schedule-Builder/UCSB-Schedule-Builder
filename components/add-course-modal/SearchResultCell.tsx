@@ -1,6 +1,6 @@
 import shallow from "zustand/shallow";
-import useCourseLists, { CourseListType } from "../stores/courseLists";
-import { Course } from "../shared/model/model";
+import useCourseLists, { CourseListType } from "../../stores/courseLists";
+import { Course } from "../../shared/model/model";
 
 function SearchResultCell({
   courseListType,
