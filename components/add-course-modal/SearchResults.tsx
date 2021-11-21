@@ -1,9 +1,9 @@
 import { Grid } from "react-loading-icons";
 
 import { NetworkStatus } from "../../hooks/search";
-import { Course } from "../../shared/model/model";
 import SearchResultCell from "./SearchResultCell";
 import { CourseListType } from "../../stores/courseLists";
+import { Course } from "../../shared/model/Course";
 
 interface SearchResultsProps {
   status: NetworkStatus;

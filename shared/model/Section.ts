@@ -1,4 +1,4 @@
-import { CourseTime, Lecture } from "./model";
+import { CourseTime } from "./CourseTime";
 
 const lectureSuffix = "00";
 const sectionRegexPattern = /^(\d+)(\d\d)$/; // Sections can match any combination of 3+ digits, where the leading n-2 digits match with the lecture
@@ -8,7 +8,6 @@ export class Section {
   enrollCode: string;
   instructorNames: string[];
   times: CourseTime[];
-  lecture: Lecture | null;
 
   constructor(
     id: SectionID,
@@ -20,7 +19,6 @@ export class Section {
     this.enrollCode = enrollCode;
     this.instructorNames = instructorNames;
     this.times = times;
-    this.lecture = null;
   }
 
   static fromJSON(courseSectionJSON: any): Section {
@@ -34,10 +32,6 @@ export class Section {
         return CourseTime.fromJSON(timeLocationJSON);
       })
     );
-  }
-
-  setLecture(lecture: Lecture) {
-    this.lecture = lecture;
   }
 
   isLecture() {

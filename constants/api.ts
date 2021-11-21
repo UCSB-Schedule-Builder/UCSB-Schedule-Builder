@@ -1,4 +1,4 @@
-import { YearQuarter } from "../shared/model/model";
+import { YearQuarter } from "../shared/model/YearQuarter";
 
 export const UCSBAPIKey = process.env.NEXT_PUBLIC_UCSB_API_KEY;
 

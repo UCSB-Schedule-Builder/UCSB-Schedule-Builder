@@ -1,4 +1,4 @@
-import { Section } from "./model";
+import { Section } from "./Section";
 
 export class Lecture extends Section {
   sections: Section[];

@@ -1,13 +1,10 @@
 import _ from "lodash";
 
-import {
-  CourseConfiguration,
-  CourseTimeslot,
-  Lecture,
-  Section,
-  Subject,
-  YearQuarter,
-} from "./model";
+import { CourseConfiguration, CourseTimeslot } from "./CourseConfiguration";
+import { Subject } from "./Subject";
+import { YearQuarter } from "./YearQuarter";
+import { Lecture } from "./Lecture";
+import { Section } from "./Section";
 
 export class Course {
   quarter: YearQuarter;

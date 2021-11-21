@@ -3,7 +3,8 @@ import cartesianProduct from "just-cartesian-product";
 import _ from "lodash";
 
 import useCourseLists from "./courseLists";
-import { Course, Schedule } from "../shared/model/model";
+import { Schedule } from "../shared/model/Schedule";
+import { Course } from "../shared/model/Course";
 
 interface ScheduleState {
   schedule?: Schedule;

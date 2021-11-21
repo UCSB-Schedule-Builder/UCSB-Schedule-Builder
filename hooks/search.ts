@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Course } from "../shared/model/model";
 import { APIManager } from "../api/api-manager";
 import useCourseMetadata from "../stores/courseMetadata";
 import to from "await-to-js";
 import shallow from "zustand/shallow";
+import { Course } from "../shared/model/Course";
 
 const networkStatuses = ["idle", "loading", "success", "error"] as const;
 export type NetworkStatus = typeof networkStatuses[number];

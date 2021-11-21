@@ -1,6 +1,5 @@
 import { DateTime, Interval } from "luxon";
-
-import { CourseLocation } from "./model";
+import { CourseLocation } from "./CourseLocation";
 
 export class CourseTime {
   days: DayOfWeek[];
