@@ -15,14 +15,21 @@ export class CourseConfiguration {
     public units: UnitsRange,
     public subject: Subject,
     public lectureSlot: CourseTimeslot,
-    public sectionSlot: CourseTimeslot
+    public sectionSlot?: CourseTimeslot
   ) {}
 
   static getOverlap(a: CourseConfiguration, b: CourseConfiguration) {
-    return CourseTimeslot.getOverlap(a.lectureSlot, b.lectureSlot)
-      .plus(CourseTimeslot.getOverlap(a.lectureSlot, b.sectionSlot))
-      .plus(CourseTimeslot.getOverlap(a.sectionSlot, b.lectureSlot))
-      .plus(CourseTimeslot.getOverlap(a.sectionSlot, b.sectionSlot));
+    const overlap = CourseTimeslot.getOverlap(a.lectureSlot, b.lectureSlot);
+    if (a.sectionSlot) {
+      overlap.plus(CourseTimeslot.getOverlap(a.sectionSlot, b.lectureSlot));
+    }
+    if (b.sectionSlot) {
+      overlap.plus(CourseTimeslot.getOverlap(a.lectureSlot, b.sectionSlot));
+    }
+    if (a.sectionSlot && b.sectionSlot) {
+      overlap.plus(CourseTimeslot.getOverlap(a.sectionSlot, b.sectionSlot));
+    }
+    return overlap;
   }
 }
 

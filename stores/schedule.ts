@@ -19,9 +19,8 @@ const recalculateSchedule = (courses: Course[]) => {
   const possibleSchedules = cartesianProduct(
     courses.map((course) => course.toPossibleConfigurations())
   ).map((courseConfigurations) => new Schedule(courseConfigurations));
-  const bestSchedule = _.minBy(
-    possibleSchedules,
-    (schedule) => schedule.overlap
+  const bestSchedule = _.minBy(possibleSchedules, (schedule) =>
+    schedule.overlap.toMillis()
   );
 
   useSchedule.setState({ schedule: bestSchedule });

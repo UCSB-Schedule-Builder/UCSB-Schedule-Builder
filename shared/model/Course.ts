@@ -1,6 +1,7 @@
 import { Lecture, Section, Subject } from "./model";
 import { YearQuarter } from "./YearQuarter";
 import { CourseConfiguration, CourseTimeslot } from "./CourseConfiguration";
+import _ from "lodash";
 
 export class Course {
   quarter: YearQuarter;
@@ -46,19 +47,13 @@ export class Course {
   toPossibleConfigurations(): CourseConfiguration[] {
     const configurations: CourseConfiguration[] = [];
     for (const lecture of this.lectures) {
-      for (const section of lecture.sections) {
-        const lectureSlot = new CourseTimeslot(
-          lecture.id,
-          lecture.enrollCode,
-          lecture.instructorNames,
-          lecture.times
-        );
-        const sectionSlot = new CourseTimeslot(
-          section.id,
-          section.enrollCode,
-          section.instructorNames,
-          section.times
-        );
+      const lectureSlot = new CourseTimeslot(
+        lecture.id,
+        lecture.enrollCode,
+        lecture.instructorNames,
+        lecture.times
+      );
+      if (_.isEmpty(lecture.sections)) {
         const configuration = new CourseConfiguration(
           this.quarter,
           this.id,
@@ -66,10 +61,29 @@ export class Course {
           this.description,
           this.units,
           this.subject,
-          lectureSlot,
-          sectionSlot
+          lectureSlot
         );
         configurations.push(configuration);
+      } else {
+        for (const section of lecture.sections) {
+          const sectionSlot = new CourseTimeslot(
+            section.id,
+            section.enrollCode,
+            section.instructorNames,
+            section.times
+          );
+          const configuration = new CourseConfiguration(
+            this.quarter,
+            this.id,
+            this.title,
+            this.description,
+            this.units,
+            this.subject,
+            lectureSlot,
+            sectionSlot
+          );
+          configurations.push(configuration);
+        }
       }
     }
     return configurations;
