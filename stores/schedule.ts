@@ -1,21 +1,31 @@
-import useCourseLists from "./courseLists";
 import create from "zustand";
-import { CourseConfiguration } from "../shared/model/CourseConfiguration";
-import { Course } from "../shared/model/Course";
+import cartesianProduct from "just-cartesian-product";
+import _ from "lodash";
 
-const useSchedule = create((set) => ({
-  schedule: [],
-  setSchedule: (schedule: CourseConfiguration[]) => set(() => ({ schedule })),
-}));
+import useCourseLists from "./courseLists";
+import { Course } from "../shared/model/Course";
+import { Schedule } from "../shared/model/Schedule";
+
+interface ScheduleState {
+  schedule?: Schedule;
+}
+
+const useSchedule = create(
+  (): ScheduleState => ({
+    schedule: undefined,
+  })
+);
 
 const recalculateSchedule = (courses: Course[]) => {
-  // const { main } = useCourseLists.useState();
-  // const { schedule } = useSchedule.useState();
-  // const newSchedule = main.map((course) => ({
-  //   ...course,
-  //   selected: schedule.find((c) => c.id === course.id)?.selected ?? false,
-  // }));
-  // useSchedule.useState().setSchedule(newSchedule);
+  const possibleSchedules = cartesianProduct(
+    courses.map((course) => course.toPossibleConfigurations())
+  ).map((courseConfigurations) => new Schedule(courseConfigurations));
+  const bestSchedule = _.minBy(
+    possibleSchedules,
+    (schedule) => schedule.overlap
+  );
+
+  useSchedule.setState({ schedule: bestSchedule });
 };
 
 useCourseLists.subscribe(({ main }) => main, recalculateSchedule);
