@@ -5,7 +5,7 @@ import {
 } from "react-beautiful-dnd";
 import { CSSProperties } from "react";
 import grid from "../constants/coursesList";
-import { Course } from "../shared/model/Course";
+import { Course } from "../shared/model/model";
 
 const getCourseStyle = (
   isDragging: boolean,

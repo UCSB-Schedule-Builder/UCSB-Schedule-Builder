@@ -3,7 +3,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import insert from "just-insert";
 import { DraggableLocation } from "react-beautiful-dnd";
 
-import { Course } from "../shared/model/Course";
+import { Course } from "../shared/model/model";
 
 export type CourseListType = "main" | "alternate";
 

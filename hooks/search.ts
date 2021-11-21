@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Course } from "../shared/model/Course";
+import { Course } from "../shared/model/model";
 import { APIManager } from "../api/api-manager";
 import useCourseMetadata from "../stores/courseMetadata";
 import to from "await-to-js";
