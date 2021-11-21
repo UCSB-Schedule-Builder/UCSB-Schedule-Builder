@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import AllCoursesList from "../components/AllCoursesList";
-import AddCourseModal from "../components/AddCourseModal";
+import AllCoursesList from "../components/course-list/AllCoursesList";
+import AddCourseModal from "../components/add-course-modal/AddCourseModal";
 
 import { APIManager } from "../api/api-manager";
 import useCourseMetadata from "../stores/courseMetadata";
