@@ -29,7 +29,7 @@ function useSearch(subjectCode: string) {
       setStatus("loading");
       setResults([]);
       const [err, courses] = await to(
-        APIManager.fetchCourses(quarter, subject)
+        APIManager.fetchCourses(quarter, subject, true)
       );
       setStatus(err ? "error" : "success");
       setResults(courses);

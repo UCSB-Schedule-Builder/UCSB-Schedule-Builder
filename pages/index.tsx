@@ -9,6 +9,7 @@ import useCourseMetadata from "../stores/courseMetadata";
 import shallow from "zustand/shallow";
 import useQuarter from "../hooks/quarter";
 import { useEffect } from "react";
+import CourseCalendar from "../components/CourseCalendar";
 
 export const getStaticProps = async () => {
   return {
@@ -41,7 +42,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      {/*<CourseCalendar />*/}
+      <CourseCalendar />
       <AddCourseModal />
       <style jsx global>{`
         html {

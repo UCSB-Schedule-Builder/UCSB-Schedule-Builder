@@ -31,8 +31,6 @@ function SearchResultCell({
     }
   };
 
-  console.log(cellCourse.units);
-
   return (
     <div className="search-result-cell" onClick={toggleCellSelected}>
       <div className="search-result-cell-textbox">
