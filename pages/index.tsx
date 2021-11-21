@@ -37,7 +37,6 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
           name="description"
           content="Build conflict free UCSB course schedules!"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
