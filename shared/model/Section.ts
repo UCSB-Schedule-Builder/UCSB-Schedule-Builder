@@ -64,7 +64,7 @@ export class SectionID {
       return null;
     }
 
-    return new SectionID(regexMatch[1]!, regexMatch[2]!);
+    return new SectionID(regexMatch[1], regexMatch[2]);
   }
 
   toString(): string {

@@ -29,7 +29,7 @@ export class Course {
 
   static fromJSON(courseJSON: any, subject: Subject): Course {
     return new Course(
-      YearQuarter.fromString(courseJSON.quarter)!,
+      YearQuarter.fromString(courseJSON.quarter),
       CourseID.fromString(courseJSON.courseId),
       courseJSON.title,
       courseJSON.description,
@@ -161,8 +161,10 @@ export class UnitsRange {
   }
 
   toString(): string {
-    return (this.areVariable
-      ? this.min?.toString() + "-" + this.max?.toString()
-      : this.fixed?.toString()) ?? "0";
+    return (
+      (this.areVariable
+        ? this.min?.toString() + "-" + this.max?.toString()
+        : this.fixed?.toString()) ?? "0"
+    );
   }
 }
