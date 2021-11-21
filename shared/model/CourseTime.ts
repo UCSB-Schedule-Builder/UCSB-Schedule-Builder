@@ -1,4 +1,5 @@
 import { CourseLocation } from "./model";
+import { DateTime, Interval } from "luxon";
 
 export class CourseTime {
   days: DayOfWeek[];
@@ -34,6 +35,26 @@ export class CourseTime {
       timeLocationJSON.endTime,
       new CourseLocation(timeLocationJSON.building, timeLocationJSON.room)
     );
+  }
+
+  static toDateTime = (day: DayOfWeek, time: HourMinute) =>
+    DateTime.fromObject({
+      weekday: day.index,
+      hour: time.hour,
+      minute: time.minute,
+    });
+
+  toIntervals(): Interval[] {
+    if (this.startTime == null || this.endTime == null) {
+      return [];
+    }
+    const intervals = [];
+    for (const day of this.days) {
+      const startTime = CourseTime.toDateTime(day, this.startTime);
+      const endTime = CourseTime.toDateTime(day, this.endTime);
+      intervals.push(Interval.fromDateTimes(startTime, endTime));
+    }
+    return intervals;
   }
 
   getDuration(): number {
@@ -73,25 +94,25 @@ class DayOfWeek {
   static fromLetter(letter: string): DayOfWeek | null {
     switch (letter) {
       case "M":
-        return new DayOfWeek("M", "Monday", 0);
+        return new DayOfWeek("M", "Monday", 1);
 
       case "T":
-        return new DayOfWeek("T", "Tuesday", 1);
+        return new DayOfWeek("T", "Tuesday", 2);
 
       case "W":
-        return new DayOfWeek("W", "Wednesday", 2);
+        return new DayOfWeek("W", "Wednesday", 3);
 
       case "R":
-        return new DayOfWeek("R", "Thursday", 3);
+        return new DayOfWeek("R", "Thursday", 4);
 
       case "F":
-        return new DayOfWeek("F", "Friday", 4);
+        return new DayOfWeek("F", "Friday", 5);
 
       case "S":
-        return new DayOfWeek("S", "Saturday", 5);
+        return new DayOfWeek("S", "Saturday", 6);
 
       case "U":
-        return new DayOfWeek("U", "Sunday", 6);
+        return new DayOfWeek("U", "Sunday", 7);
 
       default:
         return null;
