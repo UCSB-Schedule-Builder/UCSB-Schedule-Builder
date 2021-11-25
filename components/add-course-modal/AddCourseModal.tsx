@@ -72,11 +72,7 @@ function AddCourseModal() {
             </div>
           </div>
           <div className="modal-results">
-            <SearchResults
-              status={status}
-              courses={courses}
-              courseListType={currentCourseType ?? "main"}
-            />
+            <SearchResults status={status} courses={courses} />
           </div>
         </div>
       </div>

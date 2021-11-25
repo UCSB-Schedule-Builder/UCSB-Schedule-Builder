@@ -1,14 +1,13 @@
 import shallow from "zustand/shallow";
-import useCourseLists, { CourseListType } from "../../stores/courseLists";
+import useCourseLists from "../../stores/courseLists";
 import { Course } from "../../shared/model/Course";
+import useModal from "../../stores/modal";
 
-function SearchResultCell({
-  courseListType,
-  cellCourse,
-}: {
-  courseListType: CourseListType;
-  cellCourse: Course;
-}) {
+function SearchResultCell({ cellCourse }: { cellCourse: Course }) {
+  const { currentCourseType } = useModal(({ currentCourseType }) => ({
+    currentCourseType,
+  }));
+  const courseListType = currentCourseType ?? "main";
   const { courses, appendCourse, removeCourse } = useCourseLists((state) => {
     return {
       courses: state[courseListType],
