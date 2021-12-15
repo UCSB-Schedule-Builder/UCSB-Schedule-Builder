@@ -7,15 +7,13 @@ interface ModalState {
   close: () => void;
 }
 
-const useModal = create(
-  (set): ModalState => ({
-    currentCourseType: null,
-    search: (courseType) =>
-      set(() => ({
-        currentCourseType: courseType,
-      })),
-    close: () => set(() => ({ currentCourseType: null })),
-  })
-);
+const useModal = create<ModalState>((set) => ({
+  currentCourseType: null,
+  search: (courseType) =>
+    set(() => ({
+      currentCourseType: courseType,
+    })),
+  close: () => set(() => ({ currentCourseType: null })),
+}));
 
 export default useModal;

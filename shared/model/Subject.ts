@@ -1,4 +1,4 @@
-import { Course } from "./model";
+import { Course } from "./Course";
 
 export class Subject {
   code: string;

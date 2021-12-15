@@ -5,34 +5,34 @@
 // 4. Create Course classes (+ UnitsRange objects)
 // 5. Pass Section classes into Course classes via createLectures
 
-import {
-  Course,
-  CourseID,
-  Section,
-  Subject,
-  YearQuarter,
-} from "../shared/model/model";
 import ky from "ky-universal";
+
+import { YearQuarter } from "../shared/model/YearQuarter";
+import { Subject } from "../shared/model/Subject";
+import { Course, CourseID } from "../shared/model/Course";
+import { Section } from "../shared/model/Section";
+
 import {
   maxPageSize,
   UCSBAPIKey,
   UCSBAPIPaths,
   UCSBRegistrarAPIVersion,
 } from "../constants/api";
+import { ClassSearchData, CurrentQuarterData } from "./api-data-types";
 
 export class APIManager {
-  static async fetchCurrentQuarter(): Promise<YearQuarter> {
-    const { quarter } = await ky(UCSBAPIPaths.currentQuarter, {
+  static async fetchCurrentQuarter() {
+    const { quarter } = (await ky(UCSBAPIPaths.currentQuarter, {
       headers: { "ucsb-api-key": UCSBAPIKey },
-    }).json();
+    }).json()) as CurrentQuarterData;
     return YearQuarter.fromString(quarter);
   }
 
-  static async fetchNumClasses(quarter: YearQuarter): Promise<number> {
-    const { total } = await ky(UCSBAPIPaths.classSearch, {
+  static async fetchNumClasses(quarter: YearQuarter) {
+    const { total } = (await ky(UCSBAPIPaths.classSearch, {
       searchParams: { quarter: quarter.toString(), pageSize: 1 },
       headers: { "ucsb-api-key": UCSBAPIKey },
-    }).json();
+    }).json()) as ClassSearchData;
     return total;
   }
 

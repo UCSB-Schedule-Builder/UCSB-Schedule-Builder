@@ -1,17 +1,15 @@
 import { Grid } from "react-loading-icons";
 
-import { NetworkStatus } from "../hooks/search";
-import { Course } from "../shared/model/model";
+import { NetworkStatus } from "../../hooks/search";
 import SearchResultCell from "./SearchResultCell";
-import { CourseListType } from "../stores/courseLists"
+import { Course } from "../../shared/model/Course";
 
 interface SearchResultsProps {
   status: NetworkStatus;
   courses?: Course[];
-  courseListType: CourseListType;
 }
 
-function SearchResults({ status, courses, courseListType }: SearchResultsProps) {
+function SearchResults({ status, courses }: SearchResultsProps) {
   return (
     <div className="container">
       <div className="search-results">
@@ -42,7 +40,6 @@ function SearchResults({ status, courses, courseListType }: SearchResultsProps) 
             {courses.map((course) => (
               <SearchResultCell
                 key={course.id.toString()}
-                courseListType={courseListType}
                 cellCourse={course}
               />
             ))}

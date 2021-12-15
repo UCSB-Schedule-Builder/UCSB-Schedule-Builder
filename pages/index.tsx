@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import AllCoursesList from "../components/AllCoursesList";
-import AddCourseModal from "../components/AddCourseModal";
+import AllCoursesList from "../components/course-list/AllCoursesList";
+import AddCourseModal from "../components/add-course-modal/AddCourseModal";
 
 import { APIManager } from "../api/api-manager";
 import useCourseMetadata from "../stores/courseMetadata";
@@ -9,7 +9,9 @@ import useCourseMetadata from "../stores/courseMetadata";
 import shallow from "zustand/shallow";
 import useQuarter from "../hooks/quarter";
 import { useEffect } from "react";
-import useCourseLists from "../stores/courseLists";
+import CourseCalendar from "../components/CourseCalendar";
+
+import useCourseLists from "../stores/courseLists"
 
 export const getStaticProps = async () => {
   return {
@@ -45,14 +47,11 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
           name="description"
           content="Build conflict free UCSB course schedules!"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      {fails ? <p>Sorry! there are conflicts :(</p> : <p>It works!</p>}
-      {/* <CourseCalendar /> */
-      /* This was causing a bunch of garbage logs, so it has been commented out until ready */}
+      <CourseCalendar />
       <AddCourseModal />
       <style jsx global>{`
         html {

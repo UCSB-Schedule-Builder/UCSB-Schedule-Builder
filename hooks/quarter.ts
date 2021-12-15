@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { defaultQuarter } from "../constants/api";
-import { YearQuarter } from "../shared/model/YearQuarter";
 import { APIManager } from "../api/api-manager";
 import to from "await-to-js";
+import { YearQuarter } from "../shared/model/YearQuarter";
 
 function useQuarter() {
   const [quarter, setQuarter] = useState<YearQuarter>(defaultQuarter);

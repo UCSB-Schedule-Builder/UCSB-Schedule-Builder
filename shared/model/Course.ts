@@ -1,5 +1,10 @@
-import { Lecture, Section, Subject } from "./model";
+import _ from "lodash";
+
+import { CourseConfiguration, CourseTimeslot } from "./CourseConfiguration";
+import { Subject } from "./Subject";
 import { YearQuarter } from "./YearQuarter";
+import { Lecture } from "./Lecture";
+import { Section } from "./Section";
 
 export class Course {
   quarter: YearQuarter;
@@ -29,7 +34,7 @@ export class Course {
 
   static fromJSON(courseJSON: any, subject: Subject): Course {
     return new Course(
-      YearQuarter.fromString(courseJSON.quarter)!,
+      YearQuarter.fromString(courseJSON.quarter),
       CourseID.fromString(courseJSON.courseId),
       courseJSON.title,
       courseJSON.description,
@@ -40,6 +45,51 @@ export class Course {
       ),
       subject
     );
+  }
+
+  toPossibleConfigurations(): CourseConfiguration[] {
+    const configurations: CourseConfiguration[] = [];
+    for (const lecture of this.lectures) {
+      const lectureSlot = new CourseTimeslot(
+        lecture.id,
+        lecture.enrollCode,
+        lecture.instructorNames,
+        lecture.times
+      );
+      if (_.isEmpty(lecture.sections)) {
+        const configuration = new CourseConfiguration(
+          this.quarter,
+          this.id,
+          this.title,
+          this.description,
+          this.units,
+          this.subject,
+          lectureSlot
+        );
+        configurations.push(configuration);
+      } else {
+        for (const section of lecture.sections) {
+          const sectionSlot = new CourseTimeslot(
+            section.id,
+            section.enrollCode,
+            section.instructorNames,
+            section.times
+          );
+          const configuration = new CourseConfiguration(
+            this.quarter,
+            this.id,
+            this.title,
+            this.description,
+            this.units,
+            this.subject,
+            lectureSlot,
+            sectionSlot
+          );
+          configurations.push(configuration);
+        }
+      }
+    }
+    return configurations;
   }
 
   createLectures(sections: Section[]) {
@@ -161,8 +211,10 @@ export class UnitsRange {
   }
 
   toString(): string {
-    return (this.areVariable
-      ? this.min?.toString() + "-" + this.max?.toString()
-      : this.fixed?.toString()) ?? "0";
+    return (
+      (this.areVariable
+        ? this.min?.toString() + "-" + this.max?.toString()
+        : this.fixed?.toString()) ?? "0"
+    );
   }
 }

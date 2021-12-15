@@ -1,5 +1,6 @@
 import { APIManager } from "./api-manager";
-import { CourseID, Quarter, YearQuarter } from "../shared/model/model";
+import { Quarter, YearQuarter } from "../shared/model/YearQuarter";
+import { CourseID } from "../shared/model/Course";
 
 export var apiTests = async () => {
   // Block for API testing
