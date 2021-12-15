@@ -68,7 +68,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       `}</style>
       <style jsx>{`
         .container {
-          margin: 0 15vw 2vh;
+          margin: 0 5vw 2vh;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           grid-template-rows: repeat(2, 150px);
