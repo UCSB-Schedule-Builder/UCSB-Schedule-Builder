@@ -7,12 +7,12 @@ import { Schedule } from "../shared/model/Schedule";
 import { Course } from "../shared/model/Course";
 
 interface ScheduleState {
-  schedule?: Schedule;
+  schedule: Schedule;
 }
 
 const useSchedule = create(
   (): ScheduleState => ({
-    schedule: undefined,
+    schedule: new Schedule([]),
   })
 );
 
@@ -24,7 +24,9 @@ const recalculateSchedule = (courses: Course[]) => {
     schedule.overlap.toMillis()
   );
 
-  useSchedule.setState({ schedule: bestSchedule });
+  if (bestSchedule) {
+    useSchedule.setState({ schedule: bestSchedule });
+  }
 };
 
 useCourseLists.subscribe(({ main }) => main, recalculateSchedule);
