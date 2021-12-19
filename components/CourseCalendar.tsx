@@ -16,10 +16,12 @@ function CourseCalendar() {
   console.log(`schedule: ${schedule}`);
 
   //returns lecture days for a course
-  const courseLectureDay = (currCourse: CourseConfiguration) => {
+  const courseLectureDays = (currCourse: CourseConfiguration) => {
     let lectureString: String = "";
+    let lectureCount: number = 0;
     currCourse.lectureSlot.times[0].days.forEach(
       (currDay: DayOfWeek) => {
+        lectureCount += 1;
         const dayLetter: String = currDay.letter;
         switch (dayLetter){
           case "M":
@@ -49,20 +51,22 @@ function CourseCalendar() {
         }
       }
     )
-    console.log(lectureString);
-    return lectureString.substring(0, lectureString.length - 1);
+    // console.log(lectureString);
+    return {lecturesPerWeek: lectureCount, lectureDays: lectureString.substring(0, lectureString.length - 1)};
   }
 
   //translate courses into data for calendar
   const mappedCourses: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
+      let { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
+      // console.log(lectureDays);
       let mappedCourse = {
         id: currCourse.id,
         title: currCourse.title,
         start: new Date("2021-06-22T08:30:00.000Z"),
         end: new Date("2021-06-22T10:30:00.000Z"),
-        recurrenceRule: `FREQ=DAILY;COUNT=10;BYDAY=${courseLectureDay(currCourse)}`
-// ${courseLectureDay(currCourse)}
+        recurrenceRule: //must be one line; doesn't tolerate spaces btwn rules
+          `FREQ=DAILY;COUNT=${lecturesPerWeek*10};BYDAY=${lectureDays}`
       }
       return mappedCourse;
     }
