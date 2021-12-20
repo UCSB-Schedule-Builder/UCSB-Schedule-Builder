@@ -56,15 +56,33 @@ function CourseCalendar() {
   }
 
   //translate courses into data for calendar
-  const mappedCourses: any[] = courseArray.map(
+  const getLectureTime = (currCourse: CourseConfiguration) => {
+    const start: HourMinute = currCourse.lectureSlot.times[0].startTime;
+    const end: HourMinute = currCourse.lectureSlot.times[0].endTime;
+
+    //change these to the quarter begin date
+    let courseStart = new Date("2021-06-21T08:30:00.000Z");
+    let courseEnd = new Date("2021-06-21T08:30:00.000Z");
+    
+    courseStart.setHours(start.hour);
+    courseStart.setMinutes(start.minute);
+    courseEnd.setHours(end.hour);
+    courseEnd.setMinutes(end.minute);
+
+    console.log({ start: courseStart, end: courseEnd});
+    return { start: courseStart, end: courseEnd};
+  }
+
+  const mappedLectures: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
-      let { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
+      const { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
+      const { start, end } = getLectureTime(currCourse);
       // console.log(lectureDays);
       let mappedCourse = {
         id: currCourse.id,
-        title: currCourse.title,
-        start: new Date("2021-06-22T08:30:00.000Z"),
-        end: new Date("2021-06-22T10:30:00.000Z"),
+        title: currCourse.id.toString(),
+        start: start,
+        end: end,
         recurrenceRule: //must be one line; doesn't tolerate spaces btwn rules
           `FREQ=DAILY;COUNT=${lecturesPerWeek*10};BYDAY=${lectureDays}`
       }
@@ -73,7 +91,7 @@ function CourseCalendar() {
   );
 
   return (
-    <Scheduler data={mappedCourses} defaultDate={displayDate}>
+    <Scheduler data={mappedLectures} defaultDate={displayDate}>
       <WorkWeekView
         title="School Week"
         showWorkHours={false}
