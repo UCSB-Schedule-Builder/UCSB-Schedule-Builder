@@ -15,7 +15,7 @@ function CourseCalendar() {
 
   console.log(`schedule: ${schedule}`);
 
-  //returns lecture days for a course
+  //returns lecture days for a course (should probably move into CourseTime)
   const courseLectureDays = (currCourse: CourseConfiguration) => {
     let lectureString: String = "";
     let lectureCount: number = 0;
@@ -55,15 +55,15 @@ function CourseCalendar() {
     return {lecturesPerWeek: lectureCount, lectureDays: lectureString.substring(0, lectureString.length - 1)};
   }
 
-  //translate courses into data for calendar
+  // translate lecture times from HourMinutes to Dates (should move into CourseTime under HourMinute)
   const getLectureTime = (currCourse: CourseConfiguration) => {
     const start: HourMinute = currCourse.lectureSlot.times[0].startTime;
     const end: HourMinute = currCourse.lectureSlot.times[0].endTime;
 
-    //change these to the quarter begin date
+    //TODO: change these to the quarter begin date
     let courseStart = new Date("2021-06-21T08:30:00.000Z");
     let courseEnd = new Date("2021-06-21T08:30:00.000Z");
-    
+
     courseStart.setHours(start.hour);
     courseStart.setMinutes(start.minute);
     courseEnd.setHours(end.hour);
@@ -73,6 +73,7 @@ function CourseCalendar() {
     return { start: courseStart, end: courseEnd};
   }
 
+  //translate courses into data for calendar
   const mappedLectures: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
       const { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
