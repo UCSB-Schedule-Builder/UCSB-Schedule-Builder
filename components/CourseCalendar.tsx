@@ -61,6 +61,7 @@ function CourseCalendar() {
   //translate courses into data for calendar
   const mappedLectures: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
+      if (currCourse.lectureSlot.times[0] == undefined){ return }
       const lectureDays: string = currCourse.lectureSlot.times[0].getCalendarDayString();
       const totalLectures: number = currCourse.lectureSlot.times[0].getTotalTimes();
       const { start, end } = getLectureTime(currCourse);
