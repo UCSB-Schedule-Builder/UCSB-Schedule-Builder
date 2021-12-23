@@ -86,8 +86,8 @@ function CourseCalendar() {
       if (currCourse.sectionSlot === undefined){
         return;
       }
-      const lectureDays: string = currCourse.sectionSlot.times[0].getCalendarDayString();
-      const totalLectures: number = currCourse.sectionSlot.times[0].getTotalTimes();
+      const sectionDays: string = currCourse.sectionSlot.times[0].getCalendarDayString();
+      const totalsections: number = currCourse.sectionSlot.times[0].getTotalTimes();
       const { start, end } = getSectionTime(currCourse);
       if (start == null || end == null){
         return;
@@ -99,7 +99,7 @@ function CourseCalendar() {
         start: start,
         end: end,
         recurrenceRule: //must be one line; doesn't tolerate spaces btwn rules
-          `FREQ=DAILY;COUNT=${totalLectures};BYDAY=${lectureDays}`
+          `FREQ=DAILY;COUNT=${totalsections};BYDAY=${sectionDays}`
       }
       return mappedCourse;
     }
