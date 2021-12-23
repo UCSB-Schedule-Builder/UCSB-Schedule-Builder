@@ -4,6 +4,7 @@ import useSchedule from "../stores/schedule";
 import { Day } from "@progress/kendo-date-math";
 import '@progress/kendo-date-math/tz/America/Los_Angeles';
 import { CourseConfiguration } from "../shared/model/CourseConfiguration";
+import { CourseTime, HourMinute } from "../shared/model/CourseTime"
 // import { SchedulerModelFields } from "src/models";
 
 function CourseCalendar() {
@@ -57,9 +58,12 @@ function CourseCalendar() {
 
   // translate lecture times from HourMinutes to Dates (should move into CourseTime under HourMinute)
   const getLectureTime = (currCourse: CourseConfiguration) => {
-    const start: HourMinute = currCourse.lectureSlot.times[0].startTime;
-    const end: HourMinute = currCourse.lectureSlot.times[0].endTime;
+    const start: HourMinute | null = currCourse.lectureSlot.times[0].startTime;
+    const end: HourMinute | null = currCourse.lectureSlot.times[0].endTime;
 
+    if (start == null || end == null){
+      return { start: null, end: null };
+    }
     //TODO: change these to the quarter begin date
     let courseStart = new Date("2021-06-21T08:30:00.000Z");
     let courseEnd = new Date("2021-06-21T08:30:00.000Z");
@@ -78,6 +82,9 @@ function CourseCalendar() {
     (currCourse: CourseConfiguration) => {
       const { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
       const { start, end } = getLectureTime(currCourse);
+      if (start == null || end == null){
+        return;
+      }
       // console.log(lectureDays);
       let mappedCourse = {
         id: currCourse.id,
@@ -95,9 +102,11 @@ function CourseCalendar() {
     <Scheduler data={mappedLectures} defaultDate={displayDate}>
       <WorkWeekView
         title="School Week"
-        showWorkHours={false}
+        showWorkHours={true}
         workWeekStart={Day.Monday}
         workWeekEnd={Day.Friday}
+        workDayStart="08:00"
+        workDayEnd="22:30"
       />
 
     </Scheduler>
