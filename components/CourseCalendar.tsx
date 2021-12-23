@@ -105,7 +105,11 @@ function CourseCalendar() {
     }
   );
 
-  const mappedData: any[] = mappedLectures.concat(mappedSections);
+  const mappedData: any[] = mappedLectures.concat(mappedSections).filter(
+    (calendarItem) => {
+      return calendarItem != null;
+    }
+  );
 
   return (
     <Scheduler data={mappedData} defaultDate={displayDate}>
