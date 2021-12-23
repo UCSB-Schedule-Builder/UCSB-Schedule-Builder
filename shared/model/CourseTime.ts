@@ -66,6 +66,46 @@ export class CourseTime {
       (this.endTime.minute - this.startTime.minute)
     );
   }
+
+  getCalendarDayString(): string {
+    let dayString: string = "";
+    this.days.forEach(
+      (currDay: DayOfWeek) => {
+        const dayLetter: String = currDay.letter;
+        switch (dayLetter){
+          case "M":
+          dayString += "MO,";
+            break;
+          case "T":
+          dayString += "TU,";
+            break;
+          case "W":
+          dayString += "WE,";
+            break;
+          case "R":
+          dayString += "TH,";
+            break;
+          case "F":
+            dayString += "FR,";
+            break;
+          case "S":
+            dayString += "SA,";
+            break;
+          case "U":
+            dayString += "SU,";
+            break;
+          default:
+            dayString += "";
+            break;
+        }
+      }
+    )
+    return dayString.substring(0, dayString.length - 1);
+  }
+
+  getTotalLectures(): number {
+    return this.days.length * 10;
+  }
 }
 
 export class HourMinute {

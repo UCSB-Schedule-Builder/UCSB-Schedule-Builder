@@ -16,46 +16,6 @@ function CourseCalendar() {
 
   console.log(`schedule: ${schedule}`);
 
-  //returns lecture days for a course (should probably move into CourseTime)
-  const courseLectureDays = (currCourse: CourseConfiguration) => {
-    let lectureString: String = "";
-    let lectureCount: number = 0;
-    currCourse.lectureSlot.times[0].days.forEach(
-      (currDay: DayOfWeek) => {
-        lectureCount += 1;
-        const dayLetter: String = currDay.letter;
-        switch (dayLetter){
-          case "M":
-            lectureString += "MO,";
-            break;
-          case "T":
-            lectureString += "TU,";
-            break;
-          case "W":
-            lectureString += "WE,";
-            break;
-          case "R":
-            lectureString += "TH,";
-            break;
-          case "F":
-            lectureString += "FR,";
-            break;
-          case "S":
-            lectureString += "SA,";
-            break;
-          case "U":
-            lectureString += "SU,";
-            break;
-          default:
-            lectureString += "";
-            break;
-        }
-      }
-    )
-    // console.log(lectureString);
-    return {lecturesPerWeek: lectureCount, lectureDays: lectureString.substring(0, lectureString.length - 1)};
-  }
-
   // translate lecture times from HourMinutes to Dates (should move into CourseTime under HourMinute)
   const getLectureTime = (currCourse: CourseConfiguration) => {
     const start: HourMinute | null = currCourse.lectureSlot.times[0].startTime;
@@ -80,7 +40,9 @@ function CourseCalendar() {
   //translate courses into data for calendar
   const mappedLectures: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
-      const { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
+      // const { lecturesPerWeek, lectureDays } = courseLectureDays(currCourse);
+      const lectureDays = currCourse.lectureSlot.times[0].getCalendarDayString();
+      const totalLectures = currCourse.lectureSlot.times[0].getTotalLectures();
       const { start, end } = getLectureTime(currCourse);
       if (start == null || end == null){
         return;
@@ -92,7 +54,7 @@ function CourseCalendar() {
         start: start,
         end: end,
         recurrenceRule: //must be one line; doesn't tolerate spaces btwn rules
-          `FREQ=DAILY;COUNT=${lecturesPerWeek*10};BYDAY=${lectureDays}`
+          `FREQ=DAILY;COUNT=${totalLectures};BYDAY=${lectureDays}`
       }
       return mappedCourse;
     }
