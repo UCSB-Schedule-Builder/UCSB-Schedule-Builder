@@ -67,6 +67,7 @@ export class CourseTime {
     );
   }
 
+  //could implement day abreviations into DayOfWeek
   getCalendarDayString(): string {
     let dayString: string = "";
     this.days.forEach(
@@ -103,7 +104,7 @@ export class CourseTime {
     return dayString.substring(0, dayString.length - 1);
   }
 
-  getTotalLectures(): number {
+  getTotalTimes(): number {
     return this.days.length * 10;
   }
 }
