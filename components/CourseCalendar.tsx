@@ -23,8 +23,8 @@ function CourseCalendar() {
       return { start: null, end: null };
     }
     //TODO: change these to the quarter begin date
-    let courseStart = new Date("2021-06-21T08:30:00.000Z");
-    let courseEnd = new Date("2021-06-21T08:30:00.000Z");
+    let courseStart = new Date();
+    let courseEnd = new Date();
 
     courseStart.setHours(start.hour);
     courseStart.setMinutes(start.minute);
@@ -46,8 +46,8 @@ function CourseCalendar() {
       return { start: null, end: null };
     }
     //TODO: change these to the quarter begin date
-    let courseStart = new Date("2021-06-21T08:30:00.000Z");
-    let courseEnd = new Date("2021-06-21T08:30:00.000Z");
+    let courseStart = new Date();
+    let courseEnd = new Date();
 
     courseStart.setHours(start.hour);
     courseStart.setMinutes(start.minute);
@@ -84,7 +84,7 @@ function CourseCalendar() {
   //copy pasted version of mappedLectures; generalize to a function at some point
   const mappedSections: any[] = courseArray.map(
     (currCourse: CourseConfiguration) => {
-      if (currCourse.sectionSlot === undefined){
+      if (currCourse.sectionSlot === undefined || currCourse.sectionSlot.times.length == 0){
         return;
       }
       const sectionDays: string = currCourse.sectionSlot.times[0].getCalendarDayString();
