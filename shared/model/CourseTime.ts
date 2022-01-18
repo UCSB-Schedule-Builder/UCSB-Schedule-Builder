@@ -105,7 +105,21 @@ export class CourseTime {
   }
 
   getTotalTimes(): number {
-    return this.days.length * 10;
+    return this.days.length;
+  }
+
+  getStartEndDates(date: Date): {start: Date | null, end: Date | null} {
+    if (this.startTime == null || this.endTime == null) return {start: null, end: null};
+
+    let startDate = new Date(date);
+    let endDate = new Date(date);
+
+    startDate.setHours(this.startTime.hour);
+    startDate.setMinutes(this.startTime.minute);
+    endDate.setHours(this.endTime.hour);
+    endDate.setMinutes(this.endTime.minute);
+
+    return {start: startDate, end: endDate};
   }
 }
 
