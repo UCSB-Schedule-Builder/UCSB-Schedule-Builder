@@ -11,14 +11,14 @@ function CourseCalendar() {
 
   // Date must be at start of week for recurrence rule to work correctly
   const displayDate = new Date()
-  displayDate.setTime(displayDate.getTime()-displayDate.getDay()*1000*60*60*24)
+  displayDate.setTime(displayDate.getTime()-(displayDate.getDay()-1)*1000*60*60*24)
 
   const mappedCalendarCourseTimes = courseArray.flatMap(
     (currentCourseConfig: CourseConfiguration) => {
-      let rawCourseTimes = currentCourseConfig.lectureSlot.times
+      let rawCourseTimes = currentCourseConfig.lectureSlot.times;
       if (currentCourseConfig.sectionSlot)
       {
-        rawCourseTimes = rawCourseTimes.concat(currentCourseConfig.sectionSlot.times)
+        rawCourseTimes = rawCourseTimes.concat(currentCourseConfig.sectionSlot.times);
       }
 
       let mappedCourseTimes = rawCourseTimes.flatMap((currentCourseTime: CourseTime) => {
@@ -40,12 +40,15 @@ function CourseCalendar() {
         return mappedCourse;
       })
 
-      return mappedCourseTimes
+      return mappedCourseTimes;
     }
-  )
+  );
 
   return (
-    <Scheduler data={mappedCalendarCourseTimes} defaultDate={displayDate}>
+    <Scheduler
+      data={mappedCalendarCourseTimes}
+      defaultDate={displayDate}
+    >
       <WorkWeekView
         title="School Week"
         showWorkHours={true}
@@ -54,7 +57,6 @@ function CourseCalendar() {
         workDayStart="08:00"
         workDayEnd="22:30"
       />
-
     </Scheduler>
   );
 }
