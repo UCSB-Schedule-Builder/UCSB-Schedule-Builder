@@ -60,7 +60,8 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <AllCoursesList />
       <h2>Calendar</h2>
       <div style={{marginTop: 5, marginLeft: 50, position: "relative"}}>
-        <ScheduleGridFrame columnCount={5} weekColumns={weekColumns} timeStart={{hour: 8, minute: 0}} timeEnd={{hour: 22, minute: 1}} timeIncrement={5} width={700} rowHeight={3} margins={[10, 0]} />
+        <ScheduleGridFrame columnCount={5} weekColumns={weekColumns} timeStart={{hour: 8, minute: 0}}
+          timeEnd={{hour: 22, minute: 1}} timeIncrement={5} width={700} rowHeight={3} margins={[10, 0]} />
       </div>
       <AddCourseModal />
       <style jsx global>{`
