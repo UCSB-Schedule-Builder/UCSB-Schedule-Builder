@@ -9,7 +9,7 @@ import useCourseMetadata from "../stores/courseMetadata";
 import shallow from "zustand/shallow";
 import useQuarter from "../hooks/quarter";
 import { useEffect } from "react";
-import ScheduleGridFrame from "../components/calendar/ScheduleGridFrame";
+import ScheduleGridContainer from "../components/calendar/ScheduleGridContainer"
 
 import useCourseLists from "../stores/courseLists"
 
@@ -20,14 +20,6 @@ export const getStaticProps = async () => {
     },
   };
 };
-
-const weekColumns = [
-  {id: "monday", letter: "M", name: "Monday"},
-  {id: "tuesday", letter: "T", name: "Tuesday"},
-  {id: "wednesday", letter: "W", name: "Wednesday"},
-  {id: "thursday", letter: "R", name: "Thursday"},
-  {id: "friday", letter: "F", name: "Friday"}
-]
 
 const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { setSubjects, setQuarter } = useCourseMetadata(
@@ -59,10 +51,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <h1>UCSB Schedule Builder 😎</h1>
       <AllCoursesList />
       <h2>Calendar</h2>
-      <div style={{marginTop: 5, marginLeft: 50, position: "relative"}}>
-        <ScheduleGridFrame columnCount={5} weekColumns={weekColumns} timeStart={{hour: 8, minute: 0}}
-          timeEnd={{hour: 22, minute: 1}} timeIncrement={5} width={700} rowHeight={3} margins={[10, 0]} />
-      </div>
+      <ScheduleGridContainer />
       <AddCourseModal />
       <style jsx global>{`
         html {

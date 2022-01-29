@@ -1,6 +1,6 @@
 import { HourMinute } from "../../shared/model/CourseTime"
 
-interface ScheduleGridFrameProps
+export interface ScheduleGridFrameProps
 {
   columnCount: number
   weekColumns: any[]
@@ -13,7 +13,7 @@ interface ScheduleGridFrameProps
   margins: number[]
 }
 
-function ScheduleGridFrame(props: ScheduleGridFrameProps)
+export function ScheduleGridFrame(props: ScheduleGridFrameProps)
 {
   const verticalLineStyle = {
     position: "absolute",
@@ -199,5 +199,3 @@ function getTime(rowNumber: number, props: ScheduleGridFrameProps)
   let minutesAfterStart = rowNumber*props.timeIncrement
   return {hour: props.timeStart.hour+Math.floor(minutesAfterStart/60)+Math.floor((props.timeStart.minute+minutesAfterStart%60)/60), minute: (props.timeStart.minute+minutesAfterStart%60)%60} // Have to add extra hour if timeStart.minute+minutesAfterStart%60 is greater than 60
 }
-
-export default ScheduleGridFrame
