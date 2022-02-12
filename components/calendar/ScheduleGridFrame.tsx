@@ -1,4 +1,5 @@
 import { HourMinute } from "../../shared/model/CourseTime"
+import { getTime, getTimeDifference } from "./ScheduleGridHelpers"
 
 export interface ScheduleGridFrameProps
 {
@@ -185,17 +186,4 @@ function mergeObject(mainObject: any, additionalObject: any, overwrite: boolean 
       mainObject[key] = additionalObject[key]
     }
   }
-}
-
-function getTimeDifference(time1: HourMinute, time2: HourMinute)
-{
-  let time1Minutes = 60*time1.hour+time1.minute
-  let time2Minutes = 60*time2.hour+time2.minute
-  return time2Minutes-time1Minutes
-}
-
-function getTime(rowNumber: number, props: ScheduleGridFrameProps)
-{
-  let minutesAfterStart = rowNumber*props.timeIncrement
-  return {hour: props.timeStart.hour+Math.floor(minutesAfterStart/60)+Math.floor((props.timeStart.minute+minutesAfterStart%60)/60), minute: (props.timeStart.minute+minutesAfterStart%60)%60} // Have to add extra hour if timeStart.minute+minutesAfterStart%60 is greater than 60
 }
