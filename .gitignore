@@ -324,7 +324,3 @@ dist
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,jetbrains,macos,node
-
-
-# kendo-ui license key
-kendo-ui-license.txt

@@ -14,7 +14,7 @@ interface CourseMetadata {
 
 const courseListOrder: CourseMetadata[] = [
   { id: "main", name: "Courses" },
-  { id: "alternate", name: "Alternates" },
+  { id: "alternate", name: "Hidden" },
 ];
 
 function AllCoursesList() {

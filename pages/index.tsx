@@ -9,9 +9,9 @@ import useCourseMetadata from "../stores/courseMetadata";
 import shallow from "zustand/shallow";
 import useQuarter from "../hooks/quarter";
 import { useEffect } from "react";
-import ScheduleGridContainer from "../components/calendar/ScheduleGridContainer"
+import ScheduleGridContainer from "../components/calendar/ScheduleGridContainer";
 
-import useCourseLists from "../stores/courseLists"
+import useCourseLists from "../stores/courseLists";
 
 export const getStaticProps = async () => {
   return {
