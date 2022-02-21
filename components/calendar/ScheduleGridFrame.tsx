@@ -12,6 +12,9 @@ export interface ScheduleGridFrameProps
   width: number
   rowHeight: number
   margins: number[]
+
+  weekdayLabelMargin: number
+  timeLabelMargin: number
 }
 
 export function ScheduleGridFrame(props: ScheduleGridFrameProps)
@@ -39,12 +42,14 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
   const gridTimeStyle = {
     float: "left" as any,
     height: rowCount*(props.rowHeight+props.margins[1]),
-    color: "white"
+    color: "white",
+    width: props.timeLabelMargin
   }
 
   const gridWeekdayStyle = {
     width: props.width+gridContainerStyle.marginLeft+props.margins[0],
-    color: "white"
+    color: "white",
+    height: props.weekdayLabelMargin
   }
 
   let gridLines = []

@@ -2,11 +2,11 @@ import { HourMinute } from "../../shared/model/CourseTime"
 import { ScheduleGridFrameProps } from "./ScheduleGridFrame"
 
 export const weekColumns = [
-{id: "monday", letter: "M", name: "Monday"},
-{id: "tuesday", letter: "T", name: "Tuesday"},
-{id: "wednesday", letter: "W", name: "Wednesday"},
-{id: "thursday", letter: "R", name: "Thursday"},
-{id: "friday", letter: "F", name: "Friday"}
+  {id: "monday", letter: "M", name: "Monday"},
+  {id: "tuesday", letter: "T", name: "Tuesday"},
+  {id: "wednesday", letter: "W", name: "Wednesday"},
+  {id: "thursday", letter: "R", name: "Thursday"},
+  {id: "friday", letter: "F", name: "Friday"}
 ];
 
 //constants :P
@@ -17,7 +17,8 @@ export const timeIncrement = 5;
 export const width = 700;
 export const rowHeight = 3;
 export const margins = [10, 0];
-
+export const weekdayLabelMargin = 20;
+export const timeLabelMargin = 48;
 
 export function dayLetterToXPos(day:string): number {
   let dayIndex = weekColumns.findIndex( (dayColumn) => dayColumn.letter == day );
@@ -29,6 +30,10 @@ export function timeToYPos(currTime: HourMinute){
   return rowHeight*rowNum;
 }
 
+export function getSlotHeight(startTime: HourMinute, endTime: HourMinute)
+{
+  return getTimeDifference(startTime, endTime)/timeIncrement*rowHeight
+}
 
 export function getTimeDifference(time1: HourMinute, time2: HourMinute)
 {
