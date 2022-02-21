@@ -6,7 +6,7 @@ function ScheduleGridContainer() {
 
   return (
     <div>
-      <div style={{marginTop: 5, marginLeft: 50, position: "relative"}}>
+      <div style={{marginTop: 5, marginLeft: 50, position: "absolute"}}>
         <ScheduleGridFrame columnCount = {constants.columnCount}
           weekColumns = {constants.weekColumns}
           timeStart = {constants.timeStart}
