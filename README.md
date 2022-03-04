@@ -10,11 +10,6 @@ npm install -g pnpm     # if pnpm is not installed
 pnpm install
 ```
 
-Write the Kendo UI License to ``kendo-ui-license.txt`` and run:
-```bash
-pnpx kendo-ui-license activate
-```
-
 Write the UCSB API Key to ``.env``:
 ```dotenv
 NEXT_PUBLIC_UCSB_API_KEY=<KEY HERE>
