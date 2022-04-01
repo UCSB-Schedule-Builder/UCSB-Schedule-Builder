@@ -22,9 +22,10 @@ function ScheduleGridContainer() {
           timeIncrement={constants.timeIncrement}
           width={constants.width}
           rowHeight={constants.rowHeight}
-          margins={constants.margins}
           weekdayLabelMargin={constants.weekdayLabelMargin}
           timeLabelMargin={constants.timeLabelMargin}
+          labelFontSize={constants.labelFontSize}
+          use24HourTime={true}
         />
         <DragDropContext onDragEnd={() => {}}>
           {courseTimeslotArray.flatMap(courseConfiguration => {

@@ -11,17 +11,22 @@ export interface ScheduleGridFrameProps
 
   width: number
   rowHeight: number
-  margins: number[]
 
   weekdayLabelMargin: number
   timeLabelMargin: number
+
+  labelFontSize: number
+
+  use24HourTime: boolean
 }
 
 export function ScheduleGridFrame(props: ScheduleGridFrameProps)
 {
+  const verticalLineWidth = 4
+
   const verticalLineStyle = {
     position: "absolute",
-    borderLeft: "4px solid white",
+    borderLeft: verticalLineWidth + "px solid white",
     opacity: 0.5
   }
 
@@ -35,19 +40,23 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
 
   const gridContainerStyle = {
     marginTop: 5,
-    marginLeft: 50,
+    marginLeft: props.timeLabelMargin,
     position: "relative" as any
   }
 
   const gridTimeStyle = {
-    float: "left" as any,
-    height: rowCount*(props.rowHeight+props.margins[1]),
+    position: "absolute" as any,
+    height: rowCount*props.rowHeight,
     color: "white",
-    width: props.timeLabelMargin
+    width: props.timeLabelMargin,
+    "font-size": props.labelFontSize,
+    display: "flex",
+    "justify-content": "right",
+    paddingRight: 5
   }
 
   const gridWeekdayStyle = {
-    width: props.width+gridContainerStyle.marginLeft+props.margins[0],
+    width: props.width+gridContainerStyle.marginLeft,
     color: "white",
     height: props.weekdayLabelMargin
   }
@@ -57,8 +66,8 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
   for (let columnOn = 0; columnOn < props.columnCount+1; columnOn++)
   {
     let columnLine: any = {}
-    columnLine.left = columnOn*(props.width-props.margins[0])/(props.columnCount)+props.margins[0]/2-1
-    columnLine.height = rowCount*(props.rowHeight+props.margins[1])+2
+    columnLine.left = columnOn*props.width/props.columnCount
+    columnLine.height = rowCount*props.rowHeight
     mergeObject(columnLine, verticalLineStyle)
 
     gridLines.push({key: "columnLine" + columnOn, style: columnLine})
@@ -70,9 +79,9 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
     if (minuteOn % 60 !== 0) { continue }
 
     let rowLine: any = {}
-    rowLine.left = props.margins[0]-2
-    rowLine.top = rowOn*(props.rowHeight+props.margins[1])+props.margins[1]
-    rowLine.width = props.width-props.margins[0]-2*2
+    rowLine.left = 0
+    rowLine.top = rowOn*props.rowHeight
+    rowLine.width = props.width
     mergeObject(rowLine, horizontalLineStyle)
 
     gridLines.push({key: "rowLine" + rowOn, style: rowLine})
@@ -84,16 +93,8 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
     let timeForRow = getTime(rowOn, props)
     if (timeForRow.minute !== 0) { continue }
 
-    let timeData: any = {style: {}}
-    if (rowOn < 60/props.timeIncrement)
-    {
-      timeData.style.marginTop = rowOn*props.rowHeight-(16+2)/2 // i have no idea where these numbers come from
-    }
-    else
-    {
-      timeData.style.marginTop = 60/props.timeIncrement*props.rowHeight-(16+4) // i have no idea where these numbers come from either
-    }
-    timeData.style.textAlign = "right"
+    let timeData: any = {style: {position: "absolute"}}
+    timeData.style.top = rowOn*props.rowHeight-(props.labelFontSize+2)/2 // +2 for extra padding inside text boxes
 
     let hour24 = timeForRow.hour
     let hour12
@@ -115,6 +116,7 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
     }
 
     timeData.hour12 = hour12
+    timeData.hour24 = zeroPadding(hour24) + ":00"
 
     gridTimes.push(timeData)
   }
@@ -122,19 +124,9 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
   let gridWeekdays = []
   for (let columnOn = 0; columnOn < props.columnCount; columnOn++)
   {
-    let weekdayData: any = {style: {display: "inline-flex", justifyContent: "center", fontWeight: "bold"}}
-    if (columnOn == 0)
-    {
-      weekdayData.style.marginLeft = gridContainerStyle.marginLeft+props.margins[0]+4 // +4 is manual shifting
-      weekdayData.style.marginRight = props.margins[0]
-      weekdayData.style.width = props.width/props.columnCount-2*props.margins[0]
-    }
-    else
-    {
-      weekdayData.style.marginLeft = props.margins[0]
-      weekdayData.style.marginRight = props.margins[0]
-      weekdayData.style.width = props.width/props.columnCount-2*props.margins[0]-2 // -2 is manual shifting
-    }
+    let weekdayData: any = {style: {display: "inline-flex", "justify-content": "center", position: "absolute", fontWeight: "bold"}}
+    weekdayData.style.left = props.timeLabelMargin+props.width/props.columnCount*columnOn+verticalLineWidth/2
+    weekdayData.style.width = props.width/props.columnCount
 
     weekdayData.name = props.weekColumns[columnOn].name
 
@@ -160,7 +152,7 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
             gridTimes.map(timeData => {
               return (
                 <div style={timeData.style} key={"time-" + timeData.hour12}>
-                  {timeData.hour12}
+                  {props.use24HourTime ? timeData.hour24 : timeData.hour12}
                 </div>
               )
             })
@@ -191,4 +183,13 @@ function mergeObject(mainObject: any, additionalObject: any, overwrite: boolean 
       mainObject[key] = additionalObject[key]
     }
   }
+}
+
+function zeroPadding(num: number)
+{
+  if (num < 10)
+  {
+    return "0" + num
+  }
+  return num
 }
