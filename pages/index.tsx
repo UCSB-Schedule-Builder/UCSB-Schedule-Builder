@@ -62,7 +62,7 @@ const Home = ({ subjects }: InferGetStaticPropsType<typeof getStaticProps>) => {
           height: 100%;
           margin: 0;
           padding: 20px;
-          background: linear-gradient(135deg, #2e22ac 0%, #ce448d 100%)
+          background: linear-gradient(135deg, #2e22ac 0%, #ff00a5 100%)
             no-repeat fixed;
         }
       `}</style>
