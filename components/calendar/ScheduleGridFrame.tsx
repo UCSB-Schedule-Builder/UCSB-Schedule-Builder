@@ -12,8 +12,14 @@ export interface ScheduleGridFrameProps
   width: number
   rowHeight: number
 
-  weekdayLabelMargin: number
-  timeLabelMargin: number
+  weekdayLabelHeight: number
+  timeLabelWidth: number
+
+  weekdayLabelTopMargin: number
+  timeLabelRightPadding: number
+
+  verticalLineWidth: number
+  horizontalLineHeight: number
 
   labelFontSize: number
 
@@ -22,25 +28,28 @@ export interface ScheduleGridFrameProps
 
 export function ScheduleGridFrame(props: ScheduleGridFrameProps)
 {
-  const verticalLineWidth = 4
+  // const verticalLineWidth = 4
+
+  // const weekdayLabelTopMargin = 5
+  // const timeLabelRightPadding = 5
 
   const verticalLineStyle = {
     position: "absolute",
-    borderLeft: verticalLineWidth + "px solid white",
+    borderLeft: props.verticalLineWidth + "px solid white",
     opacity: 0.5
   }
 
   const horizontalLineStyle = {
     position: "absolute",
-    borderTop: "2px solid white",
+    borderTop: props.horizontalLineHeight + "px solid white",
     opacity: 0.2
   }
 
   let rowCount = getTimeDifference(props.timeStart, props.timeEnd)/props.timeIncrement
 
   const gridContainerStyle = {
-    marginTop: 5,
-    marginLeft: props.timeLabelMargin,
+    marginTop: props.weekdayLabelTopMargin,
+    marginLeft: props.timeLabelWidth,
     position: "relative" as any
   }
 
@@ -48,17 +57,17 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
     position: "absolute" as any,
     height: rowCount*props.rowHeight,
     color: "white",
-    width: props.timeLabelMargin,
+    width: props.timeLabelWidth,
     "font-size": props.labelFontSize,
     display: "flex",
     "justify-content": "right",
-    paddingRight: 5
+    paddingRight: props.timeLabelRightPadding
   }
 
   const gridWeekdayStyle = {
     width: props.width+gridContainerStyle.marginLeft,
     color: "white",
-    height: props.weekdayLabelMargin
+    height: props.weekdayLabelHeight
   }
 
   let gridLines = []
@@ -125,7 +134,7 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
   for (let columnOn = 0; columnOn < props.columnCount; columnOn++)
   {
     let weekdayData: any = {style: {display: "inline-flex", "justify-content": "center", position: "absolute", fontWeight: "bold"}}
-    weekdayData.style.left = props.timeLabelMargin+props.width/props.columnCount*columnOn+verticalLineWidth/2
+    weekdayData.style.left = props.timeLabelWidth+props.width/props.columnCount*columnOn+props.verticalLineWidth/2
     weekdayData.style.width = props.width/props.columnCount
 
     weekdayData.name = props.weekColumns[columnOn].name

@@ -2,7 +2,7 @@ import { Droppable } from "react-beautiful-dnd"
 import { CourseID } from "../../shared/model/Course"
 import { CourseTime } from "../../shared/model/CourseTime"
 import { CourseTimeslot } from "../../shared/model/CourseConfiguration"
-import { timeToYPos, dayLetterToXPos, getSlotHeight, width, columnCount, weekdayLabelMargin, timeLabelMargin } from "./ScheduleGridHelpers"
+import * as constants from "./ScheduleGridHelpers"
 
 interface CourseDroppableProps
 {
@@ -25,10 +25,10 @@ export function CourseDroppable({timeslot, courseID} : CourseDroppableProps)
             return (
               <Droppable droppableId={timeslot.enrollCode} type={courseID.toString()} children={() => (
                 <div style={{
-                  width: width/columnCount-4,
-                  height: getSlotHeight(courseTime.startTime!, courseTime.endTime!),
-                  top: timeToYPos(courseTime.startTime!)+weekdayLabelMargin+5,
-                  left: dayLetterToXPos(dayOfWeek.letter)+timeLabelMargin+4,
+                  width: constants.width/constants.columnCount-constants.verticalLineWidth,
+                  height: constants.getSlotHeight(courseTime.startTime!, courseTime.endTime!),
+                  top: constants.timeToYPos(courseTime.startTime!)+constants.weekdayLabelHeight+constants.weekdayLabelTopMargin,
+                  left: constants.dayLetterToXPos(dayOfWeek.letter)+constants.timeLabelWidth+constants.verticalLineWidth,
                   position: "absolute",
                   backgroundColor: "blue"
                 }}></div>

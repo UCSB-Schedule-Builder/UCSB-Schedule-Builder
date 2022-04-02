@@ -16,8 +16,12 @@ export const timeEnd = {hour: 22, minute: 1};
 export const timeIncrement = 5;
 export const width = 700;
 export const rowHeight = 3;
-export const weekdayLabelMargin = 20;
-export const timeLabelMargin = 70;
+export const weekdayLabelHeight = 20;
+export const timeLabelWidth = 70;
+export const weekdayLabelTopMargin = 5;
+export const timeLabelRightPadding = 5;
+export const verticalLineWidth = 4;
+export const horizontalLineHeight = 2;
 export const labelFontSize = 16;
 
 export function dayLetterToXPos(day:string): number {

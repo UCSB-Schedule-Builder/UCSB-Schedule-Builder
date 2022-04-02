@@ -22,8 +22,12 @@ function ScheduleGridContainer() {
           timeIncrement={constants.timeIncrement}
           width={constants.width}
           rowHeight={constants.rowHeight}
-          weekdayLabelMargin={constants.weekdayLabelMargin}
-          timeLabelMargin={constants.timeLabelMargin}
+          weekdayLabelHeight={constants.weekdayLabelHeight}
+          timeLabelWidth={constants.timeLabelWidth}
+          weekdayLabelTopMargin={constants.weekdayLabelTopMargin}
+          timeLabelRightPadding={constants.timeLabelRightPadding}
+          verticalLineWidth={constants.verticalLineWidth}
+          horizontalLineHeight={constants.horizontalLineHeight}
           labelFontSize={constants.labelFontSize}
           use24HourTime={true}
         />
