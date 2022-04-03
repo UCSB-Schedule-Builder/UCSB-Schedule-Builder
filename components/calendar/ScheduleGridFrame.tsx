@@ -28,11 +28,6 @@ export interface ScheduleGridFrameProps
 
 export function ScheduleGridFrame(props: ScheduleGridFrameProps)
 {
-  // const verticalLineWidth = 4
-
-  // const weekdayLabelTopMargin = 5
-  // const timeLabelRightPadding = 5
-
   const verticalLineStyle = {
     position: "absolute",
     borderLeft: props.verticalLineWidth + "px solid white",
@@ -58,9 +53,9 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
     height: rowCount*props.rowHeight,
     color: "white",
     width: props.timeLabelWidth,
-    "font-size": props.labelFontSize,
+    fontSize: props.labelFontSize,
     display: "flex",
-    "justify-content": "right",
+    justifyContent: "right",
     paddingRight: props.timeLabelRightPadding
   }
 
@@ -133,7 +128,7 @@ export function ScheduleGridFrame(props: ScheduleGridFrameProps)
   let gridWeekdays = []
   for (let columnOn = 0; columnOn < props.columnCount; columnOn++)
   {
-    let weekdayData: any = {style: {display: "inline-flex", "justify-content": "center", position: "absolute", fontWeight: "bold"}}
+    let weekdayData: any = {style: {display: "inline-flex", justifyContent: "center", position: "absolute", fontWeight: "bold"}}
     weekdayData.style.left = props.timeLabelWidth+props.width/props.columnCount*columnOn+props.verticalLineWidth/2
     weekdayData.style.width = props.width/props.columnCount
 

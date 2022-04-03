@@ -32,12 +32,12 @@ function ScheduleGridContainer() {
           use24HourTime={true}
         />
         <DragDropContext onDragEnd={() => {}}>
-          {courseTimeslotArray.flatMap(courseConfiguration => {
-            return [courseConfiguration.lectureSlot]
-              .filter(courseTimeslot => courseTimeslot.times.length > 0 && courseTimeslot.times[0].startTime && courseTimeslot.times[0].endTime)
-              .map(courseTimeslot => (
-                <CourseDroppable timeslot={courseTimeslot} courseID={courseConfiguration.id} />
-              ))
+          {courseArray.flatMap(course => {
+            console.log(course.lectures)
+            return course.lectures.filter(lecture => lecture.times.length > 0 && lecture.times[0].startTime && lecture.times[0].endTime)
+            .flatMap(lecture => (
+              <CourseDroppable courseTimes={lecture.times} enrollCode={lecture.enrollCode} courseID={course.id} />
+            ))
           })}
         </DragDropContext>
       </div>
